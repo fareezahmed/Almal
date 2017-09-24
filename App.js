@@ -1,13 +1,10 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import LoginScreen from './src/screens/loginScreen';
-import MainScreen from './src/screens/mainScreen';
+import React, { Component } from 'react';
+import ScreenRouter from './src/router';
 
-export default class App extends React.Component {
+export default class App extends Component {
   render() {
     return (
-      <MainScreen />
+      <ScreenRouter />
     );
   }
 }
-
