@@ -15,11 +15,12 @@ const Stack = StackNavigator(
       screen: MainScreen,
       navigationOptions: ({ navigation }) => ({
         title: 'Main',
+        headerTitle: 'Main',
         headerRight: (
           <Button
             onPress={() => navigation.navigate('Settings')}
             title="Settings"
-            color="#841584"
+            color="#007aff"
             accessibilityLabel="Learn more about this purple button"
           />
         ),
@@ -28,13 +29,13 @@ const Stack = StackNavigator(
     Settings: {
       screen: SettingsScreen,
       navigationOptions: () => ({
-        title: 'Settings',
+        headerTitle: 'Settings',
       }),
     },
   },
   {
     navigationOptions: {
-      headerTintColor: 'white',
+      headerTintColor: Colors.NAV_COLOR,
       headerStyle: {
         backgroundColor: Colors.PRIMARY_COLOR,
       },

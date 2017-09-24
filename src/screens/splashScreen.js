@@ -22,13 +22,13 @@ const styles = {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#009688'
+    backgroundColor: '#009688',
   },
   textStyle: {
     fontSize: 30,
     fontWeight: 'bold',
-    color: 'white'
+    color: 'white',
   },
 };
 
-export default LoginScreen;
+export default SplashScreen;

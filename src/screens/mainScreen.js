@@ -1,34 +1,17 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, ScrollView } from 'react-native';
+import { View } from 'react-native';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import reducers from '../reducers';
 import { Color, Sizes } from '../config';
+import { ListView } from '../components';
 
-class MainScreen extends Component {
-
-  render() {
-    console.log(Sizes.screen.width);
-
-    return (
-      <View
-      style={styles.slideStyle}
-      >
-        <Text style={styles.textStyle}>Main Screen</Text>
-      </View>
-    );
-  }
-}
-
-const styles = {
-  slideStyle: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#009688'
-  },
-  textStyle: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    color: 'white'
-  },
-};
+const MainScreen = () => (
+  <Provider store={createStore(reducers)}>
+    <View style={{ flex: 1 }}>
+      <ListView />
+    </View>
+  </Provider>
+);
 
 export default MainScreen;
