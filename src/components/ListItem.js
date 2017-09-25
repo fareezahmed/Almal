@@ -1,69 +1,34 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import {
   Text,
   TouchableWithoutFeedback,
   View,
-  LayoutAnimation,
+  LayoutAnimation
 } from 'react-native';
 import { connect } from 'react-redux';
-import Section from './Section';
-import * as actions from '../actions';
 
-class ListItem extends Component {
-  componentWillUpdate() {
-    LayoutAnimation.spring();
+class ListItemComponent extends Component {
+  static propTypes = {
+    data: PropTypes.object.isRequired
   }
 
-  renderDescription() {
-    const { library, expanded } = this.props;
-
-    if (expanded) {
-      return (
-        <Section>
-          <Text style={{ flex: 1 }}>
-            {library.description}
-          </Text>
-        </Section>
-      );
-    }
+  componentWillUpdate() {
+    LayoutAnimation.easeInEaseOut();
   }
 
   render() {
-    const { titleStyle } = styles;
-    const { id, title } = this.props.library;
-
+    const { uid, name, avatar, leadDate, returnDate, witness1, witness2 } = this.props.data;
+    console.log(this.props.data);
     return (
       <TouchableWithoutFeedback
-        onPress={() => this.props.selectLibrary(id)}
+        onPress={() => console.log(uid)}
       >
-        <View>
-          <CardSection>
-            <Text style={titleStyle}>
-              {title}
-            </Text>
-          </CardSection>
-          {this.renderDescription()}
+        <View key={uid}>
+          <Text>{name}</Text>
         </View>
       </TouchableWithoutFeedback>
     );
   }
 }
 
-const styles = {
-  titleStyle: {
-    fontSize: 18,
-    paddingLeft: 15,
-  },
-  descriptionStyle: {
-    paddingLeft: 10,
-    paddingRight: 10,
-  },
-};
-
-const mapStateToProps = (state, ownProps) => {
-  const expanded = state.selectedLibraryId === ownProps.library.id;
-
-  return { expanded };
-};
-
-export default connect(mapStateToProps, actions)(ListItem);
+export const ListItem = connect()(ListItemComponent);
