@@ -37,7 +37,6 @@ const styles = {
   cellStyle: {
     paddingTop: 0,
     paddingLeft: 15,
-    marginBottom: 15,
     paddingRight: 15,
   },
 }

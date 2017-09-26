@@ -5,7 +5,7 @@ import {
   View,
   LayoutAnimation
 } from 'react-native';
-import { Icon } from 'react-native-elements'
+import { Icon, Button } from 'react-native-elements'
 import { connect } from 'react-redux';
 import { GlobalStyles, Colors } from '../config';
 import * as actions from '../actions';
@@ -40,9 +40,7 @@ class ListItemComponent extends Component {
     if (expanded) {
       return (
         <View style={[viewStyle]}>
-          <View
-            style={[GlobalStyles.row, rowStyle]}
-            >
+          <View style={[GlobalStyles.row, rowStyle]}>
             <View style={GlobalStyles.flex3}>
               <Text style={[GlobalStyles.cardLabel]}>Lead Date</Text>
               <Text style={[GlobalStyles.cardValue]}>{leadDate}</Text>
@@ -52,21 +50,51 @@ class ListItemComponent extends Component {
               <Text style={[GlobalStyles.cardValue, GlobalStyles.textRightAligned]}>{returnDate}</Text>
             </View>
           </View>
-          <View
-          style={[GlobalStyles.row, rowStyle]}
-          >
-          <View style={GlobalStyles.flex3}>
-            <Text style={[GlobalStyles.cardLabel]}>Witness1</Text>
-            <Text style={[GlobalStyles.cardValue]}>{witness1.name}</Text>
-            <Text style={[GlobalStyles.cardValue]}>{witness1.phone}</Text>
-          </View>
-          <View style={GlobalStyles.flex3}>
-            <Text style={[GlobalStyles.cardLabel, GlobalStyles.textRightAligned]}>Witness2</Text>
-            <Text style={[GlobalStyles.cardValue, GlobalStyles.textRightAligned]}>{witness2.name}</Text>
-            <Text style={[GlobalStyles.cardValue, GlobalStyles.textRightAligned]}>{witness2.phone}</Text>
+          <View style={[GlobalStyles.row, rowStyle]}>
+            <View style={GlobalStyles.flex3}>
+              <Text style={[GlobalStyles.cardLabel]}>Witness1</Text>
+              <Text style={[GlobalStyles.cardValue]}>{witness1.name}</Text>
+              <Text style={[GlobalStyles.cardValue]}>{witness1.phone}</Text>
+            </View>
+            <View style={GlobalStyles.flex3}>
+              <Text style={[GlobalStyles.cardLabel, GlobalStyles.textRightAligned]}>Witness2</Text>
+              <Text style={[GlobalStyles.cardValue, GlobalStyles.textRightAligned]}>{witness2.name}</Text>
+              <Text style={[GlobalStyles.cardValue, GlobalStyles.textRightAligned]}>{witness2.phone}</Text>
+            </View>
           </View>
         </View>
+      );
+    }
+  }
+
+  renderIcon() {
+    const { expanded } = this.props;
+    const {
+      iconContainerStyles,
+      cardChevronStyle } = styles;
+    if (!expanded) {
+      return(
+        <View style={[GlobalStyles.centerAligned, iconContainerStyles]}>
+          <Icon
+            raised
+            name='keyboard-arrow-down'
+            color={Colors.PRIMARY_COLOR}
+            size={30}
+            containerStyle={cardChevronStyle}
+            onPress={() => this.props.selectedDeal(uid)}
+          />
         </View>
+      );
+    }
+  }
+
+  renderSubTitle() {
+    const { expanded } = this.props;
+    const { returnDate } = this.props.data;
+    const { dateStyle } = styles;
+    if (!expanded) {
+      return(
+        <Text style={[GlobalStyles.cardSubTitle, dateStyle]}>Due Date:{returnDate}</Text>
       );
     }
   }
@@ -89,49 +117,37 @@ class ListItemComponent extends Component {
       dealTypeStyle,
       dealAmountStyle,
       dateStyle,
-      viewStyle,
-      cardChevronStyle } = styles;
+      viewStyle } = styles;
 
-    const iconStyles = {
-      transform: this.props.expanded ? [{ rotate: '180deg'}] : [{ rotate: '0deg'}]
-    }
-    console.log(iconStyles);
     return (
       <TouchableWithoutFeedback
         onPress={() => this.props.selectedDeal(uid)}
       >
-        <View style={[GlobalStyles.shadow, viewStyle]}>
-          <View
-            style={[GlobalStyles.row, rowStyle]}
-            key={uid}
-            >
-            <View style={GlobalStyles.flex5}>
-              <Text style={[GlobalStyles.cardTitle, nameStyle]}>{name}</Text>
-              <Text style={[GlobalStyles.cardSubTitle, dateStyle]}>Due Date:{returnDate}</Text>
-            </View>
-            <View style={[GlobalStyles.flex1]}>
-              <View style={[GlobalStyles.row]}>
-                <Text style={[GlobalStyles.cardTitle, GlobalStyles.textRightAligned, dealTypeStyle]}>{dealType}</Text>
-                <Text style={[GlobalStyles.cardTitle, GlobalStyles.textRightAligned, dealAmountStyle]}>{dealAmount}</Text>
+        <View style={[{ paddingBottom: 10 }]}>
+          <View style={[GlobalStyles.shadow, viewStyle, { paddingBottom: 22 }]}>
+            <View
+              style={[GlobalStyles.row, rowStyle]}
+              key={uid}
+              >
+              <View style={GlobalStyles.flex5}>
+                <Text style={[GlobalStyles.cardTitle, nameStyle]}>{name}</Text>
+                {this.renderSubTitle()}
               </View>
+              <View style={[GlobalStyles.flex1]}>
+                <View style={[GlobalStyles.row]}>
+                  <Text style={[GlobalStyles.cardTitle, GlobalStyles.textRightAligned, dealTypeStyle]}>{dealType}</Text>
+                  <Text style={[GlobalStyles.cardTitle, GlobalStyles.textRightAligned, dealAmountStyle]}>{dealAmount}</Text>
+                </View>
 
+              </View>
+            </View>
+            <View>
+              {this.renderDescription()}
             </View>
           </View>
-
-          <View>
-            {this.renderDescription()}
-          </View>
-          <View style={iconStyles}>
-            <Icon
-              raised
-              name='keyboard-arrow-down'
-              color={Colors.PRIMARY_COLOR}
-              size={30}
-              containerStyle={cardChevronStyle}
-              onPress={() => this.props.selectedDeal(uid)}
-            />
-          </View>
+          {this.renderIcon()}
         </View>
+
       </TouchableWithoutFeedback>
     );
   }
@@ -171,6 +187,9 @@ const styles = {
     marginTop: 2,
     fontSize: 12,
     fontWeight: '500',
+  },
+  iconContainerStyles: {
+    marginTop: -35,
   },
   cardChevronStyle: {
     width: 40,
