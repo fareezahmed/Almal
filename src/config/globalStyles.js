@@ -137,6 +137,19 @@ export default StyleSheet.create({
     color: Colors.PRIMARY_COLOR,
     fontWeight: '500',
   },
+  button: {
+    ...Platform.select({
+      ios: {
+        fontFamily: 'HelveticaNeue',
+      },
+      android: {
+        fontFamily: 'Roboto',
+      },
+    }),
+    fontSize: 14,
+    color: Colors.WHITE,
+    borderRadius: 20,
+  },
 
   // Card Styles
   cardTitle: {

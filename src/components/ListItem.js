@@ -62,12 +62,27 @@ class ListItemComponent extends Component {
               <Text style={[GlobalStyles.cardValue, GlobalStyles.textRightAligned]}>{witness2.phone}</Text>
             </View>
           </View>
+          <View style={[GlobalStyles.row, rowStyle]}>
+            <Button
+              raised
+              icon={{name: 'mode-edit'}}
+              title='Update'
+              backgroundColor='#E5A60B'
+              buttonStyle={GlobalStyles.button} />
+            <Button
+              raised
+              icon={{name: 'done-all'}}
+              title='Received'
+              backgroundColor='#008a7d'
+              buttonStyle={GlobalStyles.button} />
+          </View>
         </View>
       );
     }
   }
 
   renderIcon() {
+    const { uid } = this.props.data;
     const { expanded } = this.props;
     const {
       iconContainerStyles,
