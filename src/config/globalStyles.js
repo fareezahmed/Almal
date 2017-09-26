@@ -137,6 +137,58 @@ export default StyleSheet.create({
     color: Colors.PRIMARY_COLOR,
     fontWeight: '500',
   },
+
+  // Card Styles
+  cardTitle: {
+    ...Platform.select({
+      ios: {
+        fontFamily: 'HelveticaNeue',
+      },
+      android: {
+        fontFamily: 'Roboto',
+      },
+    }),
+    fontSize: 20,
+    color: Colors.TEXT_COLOR,
+  },
+  cardSubTitle: {
+    ...Platform.select({
+      ios: {
+        fontFamily: 'HelveticaNeue',
+      },
+      android: {
+        fontFamily: 'Roboto',
+      },
+    }),
+    fontSize: 20,
+    color: Colors.TEXT_COLOR,
+  },
+  cardLabel: {
+    ...Platform.select({
+      ios: {
+        fontFamily: 'HelveticaNeue',
+      },
+      android: {
+        fontFamily: 'Roboto',
+      },
+    }),
+    fontSize: 14,
+    fontWeight: '500',
+    color: Colors.TEXT_COLOR,
+  },
+  cardValue: {
+    ...Platform.select({
+      ios: {
+        fontFamily: 'HelveticaNeue',
+      },
+      android: {
+        fontFamily: 'Roboto',
+      },
+    }),
+    fontSize: 14,
+    fontWeight: '500',
+    color: Colors.TEXT_COLOR,
+  },
   // Helper Text Styles
   textCenterAligned: {
     textAlign: 'center',
