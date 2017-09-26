@@ -1,9 +1,9 @@
 import React from 'react';
-import { Button } from 'react-native';
+import { Button } from 'react-native-elements';
 import { StackNavigator } from 'react-navigation';
 
 // helpers
-import { Colors } from './config';
+import { GlobalStyles, Colors } from './config';
 
 // Screens
 import MainScreen from './screens/mainScreen';
@@ -18,10 +18,11 @@ const Stack = StackNavigator(
         headerTitle: 'Main',
         headerRight: (
           <Button
+            large
             onPress={() => navigation.navigate('Settings')}
-            title="Settings"
-            color="#007aff"
-            accessibilityLabel="Learn more about this purple button"
+            icon={{ name: 'settings', color: '#007aff' }}
+            buttonStyle={{ marginLeft: 10, width: 40, height: 40, backgroundColor: 'transparent' }}
+            title=""
           />
         ),
       }),

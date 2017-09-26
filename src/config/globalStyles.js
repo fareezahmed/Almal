@@ -97,6 +97,42 @@ export default StyleSheet.create({
     color: Colors.TEXT_COLOR,
     fontWeight: '700',
   },
+  cellLabel: {
+    ...Platform.select({
+      ios: {
+        fontFamily: 'HelveticaNeue',
+      },
+      android: {
+        fontFamily: 'Roboto',
+      },
+    }),
+    fontSize: 20,
+    color: Colors.TEXT_COLOR,
+  },
+  cellBody: {
+    ...Platform.select({
+      ios: {
+        fontFamily: 'HelveticaNeue',
+      },
+      android: {
+        fontFamily: 'Roboto',
+      },
+    }),
+    fontSize: 14,
+    color: Colors.TEXT_COLOR,
+  },
+  cellHelpText: {
+    ...Platform.select({
+      ios: {
+        fontFamily: 'HelveticaNeue',
+      },
+      android: {
+        fontFamily: 'Roboto',
+      },
+    }),
+    fontSize: 12,
+    color: Colors.TEXT_SECONDARY_COLOR,
+  },
   link: {
     color: Colors.PRIMARY_COLOR,
     fontWeight: '500',
@@ -107,6 +143,13 @@ export default StyleSheet.create({
   },
   textRightAligned: {
     textAlign: 'right',
+  },
+
+  // Custom Styles
+  listStyle: {
+    flex: 1,
+    paddingTop: 25,
+    paddingBottom: 25,
   },
 
   // Give me margin
@@ -197,12 +240,14 @@ export default StyleSheet.create({
   //shadow
 
   shadow: {
+    shadowColor: '#000',
     marginBottom: Sizes.paddingSml,
-    elevation: 1,
-    shadowOpacity: 0.1815,
+    elevation: 2,
+    shadowOpacity: 0.2,
     shadowRadius: 0.54,
     shadowOffset: {
-      height: 0.6,
+      width: 0,
+      height: 2,
     },
   },
 

@@ -25,6 +25,7 @@ class ListComponent extends Component {
       <ListView
         dataSource={this.dataSource}
         renderRow={this.renderRow}
+        style={styles.cellStyle}
       />
     );
   }
@@ -32,5 +33,13 @@ class ListComponent extends Component {
 
 const mapStateToProps = state => ({ list: state.list });
 
+const styles = {
+  cellStyle: {
+    paddingTop: 0,
+    paddingLeft: 15,
+    marginBottom: 15,
+    paddingRight: 15,
+  },
+}
 export const List = connect(mapStateToProps)(ListComponent);
 
