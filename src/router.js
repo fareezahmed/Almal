@@ -3,7 +3,7 @@ import { Button } from 'react-native-elements';
 import { StackNavigator } from 'react-navigation';
 
 // helpers
-import { GlobalStyles, Colors } from './config';
+import { Colors } from './config';
 
 // Screens
 import MainScreen from './screens/mainScreen';
