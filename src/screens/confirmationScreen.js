@@ -1,34 +1,26 @@
-import React, { Component } from 'react';
-import { StyleSheet, View, Text, ScrollView } from 'react-native';
-import { Color, Sizes } from '../config';
-
-class ConfirmationScreen extends Component {
-
-  render() {
-    console.log(Sizes.screen.width);
-
-    return (
-      <View
-      style={styles.slideStyle}
-      >
-        <Text style={styles.textStyle}>Login Screen</Text>
-      </View>
-    );
-  }
-}
+import React from 'react';
+import { View, Text } from 'react-native';
 
 const styles = {
   slideStyle: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#009688'
+    backgroundColor: '#009688',
   },
   textStyle: {
     fontSize: 30,
     fontWeight: 'bold',
-    color: 'white'
+    color: 'white',
   },
 };
+
+const ConfirmationScreen = () => (
+  <View
+    style={styles.slideStyle}
+  >
+    <Text style={styles.textStyle}>Confirmation</Text>
+  </View>
+);
 
 export default ConfirmationScreen;

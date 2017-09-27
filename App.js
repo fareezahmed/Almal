@@ -1,15 +1,8 @@
-import React, { Component } from 'react';
-import ScreenRouter from './src/router';
-import DBConfig from './src/config/dbConfig';
+import React from 'react';
+import Init from './src';
 
-export default class App extends Component {
-  componentWillMount() {
-    DBConfig();
-  }
+const App = () => (
+  <Init />
+);
 
-  render() {
-    return (
-      <ScreenRouter />
-    );
-  }
-}
+export default App;

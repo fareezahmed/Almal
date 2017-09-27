@@ -6,10 +6,11 @@ import { StackNavigator } from 'react-navigation';
 import { Colors } from './config';
 
 // Screens
-import MainScreen from './screens/mainScreen';
-import SettingsScreen from './screens/settingsScreen';
-import SplashScreen from './screens/splashScreen';
-import LoginScreen from './screens/loginScreen';
+import MainScreen from './screens/MainScreen';
+import SettingsScreen from './screens/SettingsScreen';
+import SplashScreen from './screens/SplashScreen';
+import LoginScreen from './screens/LoginScreen';
+import ProfileScreen from './screens/ProfileScreen';
 
 const Stack = StackNavigator(
   {
@@ -18,6 +19,9 @@ const Stack = StackNavigator(
     },
     Login: {
       screen: LoginScreen,
+    },
+    Profile: {
+      screen: ProfileScreen,
     },
     Main: {
       screen: MainScreen,

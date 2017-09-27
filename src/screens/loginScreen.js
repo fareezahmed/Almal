@@ -1,34 +1,28 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, ScrollView } from 'react-native';
-import { Color, Sizes } from '../config';
+import { View } from 'react-native';
+import {
+  FormLabel,
+  FormInput,
+} from 'react-native-elements';
 
 class LoginScreen extends Component {
+  componentWillMount() {
+  }
 
   render() {
-    console.log(Sizes.screen.width);
-
     return (
-      <View
-      style={styles.slideStyle}
-      >
-        <Text style={styles.textStyle}>Login Screen</Text>
+      <View>
+        <FormLabel>Email</FormLabel>
+        <FormInput
+          onChangeText={
+            (text) => {
+              console.log(text);
+            }
+          }
+        />
       </View>
     );
   }
 }
-
-const styles = {
-  slideStyle: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#009688',
-  },
-  textStyle: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    color: 'white',
-  },
-};
 
 export default LoginScreen;
