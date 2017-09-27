@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, compose } from 'redux';
-import { persistStore, autoRehydrate } from 'redux-persist';
-import ReduxThunk from 'redux-thunk';
 
 import ScreenRouter from './Router';
 import DBConfig from './config/dbConfig';
-import reducers from './reducers';
 
 class Init extends Component {
   componentWillMount() {
@@ -14,18 +10,9 @@ class Init extends Component {
   }
 
   render() {
-    const store = createStore(
-      reducers,
-      {},
-      compose(
-        applyMiddleware(ReduxThunk),
-        autoRehydrate(),
-      ),
-    );
-
-
+    const { store } = this.props;
     return (
-      <Provider store={persistStore(store)}>
+      <Provider store={store}>
         <ScreenRouter />
       </Provider>
     );

@@ -16,6 +16,7 @@ const Stack = StackNavigator(
   {
     Splash: {
       screen: SplashScreen,
+      navigationOptions: { header: null },
     },
     Login: {
       screen: LoginScreen,
