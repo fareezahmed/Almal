@@ -1,20 +1,16 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import {
   Text,
   TouchableWithoutFeedback,
   View,
-  LayoutAnimation
+  LayoutAnimation,
 } from 'react-native';
-import { Icon, Button } from 'react-native-elements'
+import { Icon, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { GlobalStyles, Colors } from '../config';
 import * as actions from '../actions';
 
 class ListItemComponent extends Component {
-  static propTypes = {
-    data: PropTypes.object.isRequired
-  }
-
   componentWillUpdate() {
     LayoutAnimation.easeInEaseOut();
   }
@@ -22,19 +18,13 @@ class ListItemComponent extends Component {
   renderDescription() {
     const { expanded } = this.props;
     const {
-      uid,
       leadDate,
-      dealAmount,
       returnDate,
       witness1,
       witness2 } = this.props.data;
 
     const {
       rowStyle,
-      nameStyle,
-      dealTypeStyle,
-      dealAmountStyle,
-      dateStyle,
       viewStyle } = styles;
 
     if (expanded) {
@@ -46,8 +36,12 @@ class ListItemComponent extends Component {
               <Text style={[GlobalStyles.cardValue]}>{leadDate}</Text>
             </View>
             <View style={GlobalStyles.flex3}>
-              <Text style={[GlobalStyles.cardLabel, GlobalStyles.textRightAligned]}>Due Date</Text>
-              <Text style={[GlobalStyles.cardValue, GlobalStyles.textRightAligned]}>{returnDate}</Text>
+              <Text style={[GlobalStyles.cardLabel, GlobalStyles.textRightAligned]}>
+                Due Date
+              </Text>
+              <Text style={[GlobalStyles.cardValue, GlobalStyles.textRightAligned]}>
+                {returnDate}
+              </Text>
             </View>
           </View>
           <View style={[GlobalStyles.row, rowStyle]}>
@@ -57,26 +51,34 @@ class ListItemComponent extends Component {
               <Text style={[GlobalStyles.cardValue]}>{witness1.phone}</Text>
             </View>
             <View style={GlobalStyles.flex3}>
-              <Text style={[GlobalStyles.cardLabel, GlobalStyles.textRightAligned]}>Witness2</Text>
-              <Text style={[GlobalStyles.cardValue, GlobalStyles.textRightAligned]}>{witness2.name}</Text>
-              <Text style={[GlobalStyles.cardValue, GlobalStyles.textRightAligned]}>{witness2.phone}</Text>
+              <Text style={[GlobalStyles.cardLabel, GlobalStyles.textRightAligned]}>
+                Witness2
+              </Text>
+              <Text style={[GlobalStyles.cardValue, GlobalStyles.textRightAligned]}>
+                {witness2.name}
+              </Text>
+              <Text style={[GlobalStyles.cardValue, GlobalStyles.textRightAligned]}>
+                {witness2.phone}
+              </Text>
             </View>
           </View>
           <View style={[GlobalStyles.row, rowStyle]}>
             <Button
               raised
-              icon={{name: 'mode-edit'}}
-              title='Update'
-              backgroundColor='#E5A60B'
+              icon={{ name: 'mode-edit' }}
+              title="Update"
+              backgroundColor="#E5A60B"
               buttonStyle={GlobalStyles.button}
-              textStyle={GlobalStyles.buttonText} />
+              textStyle={GlobalStyles.buttonText}
+            />
             <Button
               raised
-              icon={{name: 'done-all'}}
-              title='Received'
-              backgroundColor='#008a7d'
+              icon={{ name: 'done-all' }}
+              title="Received"
+              backgroundColor="#008a7d"
               buttonStyle={GlobalStyles.button}
-              textStyle={GlobalStyles.buttonText} />
+              textStyle={GlobalStyles.buttonText}
+            />
           </View>
         </View>
       );
@@ -90,15 +92,15 @@ class ListItemComponent extends Component {
       iconContainerStyles,
       cardChevronStyle } = styles;
     if (!expanded) {
-      return(
+      return (
         <View style={[GlobalStyles.centerAligned, iconContainerStyles]}>
           <Icon
             raised
-            name='keyboard-arrow-down'
+            name="keyboard-arrow-down"
             color={Colors.PRIMARY_COLOR}
             size={30}
             containerStyle={cardChevronStyle}
-            onPress={() => this.props.selectedDeal(uid)}
+            onPress={() => this.props.contractSelected(uid)}
           />
         </View>
       );
@@ -110,7 +112,7 @@ class ListItemComponent extends Component {
     const { returnDate } = this.props.data;
     const { dateStyle } = styles;
     if (!expanded) {
-      return(
+      return (
         <Text style={[GlobalStyles.cardSubTitle, dateStyle]}>Due Date:{returnDate}</Text>
       );
     }
@@ -120,40 +122,38 @@ class ListItemComponent extends Component {
     const {
       uid,
       name,
-      avatar,
       dealType,
-      leadDate,
-      dealAmount,
-      returnDate,
-      witness1,
-      witness2 } = this.props.data;
+      dealAmount } = this.props.data;
 
     const {
       rowStyle,
       nameStyle,
       dealTypeStyle,
       dealAmountStyle,
-      dateStyle,
       viewStyle } = styles;
 
     return (
       <TouchableWithoutFeedback
-        onPress={() => this.props.selectedDeal(uid)}
+        onPress={() => this.props.contractSelected(uid)}
       >
         <View style={[{ paddingBottom: 10 }]}>
           <View style={[GlobalStyles.shadow, viewStyle, { paddingBottom: 22 }]}>
             <View
               style={[GlobalStyles.row, rowStyle]}
               key={uid}
-              >
+            >
               <View style={GlobalStyles.flex5}>
                 <Text style={[GlobalStyles.cardTitle, nameStyle]}>{name}</Text>
                 {this.renderSubTitle()}
               </View>
               <View style={[GlobalStyles.flex1]}>
                 <View style={[GlobalStyles.row]}>
-                  <Text style={[GlobalStyles.cardTitle, GlobalStyles.textRightAligned, dealTypeStyle]}>{dealType}</Text>
-                  <Text style={[GlobalStyles.cardTitle, GlobalStyles.textRightAligned, dealAmountStyle]}>{dealAmount}</Text>
+                  <Text style={[GlobalStyles.cardTitle, GlobalStyles.textRightAligned, dealTypeStyle]}>
+                    {dealType}
+                  </Text>
+                  <Text style={[GlobalStyles.cardTitle, GlobalStyles.textRightAligned, dealAmountStyle]}>
+                    {dealAmount}
+                  </Text>
                 </View>
 
               </View>
@@ -215,13 +215,12 @@ const styles = {
     paddingRight: 5,
     backgroundColor: '#fff',
   },
-}
+};
 
 const mapStateToProps = (state, ownProps) => {
   const expanded = state.selectedItemId === ownProps.data.uid;
 
   return { expanded };
 };
-
 
 export const ListItem = connect(mapStateToProps, actions)(ListItemComponent);

@@ -1,13 +1,9 @@
-import React, { Component, PropTypes } from 'react';
-import { View, Text, ListView } from 'react-native';
+import React, { Component } from 'react';
+import { ListView } from 'react-native';
 import { connect } from 'react-redux';
 import { ListItem } from '../components';
 
 class ListComponent extends Component {
-  static propTypes = {
-    list: PropTypes.array.isRequired
-  };
-
   componentWillMount() {
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2,
@@ -39,6 +35,7 @@ const styles = {
     paddingLeft: 15,
     paddingRight: 15,
   },
-}
+};
+
 export const List = connect(mapStateToProps)(ListComponent);
 

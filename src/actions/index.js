@@ -1,4 +1,2 @@
-export const selectedDeal = uid => ({
-  type: 'selected_deal',
-  payload: uid,
-});
+export * from './AuthActions';
+export * from './ContractActions';
