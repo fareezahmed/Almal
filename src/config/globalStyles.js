@@ -138,6 +138,9 @@ export default StyleSheet.create({
     fontWeight: '500',
   },
   button: {
+    borderRadius: 20,
+  },
+  buttonText: {
     ...Platform.select({
       ios: {
         fontFamily: 'HelveticaNeue',
@@ -148,7 +151,6 @@ export default StyleSheet.create({
     }),
     fontSize: 14,
     color: Colors.WHITE,
-    borderRadius: 20,
   },
 
   // Card Styles

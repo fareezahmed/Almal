@@ -68,13 +68,15 @@ class ListItemComponent extends Component {
               icon={{name: 'mode-edit'}}
               title='Update'
               backgroundColor='#E5A60B'
-              buttonStyle={GlobalStyles.button} />
+              buttonStyle={GlobalStyles.button}
+              textStyle={GlobalStyles.buttonText} />
             <Button
               raised
               icon={{name: 'done-all'}}
               title='Received'
               backgroundColor='#008a7d'
-              buttonStyle={GlobalStyles.button} />
+              buttonStyle={GlobalStyles.button}
+              textStyle={GlobalStyles.buttonText} />
           </View>
         </View>
       );
