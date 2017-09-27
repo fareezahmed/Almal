@@ -20,6 +20,7 @@ const Stack = StackNavigator(
     },
     Login: {
       screen: LoginScreen,
+      navigationOptions: { header: null },
     },
     Profile: {
       screen: ProfileScreen,

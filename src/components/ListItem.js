@@ -172,9 +172,7 @@ class ListItemComponent extends Component {
 
 const styles = {
   rowStyle: {
-    paddingTop: 15,
-    paddingLeft: 15,
-    paddingRight: 15,
+    paddingBottom: 0,
   },
   viewStyle: {
     alignItems: 'center',

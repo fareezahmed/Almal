@@ -344,6 +344,10 @@ export default StyleSheet.create({
   // Grid
   row: {
     flexDirection: 'row',
+    paddingTop: 15,
+    paddingLeft: 15,
+    paddingRight: 15,
+    paddingBottom: 15,
   },
   flex1: {
     flex: 1,
