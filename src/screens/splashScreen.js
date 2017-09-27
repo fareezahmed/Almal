@@ -1,17 +1,24 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, ScrollView } from 'react-native';
+import { View, Text, Button } from 'react-native';
 import { Color, Sizes } from '../config';
 
 class SplashScreen extends Component {
+  componentDidMount() {
+    console.log('I do not leak!');
+  }
 
   render() {
-    console.log(Sizes.screen.width);
+    const { navigate } = this.props.navigation;
 
     return (
       <View
-      style={styles.slideStyle}
+        style={styles.slideStyle}
       >
-        <Text style={styles.textStyle}>Login Screen</Text>
+        <Text style={styles.textStyle}>Splash Screen</Text>
+        <Button
+          onPress={() => navigate('Login')}
+          title="Login"
+        />
       </View>
     );
   }
@@ -22,7 +29,7 @@ const styles = {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#009688',
+    backgroundColor: '#383e45',
   },
   textStyle: {
     fontSize: 30,

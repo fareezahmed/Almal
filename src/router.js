@@ -8,9 +8,17 @@ import { Colors } from './config';
 // Screens
 import MainScreen from './screens/mainScreen';
 import SettingsScreen from './screens/settingsScreen';
+import SplashScreen from './screens/splashScreen';
+import LoginScreen from './screens/loginScreen';
 
 const Stack = StackNavigator(
   {
+    Splash: {
+      screen: SplashScreen,
+    },
+    Login: {
+      screen: LoginScreen,
+    },
     Main: {
       screen: MainScreen,
       navigationOptions: ({ navigation }) => ({
