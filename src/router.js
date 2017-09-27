@@ -20,7 +20,7 @@ const Stack = StackNavigator(
           <Button
             large
             onPress={() => navigation.navigate('Settings')}
-            icon={{ name: 'settings', color: '#007aff' }}
+            icon={{ name: 'settings', color: Colors.NAV_COLOR }}
             buttonStyle={{ marginLeft: 10, width: 40, height: 40, backgroundColor: 'transparent' }}
             title=""
           />
@@ -38,7 +38,10 @@ const Stack = StackNavigator(
     navigationOptions: {
       headerTintColor: Colors.NAV_COLOR,
       headerStyle: {
-        backgroundColor: Colors.PRIMARY_COLOR,
+        backgroundColor: Colors.NAV_BAR_COLOR,
+      },
+      headerTitleStyle: {
+        fontSize: 22,
       },
     },
   },

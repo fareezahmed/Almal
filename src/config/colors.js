@@ -3,8 +3,9 @@ export default {
   TEXT_SECONDARY_COLOR: '#d3d5d8', // lightgray - Grey
   PRIMARY_COLOR: '#23CE6B', // Mountain Meadow - Green
   SECONDARY_COLOR: '#9DA3A4', // Edward - Grey
-  WHITE: '#fff',
+  WHITE: '#FFF',
   BLACK: '#000',
   BORDER: '#D3D0CB', // Timberwolf - Grey
-  NAV_COLOR: '#007aff', // Azure Radiance - Blue
+  NAV_COLOR: '#304247', // Azure Radiance - Blue
+  NAV_BAR_COLOR: '#F8F8f8',
 };
