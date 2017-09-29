@@ -7,8 +7,8 @@ import {
   Button,
 } from 'react-native-elements';
 import { connect } from 'react-redux';
-import { GlobalStyles, Colors } from '../config';
-import { emailChanged } from '../actions';
+import { GlobalStyles } from '../config';
+import { emailChanged, passwordChanged } from '../actions';
 
 const styles = {
   sectionStyles: {
@@ -17,35 +17,50 @@ const styles = {
     alignItems: 'center',
     backgroundColor: '#383e45',
   },
+  loginScreen: {
+    paddingLeft: 30,
+    paddingRight: 30,
+  },
 };
 
 class LoginScreen extends Component {
   constructor() {
     super();
     this.sectionStyles = styles.sectionStyles;
+    this.loginScreen = styles.loginScreen;
+    this.onEmailChange = this.onEmailChange.bind(this);
+    this.onPasswordChange = this.onPasswordChange.bind(this);
   }
   componentWillMount() {
   }
+
   onEmailChange(text) {
     this.props.emailChanged(text);
+  }
+
+  onPasswordChange(text) {
+    this.props.passwordChanged(text);
   }
 
   render() {
     return (
       <View style={[this.sectionStyles]}>
-        <View>
+        <View style={[this.loginScreen]}>
           <FormLabel>Email</FormLabel>
           <FormInput
             placeholder="email@gmail.com"
-            onChangeText={this.onEmailChange.bind(this)}
+            onChangeText={this.onEmailChange}
             value={this.props.email}
           />
           <FormValidationMessage>Error message</FormValidationMessage>
         </View>
-        <View>
+        <View style={[this.loginScreen]}>
           <FormLabel>Password</FormLabel>
           <FormInput
             secureTextEntry
+            placeholder="password"
+            onChangeText={this.onPasswordChange}
+            value={this.props.password}
           />
           <FormValidationMessage>Error message</FormValidationMessage>
         </View>
@@ -74,9 +89,9 @@ class LoginScreen extends Component {
 }
 
 const MapStateToProps = ({ auth }) => {
-  const { email } = auth;
+  const { email, password } = auth;
 
-  return { email };
+  return { email, password };
 };
 
-export default connect(MapStateToProps, { emailChanged })(LoginScreen);
+export default connect(MapStateToProps, { emailChanged, passwordChanged })(LoginScreen);

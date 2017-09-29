@@ -18,3 +18,5 @@ export default (initialState) => {
 
   return store;
 };
+
+// export default createStore(reducers, {}, applyMiddleware(Thunk));

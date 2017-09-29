@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, Button } from 'react-native';
-import { Color, Sizes } from '../config';
 
 class SplashScreen extends Component {
   componentDidMount() {
-    console.log('I do not leak!');
+    console.log('Splash Screen Openned');
   }
 
   render() {
