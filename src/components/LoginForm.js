@@ -54,7 +54,7 @@ class LoginForm extends Component {
         <View>
           <FormValidationMessage>Error message</FormValidationMessage>
         </View>
-        <View style={[GlobalStyles.row]}>
+        <View style={[GlobalStyles.row, GlobalStyles.padding]}>
           <Button
             raised
             icon={{ name: 'done' }}

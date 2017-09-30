@@ -10,8 +10,11 @@ const styles = {
   inputStyle: {
     marginBottom: 20,
     backgroundColor: Colors.WHITE,
+    borderRadius: 20,
   },
   iconStyle: {
+    marginTop: 6,
+    marginLeft: 10,
     width: 30,
   },
   formInput: {
