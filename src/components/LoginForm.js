@@ -6,13 +6,20 @@ import {
 } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { GlobalStyles, Colors } from '../config';
-import { emailChanged, passwordChanged } from '../actions';
+import {
+  emailChanged,
+  passwordChanged,
+  loginUser,
+} from '../actions';
 import { Input } from './commons';
 
 const styles = {
   formStyle: {
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  buttonStyle: {
+    paddingTop: 0,
   },
 };
 
@@ -21,6 +28,7 @@ class LoginForm extends Component {
     super();
     this.onEmailChange = this.onEmailChange.bind(this);
     this.onPasswordChange = this.onPasswordChange.bind(this);
+    this.onButtonPress = this.onButtonPress.bind(this);
   }
   componentWillMount() {
   }
@@ -33,8 +41,29 @@ class LoginForm extends Component {
     this.props.passwordChanged(text);
   }
 
+  onButtonPress() {
+    // const { email, password } = this.props;
+    console.log(this.props);
+
+    this.props.loginUser(this.props);
+  }
+
+  renderError() {
+    if (this.props.error) {
+      return (
+        <View>
+          <FormValidationMessage>Error message</FormValidationMessage>
+        </View>
+      );
+    }
+  }
+
   render() {
-    const { usernameLabel, passwordLabel, buttonLabel } = this.props;
+    const {
+      usernameLabel,
+      passwordLabel,
+      buttonLabel,
+      error } = this.props;
 
     return (
       <View style={styles.formStyle}>
@@ -43,6 +72,7 @@ class LoginForm extends Component {
           label={usernameLabel}
           onChangeText={this.onEmailChange}
           value={this.props.email}
+          error={error}
         />
         <Input
           icon="lock"
@@ -50,10 +80,9 @@ class LoginForm extends Component {
           label={passwordLabel}
           onChangeText={this.onPasswordChange}
           value={this.props.password}
+          error={error}
         />
-        <View>
-          <FormValidationMessage>Error message</FormValidationMessage>
-        </View>
+        {this.renderError()}
         <View style={[GlobalStyles.row, GlobalStyles.padding]}>
           <Button
             raised
@@ -62,6 +91,7 @@ class LoginForm extends Component {
             backgroundColor={Colors.PRIMARY_BUTTON}
             buttonStyle={[GlobalStyles.buttonLarge]}
             textStyle={GlobalStyles.buttonText}
+            onPress={this.onButtonPress}
           />
         </View>
       </View>
@@ -70,9 +100,11 @@ class LoginForm extends Component {
 }
 
 const MapStateToProps = ({ auth }) => {
-  const { email, password } = auth;
+  const { email, password, error } = auth;
 
-  return { email, password };
+  return { email, password, error };
 };
 
-export default connect(MapStateToProps, { emailChanged, passwordChanged })(LoginForm);
+export default connect(MapStateToProps, {
+  emailChanged, passwordChanged, loginUser,
+})(LoginForm);

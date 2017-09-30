@@ -139,9 +139,11 @@ export default StyleSheet.create({
   },
   button: {
     borderRadius: 20,
+    paddingVertical: 6,
   },
   buttonLarge: {
     width: '100%',
+    paddingVertical: 8,
     borderRadius: 20,
   },
   buttonText: {
@@ -220,6 +222,23 @@ export default StyleSheet.create({
   },
   textRightAligned: {
     textAlign: 'right',
+  },
+
+  // Input Styles
+  inputStyle: {
+    marginBottom: 20,
+    backgroundColor: Colors.WHITE,
+    borderRadius: 20,
+    borderColor: Colors.WHITE,
+    borderWidth: 2,
+  },
+  iconStyle: {
+    marginTop: 6,
+    marginLeft: 10,
+    width: 30,
+  },
+  formInput: {
+    borderBottomColor: 'transparent',
   },
 
   // Custom Styles
@@ -326,7 +345,7 @@ export default StyleSheet.create({
     paddingRight: 0,
   },
 
-  //shadow
+  // shadow
 
   shadow: {
     shadowColor: '#000',
@@ -340,7 +359,7 @@ export default StyleSheet.create({
     },
   },
 
-  ///Material elements
+  // /Material elements
   materialCard: {
     marginBottom: Sizes.paddingSml,
     marginHorizontal: Sizes.paddingSml,

@@ -17,7 +17,7 @@ const styles = {
     borderTopColor: '#FFF',
     borderTopWidth: 1,
     width: '100%',
-    paddingTop: 20,
+    paddingTop: 30,
   },
   logoStyle: {
     width: 100,
@@ -60,7 +60,7 @@ class LoginScreen extends Component {
           />
           <View style={[GlobalStyles.row, GlobalStyles.noPadding]}>
             <Link
-              text="ForgotPassword"
+              text="Forgot Password"
               onPress={() => navigate('ForgotPassword')}
             />
           </View>

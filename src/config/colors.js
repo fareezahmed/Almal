@@ -10,4 +10,5 @@ export default {
   NAV_BAR_COLOR: '#F8F8f8',
   ICON_COLOR: '#304247', // Azure Radiance - Blue
   PRIMARY_BUTTON: '#E5A60B', // Brilliant amber
+  ERROR: '#ff3c3c', // Coral Red
 };
