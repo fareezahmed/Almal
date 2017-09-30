@@ -2,12 +2,9 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { GlobalStyles } from '../../config';
 
-const styles = {
-};
-
-const Link = ({ text, onPress }) => (
+const Link = ({ text, onPress, style }) => (
   <TouchableOpacity onPress={onPress}>
-    <View>
+    <View style={style}>
       <Text style={[GlobalStyles.link]}>
         {text}
       </Text>

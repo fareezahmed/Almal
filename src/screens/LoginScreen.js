@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Image } from 'react-native';
 import { GlobalStyles } from '../config';
 import { Link } from '../components/commons';
 import LoginForm from '../components/LoginForm';
@@ -13,16 +13,15 @@ const styles = {
     flex: 1,
     backgroundColor: '#383e45',
   },
-  headerStyle: {
-    flex: 2,
-  },
-  mainStyle: {
-    flex: 4,
-  },
-  footerStyle: {
-    flex: 1,
+  footerLinkStyle: {
+    borderTopColor: '#FFF',
     borderTopWidth: 1,
-    borderTopColor: 'white',
+    width: '100%',
+    paddingTop: 20,
+  },
+  logoStyle: {
+    width: 100,
+    height: 100,
   },
 };
 
@@ -36,18 +35,19 @@ class LoginScreen extends Component {
       styles.centerAlign,
       GlobalStyles.gutters,
     ];
-    const footerStyle = [commonStyle, styles.footerStyle];
-    const headerStyle = [commonStyle, styles.headerStyle];
-    const mainStyle = [GlobalStyles.gutters, styles.centerAlign, styles.mainStyle];
+    const footerStyle = [commonStyle, GlobalStyles.flex1];
+    const headerStyle = [commonStyle, GlobalStyles.flex2];
+    const mainStyle = [GlobalStyles.gutters, styles.centerAlign, GlobalStyles.flex4];
+    const logo = require('../assets/img/logo.png');
 
     return (
       <View style={[styles.screenStyles]}>
 
         {/* Header */}
         <View style={headerStyle}>
-          <Link
-            text="New here? Sign Up"
-            onPress={() => navigate('SignUp')}
+          <Image
+            style={styles.logoStyle}
+            source={logo}
           />
         </View>
 
@@ -68,12 +68,14 @@ class LoginScreen extends Component {
 
         {/* Footer */}
         <View style={footerStyle}>
-          <Link
-            text="New here? Sign Up"
-            onPress={() => navigate('SignUp')}
-          />
+          <View style={styles.footerLinkStyle} >
+            <Link
+              text="New here? Sign Up"
+              onPress={() => navigate('SignUp')}
+              style={[GlobalStyles.flex1, styles.centerAlign]}
+            />
+          </View>
         </View>
-
       </View>
     );
   }
