@@ -140,6 +140,10 @@ export default StyleSheet.create({
   button: {
     borderRadius: 20,
   },
+  buttonLarge: {
+    width: '100%',
+    borderRadius: 20,
+  },
   buttonText: {
     ...Platform.select({
       ios: {
@@ -149,8 +153,14 @@ export default StyleSheet.create({
         fontFamily: 'Roboto',
       },
     }),
-    fontSize: 14,
+    fontSize: 16,
     color: Colors.WHITE,
+  },
+  buttonTextSml: {
+    fontSize: 14,
+  },
+  buttonTextLg: {
+    fontSize: 20,
   },
 
   // Card Styles
@@ -259,6 +269,12 @@ export default StyleSheet.create({
     marginHorizontal: Sizes.marginSml,
   },
 
+  // Gutters
+  gutters: {
+    marginLeft: 20,
+    marginRight: 20,
+  },
+
   // Give me padding
   padding: {
     paddingVertical: Sizes.padding,
@@ -302,6 +318,12 @@ export default StyleSheet.create({
   },
   paddingBottomSml: {
     paddingBottom: Sizes.paddingSml,
+  },
+  noPadding: {
+    paddingBottom: 0,
+    paddingTop: 0,
+    paddingLeft: 0,
+    paddingRight: 0,
   },
 
   //shadow

@@ -1,97 +1,82 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import {
-  FormLabel,
-  FormInput,
-  FormValidationMessage,
-  Button,
-} from 'react-native-elements';
-import { connect } from 'react-redux';
 import { GlobalStyles } from '../config';
-import { emailChanged, passwordChanged } from '../actions';
+import { Link } from '../components/commons';
+import LoginForm from '../components/LoginForm';
 
 const styles = {
-  sectionStyles: {
-    flex: 1,
+  centerAlign: {
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  screenStyles: {
+    flex: 1,
     backgroundColor: '#383e45',
   },
-  loginScreen: {
-    paddingLeft: 30,
-    paddingRight: 30,
+  headerStyle: {
+    flex: 2,
+  },
+  mainStyle: {
+    flex: 4,
+  },
+  footerStyle: {
+    flex: 1,
+    borderTopWidth: 1,
+    borderTopColor: 'white',
   },
 };
 
+// eslint-disable-next-line react/prefer-stateless-function
 class LoginScreen extends Component {
-  constructor() {
-    super();
-    this.sectionStyles = styles.sectionStyles;
-    this.loginScreen = styles.loginScreen;
-    this.onEmailChange = this.onEmailChange.bind(this);
-    this.onPasswordChange = this.onPasswordChange.bind(this);
-  }
-  componentWillMount() {
-  }
-
-  onEmailChange(text) {
-    this.props.emailChanged(text);
-  }
-
-  onPasswordChange(text) {
-    this.props.passwordChanged(text);
-  }
-
   render() {
+    const { navigate } = this.props.navigation;
+    const commonStyle = [
+      GlobalStyles.row,
+      GlobalStyles.noPadding,
+      styles.centerAlign,
+      GlobalStyles.gutters,
+    ];
+    const footerStyle = [commonStyle, styles.footerStyle];
+    const headerStyle = [commonStyle, styles.headerStyle];
+    const mainStyle = [GlobalStyles.gutters, styles.centerAlign, styles.mainStyle];
+
     return (
-      <View style={[this.sectionStyles]}>
-        <View style={[this.loginScreen]}>
-          <FormLabel>Email</FormLabel>
-          <FormInput
-            placeholder="email@gmail.com"
-            onChangeText={this.onEmailChange}
-            value={this.props.email}
-          />
-          <FormValidationMessage>Error message</FormValidationMessage>
-        </View>
-        <View style={[this.loginScreen]}>
-          <FormLabel>Password</FormLabel>
-          <FormInput
-            secureTextEntry
-            placeholder="password"
-            onChangeText={this.onPasswordChange}
-            value={this.props.password}
-          />
-          <FormValidationMessage>Error message</FormValidationMessage>
-        </View>
-        <View style={[GlobalStyles.row]}>
-          <Button
-            raised
-            icon={{ name: 'mode-edit' }}
-            title="Sign Up"
-            backgroundColor="#F8F8F8"
-            buttonStyle={GlobalStyles.button}
-            textStyle={GlobalStyles.buttonText}
-          />
-          <Button
-            raised
-            icon={{ name: 'done' }}
-            title="Sign In"
-            backgroundColor="#E5A60B"
-            buttonStyle={GlobalStyles.button}
-            textStyle={GlobalStyles.buttonText}
+      <View style={[styles.screenStyles]}>
+
+        {/* Header */}
+        <View style={headerStyle}>
+          <Link
+            text="New here? Sign Up"
+            onPress={() => navigate('SignUp')}
           />
         </View>
-        <View />
+
+        {/* Body */}
+        <View style={mainStyle}>
+          <LoginForm
+            usernameLabel="Email"
+            passwordLabel="Password"
+            buttonLabel="Sign In"
+          />
+          <View style={[GlobalStyles.row, GlobalStyles.noPadding]}>
+            <Link
+              text="ForgotPassword"
+              onPress={() => navigate('ForgotPassword')}
+            />
+          </View>
+        </View>
+
+        {/* Footer */}
+        <View style={footerStyle}>
+          <Link
+            text="New here? Sign Up"
+            onPress={() => navigate('SignUp')}
+          />
+        </View>
+
       </View>
     );
   }
 }
 
-const MapStateToProps = ({ auth }) => {
-  const { email, password } = auth;
-
-  return { email, password };
-};
-
-export default connect(MapStateToProps, { emailChanged, passwordChanged })(LoginScreen);
+export default LoginScreen;
