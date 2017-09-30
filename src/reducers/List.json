@@ -1,0 +1,36 @@
+[
+  {
+    "uid": 1,
+    "name": "Maryam Farha",
+    "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/ladylexy/128.jpg",
+    "dealType": "$",
+    "dealAmount": "100",
+    "leadDate": "10/09/2017",
+    "returnDate": "10/09/2017",
+    "witness1": {
+      "name": "Abdullah",
+      "phone": "0451940111"
+    },
+    "witness2": {
+      "name": "Abdul Rahman",
+      "phone": "0451940131"
+    }
+  },
+  {
+    "uid": 2,
+    "name": "Mohammed",
+    "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg",
+    "dealType": "$",
+    "dealAmount": "100",
+    "leadDate": "10/09/2017",
+    "returnDate": "10/09/2017",
+    "witness1": {
+      "name": "Abdullah",
+      "phone": "0451940111"
+    },
+    "witness2": {
+      "name": "Abdul Rahman",
+      "phone": "0451940131"
+    }
+  }
+]
