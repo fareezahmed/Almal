@@ -139,6 +139,12 @@ export default StyleSheet.create({
   },
   button: {
     borderRadius: 20,
+    paddingVertical: 6,
+  },
+  buttonLarge: {
+    width: '100%',
+    paddingVertical: 8,
+    borderRadius: 20,
   },
   buttonText: {
     ...Platform.select({
@@ -149,8 +155,14 @@ export default StyleSheet.create({
         fontFamily: 'Roboto',
       },
     }),
-    fontSize: 14,
+    fontSize: 16,
     color: Colors.WHITE,
+  },
+  buttonTextSml: {
+    fontSize: 14,
+  },
+  buttonTextLg: {
+    fontSize: 20,
   },
 
   // Card Styles
@@ -212,6 +224,23 @@ export default StyleSheet.create({
     textAlign: 'right',
   },
 
+  // Input Styles
+  inputStyle: {
+    marginBottom: 20,
+    backgroundColor: Colors.WHITE,
+    borderRadius: 20,
+    borderColor: Colors.WHITE,
+    borderWidth: 2,
+  },
+  iconStyle: {
+    marginTop: 6,
+    marginLeft: 10,
+    width: 30,
+  },
+  formInput: {
+    borderBottomColor: 'transparent',
+  },
+
   // Custom Styles
   listStyle: {
     flex: 1,
@@ -259,6 +288,12 @@ export default StyleSheet.create({
     marginHorizontal: Sizes.marginSml,
   },
 
+  // Gutters
+  gutters: {
+    marginLeft: 20,
+    marginRight: 20,
+  },
+
   // Give me padding
   padding: {
     paddingVertical: Sizes.padding,
@@ -303,8 +338,14 @@ export default StyleSheet.create({
   paddingBottomSml: {
     paddingBottom: Sizes.paddingSml,
   },
+  noPadding: {
+    paddingBottom: 0,
+    paddingTop: 0,
+    paddingLeft: 0,
+    paddingRight: 0,
+  },
 
-  //shadow
+  // shadow
 
   shadow: {
     shadowColor: '#000',
@@ -318,7 +359,7 @@ export default StyleSheet.create({
     },
   },
 
-  ///Material elements
+  // /Material elements
   materialCard: {
     marginBottom: Sizes.paddingSml,
     marginHorizontal: Sizes.paddingSml,
@@ -344,10 +385,6 @@ export default StyleSheet.create({
   // Grid
   row: {
     flexDirection: 'row',
-    paddingTop: 15,
-    paddingLeft: 15,
-    paddingRight: 15,
-    paddingBottom: 15,
   },
   flex1: {
     flex: 1,
