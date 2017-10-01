@@ -11,7 +11,7 @@ import {
   passwordChanged,
   loginUser,
 } from '../actions';
-import { Input } from './commons';
+import { Input, Spinner } from './commons';
 
 const styles = {
   formStyle: {
@@ -30,8 +30,6 @@ class LoginForm extends Component {
     this.onPasswordChange = this.onPasswordChange.bind(this);
     this.onButtonPress = this.onButtonPress.bind(this);
   }
-  componentWillMount() {
-  }
 
   onEmailChange(text) {
     this.props.emailChanged(text);
@@ -42,27 +40,56 @@ class LoginForm extends Component {
   }
 
   onButtonPress() {
-    // const { email, password } = this.props;
-    console.log(this.props);
-
     this.props.loginUser(this.props);
   }
 
+  // eslint-disable-next-line consistent-return
   renderError() {
-    if (this.props.error) {
+    const { error } = this.props;
+    let errorMessage;
+    switch (error.code) {
+      case 'auth/network-request-failed':
+        errorMessage = 'Unable to connect, Check your network';
+        break;
+      case 'auth/user-disabled':
+        errorMessage = 'User has been blocked, Please contact the admin';
+        break;
+      default:
+        errorMessage = 'Invalid Username or Password';
+        break;
+    }
+    if (error) {
       return (
         <View>
-          <FormValidationMessage>Error message</FormValidationMessage>
+          <FormValidationMessage>{errorMessage}</FormValidationMessage>
         </View>
       );
     }
+    return <View />;
+  }
+
+  renderButton() {
+    if (this.props.loading) {
+      return <Spinner size="large" />;
+    }
+
+    return (
+      <Button
+        raised
+        icon={{ name: 'done' }}
+        title={this.props.buttonLabel}
+        backgroundColor={Colors.PRIMARY_BUTTON}
+        buttonStyle={[GlobalStyles.buttonLarge]}
+        textStyle={GlobalStyles.buttonText}
+        onPress={this.onButtonPress}
+      />
+    );
   }
 
   render() {
     const {
       usernameLabel,
       passwordLabel,
-      buttonLabel,
       error } = this.props;
 
     return (
@@ -84,15 +111,7 @@ class LoginForm extends Component {
         />
         {this.renderError()}
         <View style={[GlobalStyles.row, GlobalStyles.padding]}>
-          <Button
-            raised
-            icon={{ name: 'done' }}
-            title={buttonLabel}
-            backgroundColor={Colors.PRIMARY_BUTTON}
-            buttonStyle={[GlobalStyles.buttonLarge]}
-            textStyle={GlobalStyles.buttonText}
-            onPress={this.onButtonPress}
-          />
+          {this.renderButton()}
         </View>
       </View>
     );
@@ -100,9 +119,9 @@ class LoginForm extends Component {
 }
 
 const MapStateToProps = ({ auth }) => {
-  const { email, password, error } = auth;
+  const { email, password, error, loading } = auth;
 
-  return { email, password, error };
+  return { email, password, error, loading };
 };
 
 export default connect(MapStateToProps, {

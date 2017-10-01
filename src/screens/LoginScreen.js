@@ -57,6 +57,8 @@ class LoginScreen extends Component {
             usernameLabel="Email"
             passwordLabel="Password"
             buttonLabel="Sign In"
+            errorMessage="Invalid Username or Password"
+            navigate={navigate}
           />
           <View style={[GlobalStyles.row, GlobalStyles.noPadding]}>
             <Link
