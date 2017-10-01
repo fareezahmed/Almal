@@ -1,34 +1,45 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, ScrollView } from 'react-native';
-import { Color, Sizes } from '../config';
+import { View } from 'react-native';
+import { GlobalStyles, Colors } from '../config';
 
-class ForgotPasswordScreen extends Component {
-
-  render() {
-    console.log(Sizes.screen.width);
-
-    return (
-      <View
-      style={styles.slideStyle}
-      >
-        <Text style={styles.textStyle}>Login Screen</Text>
-      </View>
-    );
-  }
-}
+import ForgotPasswordForm from '../components/ForgotPasswordForm';
+import Logo from '../components/Logo';
 
 const styles = {
-  slideStyle: {
+  screenStyle: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#009688'
+    backgroundColor: Colors.PRIMARY_COLOR,
   },
   textStyle: {
     fontSize: 30,
     fontWeight: 'bold',
-    color: 'white'
+    color: Colors.WHITE,
   },
 };
+
+// eslint-disable-next-line  react/prefer-stateless-function
+class ForgotPasswordScreen extends Component {
+  render() {
+    const { navigate } = this.props.navigation;
+
+    return (
+      <View style={[styles.screenStyle, GlobalStyles.padding]}>
+        {/* Header */}
+        <Logo />
+
+        <ForgotPasswordForm
+          usernameLabel="Email"
+          passwordLabel="Password"
+          confirmPasswordLabel="Confirm Password"
+          buttonLabel="Forgot Password"
+          buttonResetLabel="Reset Password"
+          navigate={navigate}
+        />
+      </View>
+    );
+  }
+}
 
 export default ForgotPasswordScreen;
