@@ -34,12 +34,10 @@ const loginUserSuccess = (dispatch, user, navigate) => {
 
 export const loginUser = ({ email, password, navigate }) => (dispatch) => {
   dispatch({ type: LOGIN_USER });
-  console.log(navigate);
   try {
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(user => loginUserSuccess(dispatch, user, navigate))
       .catch((error) => {
-        console.log(error);
         loginUserFail(dispatch, error);
       });
   } catch (err) {
