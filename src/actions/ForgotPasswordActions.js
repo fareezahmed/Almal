@@ -5,7 +5,7 @@ import {
   FORGOT_PASSWORD_CONFIRM_PASSWORD_CHANGED,
   FORGOT_PASSWORD_EMAIL_SUCCESS,
   FORGOT_PASSWORD_EMAIL_FAIL,
-  FORGOT_PASSWORD_EMAIL_VALIDATE,
+  FORGOT_PASSWORD_LOADING,
 } from './types';
 
 export const forgotPasswordEmailChanged = text => ({
@@ -37,7 +37,8 @@ const forgotPasswordEmailSucess = (dispatch) => {
 // eslint-disable-next-line arrow-parens
 export const forgotPasswordEmailValidate = (props) => (dispatch) => {
   const { email } = props;
-  dispatch({ type: FORGOT_PASSWORD_EMAIL_VALIDATE });
+  dispatch({ type: FORGOT_PASSWORD_LOADING });
+  // REWRITE THE LOGIC FOR FORGOT PASSWORD
   try {
     firebase.auth().fetchProvidersForEmail(email)
       .then(user => forgotPasswordEmailSucess(dispatch, user))
@@ -48,3 +49,9 @@ export const forgotPasswordEmailValidate = (props) => (dispatch) => {
     forgotPasswordEmailFail(dispatch, err);
   }
 };
+
+export const forgotPasswordResetPassword = (props, dispatch) => {
+  dispatch({ type: FORGOT_PASSWORD_LOADING });
+  // WRITE THE LOGIC FOR RESET PASSWORD
+};
+

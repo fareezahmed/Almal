@@ -16,7 +16,7 @@ export const SIGNUP_USER = 'signUp_user';
 export const FORGOT_PASSWORD_EMAIL_CHANGED = 'forgot_password_email_changed';
 export const FORGOT_PASSWORD_PASSWORD_CHANGED = 'forgot_password_password_changed';
 export const FORGOT_PASSWORD_CONFIRM_PASSWORD_CHANGED = 'forgot_password_confirm_password_changed';
-export const FORGOT_PASSWORD_EMAIL_VALIDATE = 'forgot_password_email_validate';
+export const FORGOT_PASSWORD_LOADING = 'forgot_password_loading';
 export const FORGOT_PASSWORD_EMAIL_SUCCESS = 'forgot_password_email_success';
 export const FORGOT_PASSWORD_EMAIL_FAIL = 'forgot_password_email_fail';
 

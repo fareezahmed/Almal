@@ -11,6 +11,7 @@ import {
   forgotPasswordPasswordChanged,
   forgotPasswordConfirmPasswordChanged,
   forgotPasswordEmailValidate,
+  forgotPasswordResetPassword,
 } from '../actions';
 import { Input, Spinner } from './commons';
 
@@ -31,6 +32,7 @@ class ForgotPasswordForm extends Component {
     this.onPasswordChange = this.onPasswordChange.bind(this);
     this.onConfirmPasswordChange = this.onConfirmPasswordChange.bind(this);
     this.onButtonPress = this.onButtonPress.bind(this);
+    this.onResetPasswordButtonPress = this.onResetPasswordButtonPress.bind(this);
   }
 
   onEmailChange(text) {
@@ -49,25 +51,38 @@ class ForgotPasswordForm extends Component {
     this.props.forgotPasswordEmailValidate(this.props);
   }
 
+  onResetPasswordButtonPress() {
+    this.props.forgotPasswordResetPassword(this.props);
+  }
+
   // eslint-disable-next-line consistent-return
   renderError() {
     const { error } = this.props;
-    // let errorMessage;
-    // switch (error.code) {
-    //   case 'auth/network-request-failed':
-    //     errorMessage = 'Unable to connect, Check your network';
-    //     break;
-    //   default:
-    //     errorMessage = 'Invalid Email';
-    //     break;
-    // }
-    // if (error) {
-    //   return (
-    //     <View>
-    //       <FormValidationMessage>{errorMessage}</FormValidationMessage>
-    //     </View>
-    //   );
-    // }
+    let errorMessage;
+    switch (error.code) {
+      case 'password-mismatch':
+        errorMessage = 'Passwords does not match';
+        break;
+      case 'auth/weak-password':
+        errorMessage = error.message;
+        break;
+      case 'auth/invalid-email':
+        errorMessage = 'Please enter a valid email address';
+        break;
+      case 'auth/network-request-failed':
+        errorMessage = 'Unable to connect, Check your network';
+        break;
+      default:
+        errorMessage = 'Invalid Email';
+        break;
+    }
+    if (error) {
+      return (
+        <View>
+          <FormValidationMessage>{errorMessage}</FormValidationMessage>
+        </View>
+      );
+    }
     return <View />;
   }
 
@@ -136,7 +151,7 @@ class ForgotPasswordForm extends Component {
           backgroundColor={Colors.PRIMARY_BUTTON}
           buttonStyle={[GlobalStyles.buttonLarge]}
           textStyle={GlobalStyles.buttonText}
-          onPress={this.onButtonPress}
+          onPress={this.onResetPasswordButtonPress}
         />
       );
     }
@@ -183,4 +198,5 @@ export default connect(MapStateToProps, {
   forgotPasswordPasswordChanged,
   forgotPasswordConfirmPasswordChanged,
   forgotPasswordEmailValidate,
+  forgotPasswordResetPassword,
 })(ForgotPasswordForm);
