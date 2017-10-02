@@ -1,34 +1,43 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, ScrollView } from 'react-native';
-import { Color, Sizes } from '../config';
+import { View } from 'react-native';
+import { GlobalStyles, Colors } from '../config';
 
+import SignUpForm from '../components/SignUpForm';
+import Logo from '../components/Logo';
+
+const styles = {
+  screenStyle: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: Colors.PRIMARY_COLOR,
+    marginTop: -30,
+  },
+};
+
+// eslint-disable-next-line  react/prefer-stateless-function
 class ProfileScreen extends Component {
-
   render() {
-    console.log(Sizes.screen.width);
+    const { navigate } = this.props.navigation;
 
     return (
-      <View
-      style={styles.slideStyle}
-      >
-        <Text style={styles.textStyle}>Login Screen</Text>
+      <View style={[styles.screenStyle, GlobalStyles.padding]}>
+        {/* Header */}
+        <Logo />
+
+        <SignUpForm
+          nameLabel="Full Name"
+          phoneLabel="Mobile"
+          usernameLabel="Email"
+          passwordLabel="Password"
+          confirmPasswordLabel="Confirm Password"
+          buttonLabel="Sign Up"
+          errorMessage="Invalid Username or Password"
+          navigate={navigate}
+        />
       </View>
     );
   }
 }
-
-const styles = {
-  slideStyle: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#009688'
-  },
-  textStyle: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    color: 'white'
-  },
-};
 
 export default ProfileScreen;

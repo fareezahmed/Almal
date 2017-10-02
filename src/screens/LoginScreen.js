@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { View, Image } from 'react-native';
+import { View } from 'react-native';
 import { GlobalStyles } from '../config';
+
 import { Link } from '../components/commons';
 import LoginForm from '../components/LoginForm';
+import Logo from '../components/Logo';
 
 const styles = {
   centerAlign: {
@@ -19,10 +21,6 @@ const styles = {
     width: '100%',
     paddingTop: 30,
   },
-  logoStyle: {
-    width: 100,
-    height: 100,
-  },
 };
 
 // eslint-disable-next-line react/prefer-stateless-function
@@ -36,20 +34,13 @@ class LoginScreen extends Component {
       GlobalStyles.gutters,
     ];
     const footerStyle = [commonStyle, GlobalStyles.flex1];
-    const headerStyle = [commonStyle, GlobalStyles.flex2];
     const mainStyle = [GlobalStyles.gutters, styles.centerAlign, GlobalStyles.flex4];
-    const logo = require('../assets/img/logo.png');
 
     return (
       <View style={[styles.screenStyles]}>
 
         {/* Header */}
-        <View style={headerStyle}>
-          <Image
-            style={styles.logoStyle}
-            source={logo}
-          />
-        </View>
+        <Logo />
 
         {/* Body */}
         <View style={mainStyle}>
@@ -57,7 +48,6 @@ class LoginScreen extends Component {
             usernameLabel="Email"
             passwordLabel="Password"
             buttonLabel="Sign In"
-            errorMessage="Invalid Username or Password"
             navigate={navigate}
           />
           <View style={[GlobalStyles.row, GlobalStyles.noPadding]}>

@@ -20,15 +20,19 @@ const Stack = StackNavigator(
     //   screen: SplashScreen,
     //   navigationOptions: { header: null },
     // },
-    Login: {
-      screen: LoginScreen,
-      navigationOptions: { header: null },
-    },
-    SignUp: {
-      screen: SignUpScreen,
-    },
+    // Login: {
+    //   screen: LoginScreen,
+    //   navigationOptions: { header: null },
+    // },
+    // SignUp: {
+    //   screen: SignUpScreen,
+    //   navigationOptions: () => ({
+    //     headerTitle: 'SIGN UP',
+    //   }),
+    // },
     ForgotPassword: {
       screen: ForgotPassword,
+      navigationOptions: { headerTitle: 'Forgot Password' },
     },
     Main: {
       screen: MainScreen,
