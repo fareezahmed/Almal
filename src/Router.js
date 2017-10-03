@@ -16,20 +16,20 @@ import ForgotPassword from './screens/ForgotPasswordScreen';
 
 const Stack = StackNavigator(
   {
-    // Splash: {
-    //   screen: SplashScreen,
-    //   navigationOptions: { header: null },
-    // },
-    // Login: {
-    //   screen: LoginScreen,
-    //   navigationOptions: { header: null },
-    // },
-    // SignUp: {
-    //   screen: SignUpScreen,
-    //   navigationOptions: () => ({
-    //     headerTitle: 'SIGN UP',
-    //   }),
-    // },
+    Splash: {
+      screen: SplashScreen,
+      navigationOptions: { header: null },
+    },
+    Login: {
+      screen: LoginScreen,
+      navigationOptions: { header: null },
+    },
+    SignUp: {
+      screen: SignUpScreen,
+      navigationOptions: () => ({
+        headerTitle: 'SIGN UP',
+      }),
+    },
     ForgotPassword: {
       screen: ForgotPassword,
       navigationOptions: { headerTitle: 'Forgot Password' },
