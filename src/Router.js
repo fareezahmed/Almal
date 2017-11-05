@@ -12,10 +12,14 @@ import SplashScreen from './screens/SplashScreen';
 import LoginScreen from './screens/LoginScreen';
 import SignUpScreen from './screens/SignUpScreen';
 import ForgotPassword from './screens/ForgotPasswordScreen';
-
+import ContractScreen from './screens/ContractScreen';
 
 const Stack = StackNavigator(
   {
+    Lead: {
+      screen: ContractScreen,
+      navigationOptions: { headerTitle: 'Contract' },
+    },
     Splash: {
       screen: SplashScreen,
       navigationOptions: { header: null },
@@ -26,9 +30,7 @@ const Stack = StackNavigator(
     },
     SignUp: {
       screen: SignUpScreen,
-      navigationOptions: () => ({
-        headerTitle: 'SIGN UP',
-      }),
+      navigationOptions: { headerTitle: 'Sign Up' },
     },
     ForgotPassword: {
       screen: ForgotPassword,
@@ -42,9 +44,14 @@ const Stack = StackNavigator(
         headerRight: (
           <Button
             large
-            onPress={() => navigation.navigate('Settings')}
-            icon={{ name: 'settings', color: Colors.NAV_COLOR }}
-            buttonStyle={{ marginLeft: 10, width: 40, height: 40, backgroundColor: 'transparent' }}
+            onPress={ () => navigation.navigate('Settings') }
+            icon={ { name: 'settings', color: Colors.NAV_COLOR } }
+            buttonStyle={ {
+              marginLeft: 10,
+              width: 40,
+              height: 40,
+              backgroundColor: 'transparent',
+            } }
             title=""
           />
         ),

@@ -1,13 +1,23 @@
-import React from 'react';
-import Init from './src';
+import React, { Component } from 'react';
+import { Provider } from 'react-redux';
+
+import ScreenRouter from './src/Router';
 import Store from './src/Store';
+import DBConfig from './src/config/dbConfig';
 
-const App = () => {
-  const store = Store();
+const store = Store();
+class App extends Component {
+  componentWillMount() {
+    DBConfig();
+  }
 
-  return (
-    <Init store={store} />
-  );
-};
+  render() {
+    return (
+      <Provider store={ store }>
+        <ScreenRouter />
+      </Provider>
+    );
+  }
+}
 
-export default App;
+export default App

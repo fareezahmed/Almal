@@ -18,18 +18,32 @@ const styles = {
   },
 };
 
-const Input = ({ error, icon, secureTextEntry, label, value, onChangeText }) => (
+const renderIcon = (icon, error) => (
+  <Icon
+    name={icon}
+    color={Colors.ICON_COLOR}
+    style={[GlobalStyles.iconStyle]}
+    iconStyle={[(error) ? styles.errorStyle.icon : {}]}
+  />
+);
+
+
+const Input = ({
+  error,
+  icon,
+  secureTextEntry,
+  label,
+  value,
+  onChangeText,
+  style,
+}) => (
   <View style={[
     GlobalStyles.row,
     GlobalStyles.inputStyle,
-    (error) ? styles.errorStyle.container : {}]}
+    (error) ? styles.errorStyle.container : {},
+    style]}
   >
-    <Icon
-      name={icon}
-      color={Colors.ICON_COLOR}
-      style={[GlobalStyles.iconStyle]}
-      iconStyle={[(error) ? styles.errorStyle.icon : {}]}
-    />
+    { icon ? renderIcon(icon, error) : <View /> }
     <FormInput
       secureTextEntry={secureTextEntry}
       placeholder={label}

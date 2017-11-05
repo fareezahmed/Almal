@@ -1,7 +1,6 @@
 import {
   CONTRACT_SELECTED,
   CONTRACT_UNSELECTED,
-  CONTRACT_CREATE,
 } from '../actions/types';
 
 export default (state = null, action) => {
@@ -11,8 +10,6 @@ export default (state = null, action) => {
       return action.payload;
     case CONTRACT_UNSELECTED:
       return 0;
-    case CONTRACT_CREATE:
-      return action.payload;
     default:
       return state;
   }
