@@ -1,3 +1,106 @@
+# ALMAL
+
+App Name: Ayah282
+
+Starte Date: 15 Sept 2017
+
+Version: 0.7
+
+Sprint: 6
+
+**Current Sprint:** 7 - R&D Customer Driven Development and Marketing
+
+---
+## Goal/Objective: 
+**Empower Muslims to make deals and contract the RIGHT WAY (Sunnah Way)**
+
+* Who is the site for? 
+  * Adults(25+), Business Owner, Trades, Money Leaders
+
+* What do they expect to find or do there?
+  * Record a halal transcation without stressing the borrow too much but keep things in check to avoid frauds
+
+* Is this App primary aim to inform, to sell, or to amuse?
+  * Data Recording
+
+* Does the website need to clearly convey a brand’s core message, or is it part of a wider branding strategy with its own unique focus?
+  * Brand in this Case is Sunnah, It does need to represent adhering to Sunnah and dealing with money
+
+* What competitor Apps, if any, exist, and how should this site be inspired by/different than, those competitors?
+  * No competitor at the moment 
+
+### Scope Defination: Version 1
+Build an MVP product which enable use to record/log contract details and all the involved parties receive a custom text message which the individual can accept. Leading and Borrowing part will receive remind on as due date comes closer. App will be able to create profile of registered user details to log contract against them and take then as witness.
+
+**Target: 4 Sprints; Starting Sprint: 8**
+
+### Future Activities:
+* Push Notification
+* User able create profile from mobile contacts
+* User able to link social media of the registered users
+* Voice activites contract generation
+* User has section to gain knowledge on Islamic financial through lecture, videos and news feeds
+* Social Media intergation to be able send message through Whatsapp and other apps
+* Calendar intergation
+
+---
+
+### SiteMap
+
+* Splash
+* Login
+  * Contract List
+  * Create Contract
+  * View/Update Contract Details
+  * Confirmation Screen
+  * Settings
+* Sign Up
+* Forgot Password
+* Feedback
+
+
+### Wireframe
+[MockUps](https://app.moqups.com/fareez1234@gmail.com/par1OjrO5o/edit/page/a3f300696)
+
+
+### Visual Elements
+
+* Color Scheme
+* Buttons
+* Input
+* Checkbox
+* Radio Button
+* Date Field
+* Add User
+* Heading
+* Text [Font, Size, Line Height, Color]
+* Artwork [Background Images and Patterns]
+
+
+### Customer Survey
+ In progress
+
+## Note: 
+Artwork needs customer feedback
+Functionality needs A/B Testings
+Overall functionality feedback
+Wireframes needs customer feedback
+Product Expectation Survey
+
+Usability Issues to look into [Most Common] (http://mashable.com/2016/05/26/mobile-app-usability-issues/#AYBoptWVvaqo)
+1. Not customizing for Android
+2. Not taking your onboarding process seriously
+3. Not focusing on information architecture and navigation
+4. Not simplifying the checkout process
+5. Lack of user testing and feedback
+6. Not supporting both landscape and portrait orientation
+7. Requiring too many steps
+8. Not strengthening the engagement loop
+
+---
+
+## Project Setup
+
 This project was bootstrapped with [Create React Native App](https://github.com/react-community/create-react-native-app).
 
 Below you'll find information about performing common tasks. The most recent version of this guide is available [here](https://github.com/react-community/create-react-native-app/blob/master/react-native-scripts/template/README.md).
