@@ -344,6 +344,18 @@ export default StyleSheet.create({
     paddingLeft: 0,
     paddingRight: 0,
   },
+  noPaddingTop: {
+    paddingTop: 0,
+  },
+  noPaddingBottom: {
+    paddingBottom: 0,
+  },
+  noPaddingLeft: {
+    paddingLeft: 0,
+  },
+  noPaddingRight: {
+    paddingRight: 0,
+  },
 
   // shadow
 

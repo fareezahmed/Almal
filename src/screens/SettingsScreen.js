@@ -11,7 +11,7 @@ class SettigsScreen extends Component {
       <View
       style={styles.slideStyle}
       >
-        <Text style={styles.textStyle}>Login Screen</Text>
+        <Text style={styles.textStyle}>Settings Screen</Text>
       </View>
     );
   }

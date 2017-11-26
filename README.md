@@ -6,9 +6,9 @@ Starte Date: 15 Sept 2017
 
 Version: 0.7
 
-Sprint: 6
+Target Sprint: 16
 
-**Current Sprint:** 7 - R&D Customer Driven Development and Marketing
+**Current Sprint:** 10 - Code Clean Up
 
 ---
 ## Goal/Objective: 

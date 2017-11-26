@@ -29,7 +29,7 @@ const loginUserSuccess = (dispatch, user, navigate) => {
     type: LOGIN_USER_SUCCESS,
     payload: user,
   });
-  navigate('Settings');
+  navigate('Main');
 };
 
 export const loginUser = ({ email, password, navigate }) => (dispatch) => {

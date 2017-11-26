@@ -4,7 +4,7 @@ import {
 } from '../actions/types';
 
 export default (state = null, action) => {
-  console.log(action);
+  // console.log(action);
   switch (action.type) {
     case CONTRACT_SELECTED:
       return action.payload;

@@ -7,82 +7,14 @@ import {
 } from 'react-native';
 import { Icon, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
+
 import { GlobalStyles, Colors } from '../config';
 import * as actions from '../actions';
+import { ListItemDescription } from './listItemComponents';
 
 class ListItemComponent extends Component {
   componentWillUpdate() {
     LayoutAnimation.easeInEaseOut();
-  }
-
-  renderDescription() {
-    const { expanded } = this.props;
-    const {
-      leadDate,
-      returnDate,
-      witness1,
-      witness2 } = this.props.data;
-
-    const {
-      rowStyle,
-      viewStyle } = styles;
-
-    if (expanded) {
-      return (
-        <View style={[viewStyle]}>
-          <View style={[GlobalStyles.row, rowStyle]}>
-            <View style={GlobalStyles.flex3}>
-              <Text style={[GlobalStyles.cardLabel]}>Lead Date</Text>
-              <Text style={[GlobalStyles.cardValue]}>{leadDate}</Text>
-            </View>
-            <View style={GlobalStyles.flex3}>
-              <Text style={[GlobalStyles.cardLabel, GlobalStyles.textRightAligned]}>
-                Due Date
-              </Text>
-              <Text style={[GlobalStyles.cardValue, GlobalStyles.textRightAligned]}>
-                {returnDate}
-              </Text>
-            </View>
-          </View>
-          <View style={[GlobalStyles.row, rowStyle]}>
-            <View style={GlobalStyles.flex3}>
-              <Text style={[GlobalStyles.cardLabel]}>Witness1</Text>
-              <Text style={[GlobalStyles.cardValue]}>{witness1.name}</Text>
-              <Text style={[GlobalStyles.cardValue]}>{witness1.phone}</Text>
-            </View>
-            <View style={GlobalStyles.flex3}>
-              <Text style={[GlobalStyles.cardLabel, GlobalStyles.textRightAligned]}>
-                Witness2
-              </Text>
-              <Text style={[GlobalStyles.cardValue, GlobalStyles.textRightAligned]}>
-                {witness2.name}
-              </Text>
-              <Text style={[GlobalStyles.cardValue, GlobalStyles.textRightAligned]}>
-                {witness2.phone}
-              </Text>
-            </View>
-          </View>
-          <View style={[GlobalStyles.row, rowStyle]}>
-            <Button
-              raised
-              icon={{ name: 'mode-edit' }}
-              title="Update"
-              backgroundColor="#E5A60B"
-              buttonStyle={GlobalStyles.button}
-              textStyle={GlobalStyles.buttonText}
-            />
-            <Button
-              raised
-              icon={{ name: 'done-all' }}
-              title="Received"
-              backgroundColor="#008a7d"
-              buttonStyle={GlobalStyles.button}
-              textStyle={GlobalStyles.buttonText}
-            />
-          </View>
-        </View>
-      );
-    }
   }
 
   renderIcon() {
@@ -107,30 +39,31 @@ class ListItemComponent extends Component {
     }
   }
 
-  renderSubTitle() {
-    const { expanded } = this.props;
-    const { returnDate } = this.props.data;
-    const { dateStyle } = styles;
-    if (!expanded) {
-      return (
-        <Text style={[GlobalStyles.cardSubTitle, dateStyle]}>Due Date:{returnDate}</Text>
-      );
-    }
-  }
-
   render() {
+    const { expanded } = this.props;
     const {
       uid,
       name,
       dealType,
-      dealAmount } = this.props.data;
+      dealAmount,
+      returnDate,
+    } = this.props.data;
 
     const {
       rowStyle,
       nameStyle,
       dealTypeStyle,
       dealAmountStyle,
-      viewStyle } = styles;
+      viewStyle,
+      dateStyle,
+    } = styles;
+
+    const description = {
+      leadDate: this.props.data.leadDate,
+      returnDate: this.props.data.returnDate,
+      witness1: this.props.data.witness1,
+      witness2: this.props.data.witness2,
+    };
 
     return (
       <TouchableWithoutFeedback
@@ -145,6 +78,8 @@ class ListItemComponent extends Component {
               <View style={GlobalStyles.flex5}>
                 <Text style={[GlobalStyles.cardTitle, nameStyle]}>{name}</Text>
                 {this.renderSubTitle()}
+                {/* List Item Sub Title */}
+                { !expanded ? <Text style={[GlobalStyles.cardSubTitle, dateStyle]}>Due Date:{returnDate}</Text> : null}
               </View>
               <View style={[GlobalStyles.flex1]}>
                 <View style={[GlobalStyles.row]}>
@@ -158,8 +93,9 @@ class ListItemComponent extends Component {
 
               </View>
             </View>
+            {/* List Item Description  */}
             <View>
-              {this.renderDescription()}
+              { expanded ? <ListItemDescription { ...description } /> : null }
             </View>
           </View>
           {this.renderIcon()}
@@ -216,9 +152,11 @@ const styles = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const expanded = state.selectedItemId === ownProps.data.uid;
+  const expanded = state.contractSelected === ownProps.data.uid;
 
   return { expanded };
 };
 
-export const ListItem = connect(mapStateToProps, actions)(ListItemComponent);
+const ListItem = connect(mapStateToProps, actions)(ListItemComponent);
+
+export default ListItem;
