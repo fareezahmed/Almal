@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { ListView } from 'react-native';
+import { ListView, View, Text } from 'react-native';
 import { connect } from 'react-redux';
+
 import { ListItem } from '../components';
 
 class ListComponent extends Component {
@@ -13,10 +14,12 @@ class ListComponent extends Component {
   }
 
   renderRow(data) {
+    console.log(data);
     return <ListItem data={data} />;
   }
 
   render() {
+    console.log(this.props.list);
     return (
       <ListView
         dataSource={this.dataSource}
@@ -38,4 +41,3 @@ const styles = {
 };
 
 export const List = connect(mapStateToProps)(ListComponent);
-

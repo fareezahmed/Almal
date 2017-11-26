@@ -16,26 +16,26 @@ import ContractScreen from './screens/ContractScreen';
 
 const Stack = StackNavigator(
   {
-    Lead: {
-      screen: ContractScreen,
-      navigationOptions: { headerTitle: 'Contract' },
-    },
-    Splash: {
-      screen: SplashScreen,
-      navigationOptions: { header: null },
-    },
-    Login: {
-      screen: LoginScreen,
-      navigationOptions: { header: null },
-    },
-    SignUp: {
-      screen: SignUpScreen,
-      navigationOptions: { headerTitle: 'Sign Up' },
-    },
-    ForgotPassword: {
-      screen: ForgotPassword,
-      navigationOptions: { headerTitle: 'Forgot Password' },
-    },
+    // Lead: {
+    //   screen: ContractScreen,
+    //   navigationOptions: { headerTitle: 'Contract' },
+    // },
+    // Splash: {
+    //   screen: SplashScreen,
+    //   navigationOptions: { header: null },
+    // },
+    // Login: {
+    //   screen: LoginScreen,
+    //   navigationOptions: { header: null },
+    // },
+    // SignUp: {
+    //   screen: SignUpScreen,
+    //   navigationOptions: { headerTitle: 'Sign Up' },
+    // },
+    // ForgotPassword: {
+    //   screen: ForgotPassword,
+    //   navigationOptions: { headerTitle: 'Forgot Password' },
+    // },
     Main: {
       screen: MainScreen,
       navigationOptions: ({ navigation }) => ({
