@@ -77,7 +77,6 @@ class ListItemComponent extends Component {
             >
               <View style={GlobalStyles.flex5}>
                 <Text style={[GlobalStyles.cardTitle, nameStyle]}>{name}</Text>
-                {this.renderSubTitle()}
                 {/* List Item Sub Title */}
                 { !expanded ? <Text style={[GlobalStyles.cardSubTitle, dateStyle]}>Due Date:{returnDate}</Text> : null}
               </View>

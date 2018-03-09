@@ -20,18 +20,18 @@ const Stack = StackNavigator(
       screen: SplashScreen,
       navigationOptions: { header: null },
     },
-    Login: {
-      screen: LoginScreen,
-      navigationOptions: { header: null },
-    },
-    SignUp: {
-      screen: SignUpScreen,
-      navigationOptions: { headerTitle: 'Sign Up' },
-    },
-    ForgotPassword: {
-      screen: ForgotPassword,
-      navigationOptions: { headerTitle: 'Forgot Password' },
-    },
+    // Login: {
+    //   screen: LoginScreen,
+    //   navigationOptions: { header: null },
+    // },
+    // SignUp: {
+    //   screen: SignUpScreen,
+    //   navigationOptions: { headerTitle: 'Sign Up' },
+    // },
+    // ForgotPassword: {
+    //   screen: ForgotPassword,
+    //   navigationOptions: { headerTitle: 'Forgot Password' },
+    // },
     Main: {
       screen: MainScreen,
       navigationOptions: ({ navigation }) => ({
@@ -59,10 +59,11 @@ const Stack = StackNavigator(
         headerTitle: 'Settings',
       }),
     },
-    Lead: {
-      screen: ContractScreen,
-      navigationOptions: { headerTitle: 'Contract' },
-    },
+    // Lead: {
+    //   screen: ContractScreen,
+    //   navigationOptions: { headerTitle: 'Contract' },
+    // },
+    // initialRouteName: 'Splash',
   },
   {
     navigationOptions: {
