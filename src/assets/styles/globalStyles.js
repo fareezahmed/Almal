@@ -1,0 +1,67 @@
+import { Platform, StyleSheet } from 'react-native';
+import Colors from './colors';
+import Variables from './variables';
+
+const { Screen, Spacing, SpacingSml } = Variables;
+
+const resizeMode = 'cover';
+const resizeLogoMode = 'center';
+
+export const coverFullPage = {
+  flex: 1,
+  resizeMode,
+  position: 'absolute',
+  width: '100%',
+  height: '100%',
+  justifyContent: 'center',
+}
+
+export const circle = {
+  borderRadius: 200,
+  justifyContent: 'center',
+  alignItems: 'center',
+}
+
+export const windowSize = {
+  height: Screen.height,
+  width: Screen.width,
+}
+
+export const title = {
+  ...Platform.select({
+    ios: {
+      fontFamily: 'HelveticaNeue',
+    },
+    android: {
+      fontFamily: 'Roboto',
+    },
+  }),
+  fontSize: Variables.H1FontSize,
+  color: Colors.PRIMARY_COLOR,
+  fontWeight: '700',
+}
+
+export const baseText = {
+  ...Platform.select({
+    ios: {
+      fontFamily: 'HelveticaNeue',
+    },
+    android: {
+      fontFamily: 'Roboto',
+    },
+  }),
+  fontSize: Variables.baseFontSize,
+  color: Colors.TEXT_COLOR,
+  fontWeight: '300',
+}
+
+export const link = {
+  color: Colors.LINK_COLOR,
+  fontWeight: '500',
+}
+
+export const centerContainWrapper = {
+  backgroundColor: 'transparent',
+  justifyContent: 'center',
+  alignItems: 'center',
+}
