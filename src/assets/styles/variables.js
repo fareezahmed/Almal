@@ -21,7 +21,7 @@ export default {
   SpacingSml: 8,
 
   baseFontSize: 13,
-  H1FontSize: 35,
+  H1FontSize: 32,
   H3FontSize: 17,
 
   bg: 'bg.png',

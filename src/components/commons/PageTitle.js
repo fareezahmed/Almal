@@ -2,26 +2,23 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import PropTypes from 'prop-types';
 
-const styles = {
-  pageTitleStyle: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-};
+// Styles
+import { title } from '../../assets/styles/GlobalStyles';
 
-const PageTitle = ({ title }) => (
-  <View style={ styles.pageTitleStyle }>
-    <Text>{title}</Text>
+const PageTitle = ({ style, text }) => (
+  <View style={ style }>
+    <Text style={ title }>{text}</Text>
   </View>
 );
 
 PageTitle.propTypes = {
-  title: PropTypes.string,
+  text: PropTypes.string,
+  style: PropTypes.number,
 }
 
 PageTitle.defaultProps = {
-  title: '',
+  text: '',
+  style: null,
 }
 
 export { PageTitle };

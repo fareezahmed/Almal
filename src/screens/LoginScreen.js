@@ -2,28 +2,14 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import PropTypes from 'prop-types';
 
-import { GlobalStyles } from '../config';
+// Styles
+import variables from '../assets/styles/Variables'
+import styles from '../assets/styles/LoginScreenStyles'
 
-import { Link } from '../components/commons';
+// Components
+import PageWrapper from '../components/PageWrapper';
+import { PageTitle, Link } from '../components/commons';
 import LoginForm from '../components/LoginForm';
-// import Logo from '../components/Logo';
-
-const styles = {
-  centerAlign: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  screenStyles: {
-    flex: 1,
-    backgroundColor: '#383e45',
-  },
-  footerLinkStyle: {
-    borderTopColor: '#FFF',
-    borderTopWidth: 1,
-    width: '100%',
-    paddingTop: 30,
-  },
-};
 
 // eslint-disable-next-line react/prefer-stateless-function
 class LoginScreen extends Component {
@@ -31,48 +17,31 @@ class LoginScreen extends Component {
     const { navigate } = this.props.navigation;
     const bg = require('../assets/img/bg.png')
 
-    const commonStyle = [
-      GlobalStyles.row,
-      GlobalStyles.noPadding,
-      styles.centerAlign,
-      GlobalStyles.gutters,
-    ];
-    const footerStyle = [commonStyle, GlobalStyles.flex1];
-    const mainStyle = [GlobalStyles.gutters, styles.centerAlign, GlobalStyles.flex4];
+    const footerStyle = styles.footerWrapper;
+    const mainStyle = styles.main;
+    const pageTitleStyle = styles.pageTitle;
 
     return (
-      <View style={[styles.screenStyles]}>
-
-        {/* Header */}
-        <Logo />
-
+      <PageWrapper bg={ bg }>
         {/* Body */}
-        <View style={mainStyle}>
+        <View style={ mainStyle }>
+          <PageTitle style={ pageTitleStyle } text="Sign In" />
           <LoginForm
             usernameLabel="Email"
             passwordLabel="Password"
             buttonLabel="Sign In"
-            navigate={navigate}
+            navigate={ navigate }
           />
-          <View style={[GlobalStyles.row, GlobalStyles.noPadding]}>
-            <Link
-              text="Forgot Password"
-              onPress={() => navigate('ForgotPassword')}
-            />
-          </View>
         </View>
 
         {/* Footer */}
-        <View style={footerStyle}>
-          <View style={styles.footerLinkStyle} >
-            <Link
-              text="New here? Sign Up"
-              onPress={() => navigate('SignUp')}
-              style={[GlobalStyles.flex1, styles.centerAlign]}
-            />
-          </View>
+        <View style={ footerStyle }>
+          <Link
+            text="Don't have an Account? Sign Up"
+            onPress={ () => navigate('SignUp') }
+          />
         </View>
-      </View>
+      </PageWrapper>
     );
   }
 }

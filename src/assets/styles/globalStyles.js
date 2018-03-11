@@ -1,11 +1,12 @@
 import { Platform } from 'react-native';
+
+// Environment Variable
 import Colors from './Colors';
 import Variables from './Variables';
 
-const { Screen, Spacing, SpacingSml } = Variables;
+const { Screen } = Variables;
 
 const resizeMode = 'cover';
-const resizeLogoMode = 'center';
 
 export const coverFullPage = {
   flex: 1,
@@ -14,6 +15,20 @@ export const coverFullPage = {
   width: '100%',
   height: '100%',
   justifyContent: 'center',
+}
+
+export const header = {
+  flex: 1,
+}
+
+export const main = {
+  flex: 4,
+  justifyContent: 'center',
+  alignItems: 'center',
+}
+
+export const footer = {
+  flex: 1,
 }
 
 export const circle = {
@@ -37,7 +52,23 @@ export const title = {
     },
   }),
   fontSize: Variables.H1FontSize,
-  color: Colors.PRIMARY_COLOR,
+  color: Colors.WHITE,
+  backgroundColor: 'transparent',
+  fontWeight: '700',
+}
+
+export const headerTitle = {
+  ...Platform.select({
+    ios: {
+      fontFamily: 'HelveticaNeue',
+    },
+    android: {
+      fontFamily: 'Roboto',
+    },
+  }),
+  fontSize: Variables.H2FontSize,
+  color: Colors.WHITE,
+  backgroundColor: 'transparent',
   fontWeight: '700',
 }
 
