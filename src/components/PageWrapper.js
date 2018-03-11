@@ -4,22 +4,20 @@ import PropTypes from 'prop-types';
 
 import styles from '../assets/styles/PageStyles'
 
-const PageWrapper = ({ bg, children }) => {
-  return (
-    <View style={ styles.page }>
-      {
-        bg ? (
-          <Image
-            style={ styles.container }
-            source={ bg }
-          >
-            {children}
-          </Image>
-        ) : { children }
-      }
-    </View>
-  );
-};
+const PageWrapper = ({ bg, children }) => (
+  <View style={ styles.page }>
+    {
+      bg ? (
+        <Image
+          style={ styles.container }
+          source={ bg }
+        >
+          {children}
+        </Image>
+      ) : { children }
+    }
+  </View>
+);
 
 PageWrapper.propTypes = {
   bg: PropTypes.number,
