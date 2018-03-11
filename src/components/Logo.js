@@ -1,26 +1,34 @@
 import React from 'react';
 import { View, Image } from 'react-native';
-import { GlobalStyles } from '../config';
+import PropTypes from 'prop-types';
 
-const logoStyle = {
-  width: 100,
-  height: 100,
-};
+import styles from '../assets/styles/LogoStyles'
 
-const containerStyle = {
-  marginBottom: 30,
-};
+const Logo = ({ styleOverrides }) => {
+  const logo = require('../assets/img/logo.png')
 
-const ConfirmationScreen = ({ styles }) => {
-  const logo = require('../assets/img/logo.png');
   return (
-    <View style={[GlobalStyles.row, containerStyle, styles]}>
-      <Image
-        style={logoStyle}
-        source={logo}
-      />
+    <View style={ styles.imageWrapper }>
+      <View style={ [styles.circle, styles.firstCircle] }>
+        <View style={ [styles.circle, styles.secondCircle] }>
+          <View style={ [styles.circle, styles.thirdCircle] }>
+            <Image
+              style={ styles.logo }
+              source={ logo }
+            />
+          </View>
+        </View>
+      </View>
     </View>
   );
 };
 
-export default ConfirmationScreen;
+Logo.propTypes = {
+  styleOverrides: PropTypes.object,
+}
+
+Logo.defaultProps = {
+  styleOverrides: {},
+}
+
+export default Logo;

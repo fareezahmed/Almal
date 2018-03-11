@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
+import PropTypes from 'prop-types';
+
 import { GlobalStyles } from '../config';
 
 import { Link } from '../components/commons';
 import LoginForm from '../components/LoginForm';
-import Logo from '../components/Logo';
+// import Logo from '../components/Logo';
 
 const styles = {
   centerAlign: {
@@ -27,6 +29,8 @@ const styles = {
 class LoginScreen extends Component {
   render() {
     const { navigate } = this.props.navigation;
+    const bg = require('../assets/img/bg.png')
+
     const commonStyle = [
       GlobalStyles.row,
       GlobalStyles.noPadding,
@@ -71,6 +75,10 @@ class LoginScreen extends Component {
       </View>
     );
   }
+}
+
+LoginScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
 }
 
 export default LoginScreen;

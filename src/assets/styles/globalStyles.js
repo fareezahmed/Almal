@@ -1,6 +1,6 @@
-import { Platform, StyleSheet } from 'react-native';
-import Colors from './colors';
-import Variables from './variables';
+import { Platform } from 'react-native';
+import Colors from './Colors';
+import Variables from './Variables';
 
 const { Screen, Spacing, SpacingSml } = Variables;
 
