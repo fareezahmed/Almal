@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { View, Image, Text, TouchableOpacity } from 'react-native';
 import { Font } from 'expo';
 
@@ -13,7 +14,6 @@ class SplashScreen extends Component {
 
   async componentDidMount() {
     await Font.loadAsync({
-      'cavalier': require('../assets/fonts/Cavalier.ttf'),
       'open-sans-bold': require('../assets/fonts/OpenSans-Bold.ttf'),
     });
     this.setState({ fontLoaded: true });
@@ -33,9 +33,10 @@ class SplashScreen extends Component {
         >
           <View style={ styles.imageWrapper }>
             <View style={ [styles.circle, styles.firstCircle] }>
-              <View style={ [styles.circle, styles.secondCircle]}>
-                <View style={ [styles.circle, styles.thirdCircle]}>
-                  <Image style={ styles.logo }
+              <View style={ [styles.circle, styles.secondCircle] }>
+                <View style={ [styles.circle, styles.thirdCircle] }>
+                  <Image
+                    style={ styles.logo }
                     source={ logo }
                   />
                 </View>
@@ -43,17 +44,18 @@ class SplashScreen extends Component {
             </View>
           </View>
           <View style={ styles.textWrapper }>
-            <Image style={ styles.textLogo }
+            <Image
+              style={ styles.textLogo }
               source={ logoText }
             />
-            <View style={ [styles.textWrapper, styles.textContent]}>
-            {
+            <View style={ [styles.textWrapper, styles.textContent] }>
+              {
               this.state.fontLoaded ? (
                 <TouchableOpacity onPress={ () => navigate('Login') }>
                   <Text style={ styles.tagline }>
-                  { tagline }
-                </Text>
-              </TouchableOpacity>
+                    { tagline }
+                  </Text>
+                </TouchableOpacity>
               ) : null
             }
             </View>
@@ -62,6 +64,10 @@ class SplashScreen extends Component {
       </View>
     );
   }
+}
+
+SplashScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
 }
 
 export default SplashScreen;
