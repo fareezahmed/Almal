@@ -26,8 +26,9 @@ class LoginScreen extends Component {
         <View style={ mainStyle }>
           <PageTitle style={ pageTitleStyle } text="Sign In" />
           <LoginForm
-            usernameLabel="Email"
+            usernameLabel="Username"
             passwordLabel="Password"
+            forgotLabel="Forgot Password?"
             buttonLabel="Sign In"
             navigate={ navigate }
           />

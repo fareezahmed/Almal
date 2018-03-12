@@ -24,12 +24,10 @@ const Link = ({
 Link.propTypes = {
   text: PropTypes.string.isRequired,
   onPress: PropTypes.func.isRequired,
-  styles: PropTypes.object,
   type: PropTypes.string,
 }
 
 Link.defaultProps = {
-  styles: null,
   type: '',
 }
 

@@ -1,14 +1,9 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import PropTypes from 'prop-types';
-import {
-  FormValidationMessage,
-  Button,
-} from 'react-native-elements';
 import { connect } from 'react-redux';
 
 // Styles
-import Colors from '../assets/styles/Colors';
 import styles from '../assets/styles/LoginScreenStyles';
 
 // Actions
@@ -19,7 +14,7 @@ import {
 } from '../actions';
 
 // Components
-import { Input, Spinner, Link } from './commons';
+import { Input, Spinner, Link, ButtonElement } from './commons';
 
 
 class LoginForm extends Component {
@@ -59,7 +54,7 @@ class LoginForm extends Component {
     }
     if (error) {
       return (
-        <FormValidationMessage>{errorMessage}</FormValidationMessage>
+        <Text style={ styles.errorMessage }>{errorMessage}</Text>
       );
     }
     return <View />;
@@ -71,13 +66,9 @@ class LoginForm extends Component {
     }
 
     return (
-      <Button
-        raised
-        icon={ { name: 'done' } }
-        title={ this.props.buttonLabel }
-        backgroundColor={ Colors.PRIMARY_BUTTON }
-        // buttonStyle={ [GlobalStyles.buttonLarge] }
-        // textStyle={ GlobalStyles.buttonText }
+      <ButtonElement
+        text={ this.props.buttonLabel }
+        styles={ styles.buttonWrapper }
         onPress={ this.onButtonPress }
       />
     );
@@ -87,6 +78,7 @@ class LoginForm extends Component {
     const {
       usernameLabel,
       passwordLabel,
+      forgotLabel,
       error,
     } = this.props;
 
@@ -107,11 +99,12 @@ class LoginForm extends Component {
             onChangeText={ this.onPasswordChange }
             value={ this.props.password }
             error={ error }
+            last
           />
         </View>
         <View>
           <Link
-            text="Forgot Password?"
+            text={ forgotLabel }
             type="secondary"
             styles={ styles.formLink }
             onPress={ () => navigate('ForgotPassword') }
@@ -141,10 +134,11 @@ const MapStateToProps = ({ auth }) => {
 LoginForm.propTypes = {
   usernameLabel: PropTypes.string.isRequired,
   passwordLabel: PropTypes.string.isRequired,
+  forgotLabel: PropTypes.string.isRequired,
+  buttonLabel: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
   loading: PropTypes.bool,
-  error: PropTypes.object,
   emailChanged: PropTypes.func.isRequired,
   passwordChanged: PropTypes.func.isRequired,
   loginUser: PropTypes.func.isRequired,
@@ -152,7 +146,6 @@ LoginForm.propTypes = {
 
 LoginForm.defaultProps = {
   loading: false,
-  error: null,
 }
 
 

@@ -5,10 +5,10 @@ import Variables from './Variables';
 
 export default StyleSheet.create({
   errorInput: {
-    borderColor: Colors.ERROR,
+    borderColor: Colors.ERROR_SECONDARY,
   },
   errorIcon: {
-    color: Colors.ERROR,
+    color: Colors.ERROR_SECONDARY,
   },
   wrapperStyle: {
     flexDirection: 'row',
@@ -23,7 +23,10 @@ export default StyleSheet.create({
     borderStyle: 'solid',
     borderBottomWidth: 1,
     paddingBottom: Variables.SpacingSml,
-    marginBottom: Variables.SpacingBottom,
+    marginBottom: 32,
+  },
+  lastContainerStyle: {
+    marginBottom: 16,
   },
   inputStyle: {
     color: Colors.WHITE,

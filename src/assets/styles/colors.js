@@ -10,6 +10,7 @@ const WHITE = '#FFF'; // White
 const BLACK = '#000'; // Black
 const TRANSPARENT = 'transparent';
 const ERROR = '#ff3c3c'; // Coral Red
+const ERROR_SECONDARY = '#fe002a';
 const TRANS_LEVEL1 = 'rgba(255, 255, 255, 0.3)';
 const TRANS_LEVEL2 = 'rgba(255, 255, 255, 0.45)';
 const TRANS_LEVEL3 = 'rgba(255, 255, 255, 0.6)';
@@ -35,4 +36,5 @@ export default {
   HEADER_TEXT_COLOR: PRIMARY_COLOR,
   ICON_COLOR: WHITE,
   ERROR,
+  ERROR_SECONDARY,
 };

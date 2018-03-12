@@ -23,7 +23,7 @@ export default {
 
   baseFontSize: 12,
   H1FontSize: 32,
-  H3FontSize: 17,
+  H3FontSize: 15,
 
   bg: 'bg.png',
   bgWithGradient: 'bg-with-gradient.png',

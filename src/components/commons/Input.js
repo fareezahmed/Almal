@@ -27,6 +27,7 @@ const Input = ({
   value,
   onChangeText,
   styles,
+  last,
 }) => (
   <View style={ [
     inputStyles.wrapperStyle,
@@ -37,6 +38,7 @@ const Input = ({
     <View style={ [
       inputStyles.containerStyle,
       (error) ? inputStyles.errorInput : {},
+      (last) ? inputStyles.lastContainerStyle : {},
       ] }
     >
       <TextInput
@@ -56,17 +58,15 @@ Input.propTypes = {
   label: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   icon: PropTypes.string,
-  error: PropTypes.object,
   secureTextEntry: PropTypes.bool,
+  last: PropTypes.bool,
   onChangeText: PropTypes.func.isRequired,
-  styles: PropTypes.object,
 }
 
 Input.defaultProps = {
   icon: '',
-  error: null,
   secureTextEntry: false,
-  styles: null,
+  last: false,
 }
 
 export { Input };

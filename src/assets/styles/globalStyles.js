@@ -106,3 +106,16 @@ export const centerContainWrapper = {
   alignItems: 'center',
 }
 
+export const button = {
+  paddingVertical: 4,
+  backgroundColor: 'transparent',
+  color: Colors.WHITE,
+  fontWeight: '500',
+  fontSize: Variables.H3FontSize,
+}
+
+export const formStyle = {
+  marginTop: 16,
+  justifyContent: 'center',
+  alignItems: 'center',
+}

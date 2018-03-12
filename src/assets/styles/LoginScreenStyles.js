@@ -1,7 +1,10 @@
 import { StyleSheet } from 'react-native';
 
 import Variables from './Variables';
-import { main } from './GlobalStyles';
+import Colors from './Colors';
+import { main, formStyle } from './GlobalStyles';
+
+const loginForm = formStyle
 
 export default StyleSheet.create({
   main,
@@ -13,18 +16,22 @@ export default StyleSheet.create({
   fromWrapper: {
     width: '100%',
   },
-  loginForm: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+  loginForm,
   formLink: {
     width: '100%',
     alignItems: 'flex-end',
-    paddingBottom: Variables.Spacing,
+    paddingBottom: Variables.SpacingSml,
     paddingRight: Variables.Spacing,
   },
   errorSection: {
     width: '100%',
-    height: 40,
+    height: 48,
+  },
+  errorMessage: {
+    backgroundColor: Colors.WHITE,
+    paddingHorizontal: Variables.Spacing,
+    paddingVertical: Variables.SpacingSml,
+    color: Colors.ERROR_SECONDARY,
+    textAlign: 'center',
   },
 });
