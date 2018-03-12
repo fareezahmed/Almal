@@ -59,9 +59,7 @@ class LoginForm extends Component {
     }
     if (error) {
       return (
-        <View>
-          <FormValidationMessage>{errorMessage}</FormValidationMessage>
-        </View>
+        <FormValidationMessage>{errorMessage}</FormValidationMessage>
       );
     }
     return <View />;
@@ -113,13 +111,15 @@ class LoginForm extends Component {
         </View>
         <View>
           <Link
-            text="Forgot Password"
+            text="Forgot Password?"
             type="secondary"
             styles={ styles.formLink }
             onPress={ () => navigate('ForgotPassword') }
           />
         </View>
-        {this.renderError()}
+        <View style={ styles.errorSection }>
+          {this.renderError()}
+        </View>
         <View>
           {this.renderButton()}
         </View>
@@ -144,7 +144,7 @@ LoginForm.propTypes = {
   email: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
   loading: PropTypes.bool,
-  error: PropTypes.string,
+  error: PropTypes.object,
   emailChanged: PropTypes.func.isRequired,
   passwordChanged: PropTypes.func.isRequired,
   loginUser: PropTypes.func.isRequired,
@@ -152,7 +152,7 @@ LoginForm.propTypes = {
 
 LoginForm.defaultProps = {
   loading: false,
-  error: '',
+  error: null,
 }
 
 

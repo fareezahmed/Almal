@@ -87,12 +87,14 @@ export const baseText = {
 }
 
 export const secondaryText = {
+  backgroundColor: 'transparent',
   color: Colors.WHITE,
   fontWeight: '500',
   fontSize: Variables.baseFontSize,
 }
 
 export const link = {
+  backgroundColor: 'transparent',
   color: Colors.LINK_COLOR,
   fontWeight: '500',
   fontSize: Variables.baseFontSize,

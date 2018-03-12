@@ -29,7 +29,7 @@ Link.propTypes = {
 }
 
 Link.defaultProps = {
-  styles: {},
+  styles: null,
   type: '',
 }
 

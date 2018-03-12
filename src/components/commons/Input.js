@@ -11,7 +11,6 @@ import inputStyles from '../../assets/styles/InputStyles';
 
 const renderIcon = (icon, error) => (
   <Icon
-    // type="ionicon"
     name={ icon }
     color={ Colors.ICON_COLOR }
     style={ inputStyles.iconStyle }
@@ -57,7 +56,7 @@ Input.propTypes = {
   label: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   icon: PropTypes.string,
-  error: PropTypes.string,
+  error: PropTypes.object,
   secureTextEntry: PropTypes.bool,
   onChangeText: PropTypes.func.isRequired,
   styles: PropTypes.object,
@@ -65,9 +64,9 @@ Input.propTypes = {
 
 Input.defaultProps = {
   icon: '',
-  error: '',
+  error: null,
   secureTextEntry: false,
-  styles: {},
+  styles: null,
 }
 
 export { Input };

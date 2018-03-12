@@ -23,4 +23,8 @@ export default StyleSheet.create({
     paddingBottom: Variables.Spacing,
     paddingRight: Variables.Spacing,
   },
+  errorSection: {
+    width: '100%',
+    height: 40,
+  },
 });
