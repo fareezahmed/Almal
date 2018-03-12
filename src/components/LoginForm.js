@@ -1,27 +1,26 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
+import PropTypes from 'prop-types';
 import {
   FormValidationMessage,
   Button,
 } from 'react-native-elements';
 import { connect } from 'react-redux';
-import { GlobalStyles, Colors } from '../config';
+
+// Styles
+import Colors from '../assets/styles/Colors';
+import styles from '../assets/styles/LoginScreenStyles';
+
+// Actions
 import {
   emailChanged,
   passwordChanged,
   loginUser,
 } from '../actions';
-import { Input, Spinner } from './commons';
 
-const styles = {
-  formStyle: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  buttonStyle: {
-    paddingTop: 0,
-  },
-};
+// Components
+import { Input, Spinner, Link } from './commons';
+
 
 class LoginForm extends Component {
   constructor() {
@@ -76,12 +75,12 @@ class LoginForm extends Component {
     return (
       <Button
         raised
-        icon={{ name: 'done' }}
-        title={this.props.buttonLabel}
-        backgroundColor={Colors.PRIMARY_BUTTON}
-        buttonStyle={[GlobalStyles.buttonLarge]}
-        textStyle={GlobalStyles.buttonText}
-        onPress={this.onButtonPress}
+        icon={ { name: 'done' } }
+        title={ this.props.buttonLabel }
+        backgroundColor={ Colors.PRIMARY_BUTTON }
+        // buttonStyle={ [GlobalStyles.buttonLarge] }
+        // textStyle={ GlobalStyles.buttonText }
+        onPress={ this.onButtonPress }
       />
     );
   }
@@ -90,27 +89,38 @@ class LoginForm extends Component {
     const {
       usernameLabel,
       passwordLabel,
-      error } = this.props;
+      error,
+    } = this.props;
 
     return (
-      <View style={styles.formStyle}>
-        <Input
-          icon="email"
-          label={usernameLabel}
-          onChangeText={this.onEmailChange}
-          value={this.props.email}
-          error={error}
-        />
-        <Input
-          icon="lock"
-          secureTextEntry
-          label={passwordLabel}
-          onChangeText={this.onPasswordChange}
-          value={this.props.password}
-          error={error}
-        />
+      <View style={ styles.fromWrapper }>
+        <View style={ styles.loginForm }>
+          <Input
+            icon="person-outline"
+            label={ usernameLabel }
+            onChangeText={ this.onEmailChange }
+            value={ this.props.email }
+            error={ error }
+          />
+          <Input
+            icon="lock-outline"
+            secureTextEntry
+            label={ passwordLabel }
+            onChangeText={ this.onPasswordChange }
+            value={ this.props.password }
+            error={ error }
+          />
+        </View>
+        <View>
+          <Link
+            text="Forgot Password"
+            type="secondary"
+            styles={ styles.formLink }
+            onPress={ () => navigate('ForgotPassword') }
+          />
+        </View>
         {this.renderError()}
-        <View style={[GlobalStyles.row, GlobalStyles.padding]}>
+        <View>
           {this.renderButton()}
         </View>
       </View>
@@ -119,10 +129,32 @@ class LoginForm extends Component {
 }
 
 const MapStateToProps = ({ auth }) => {
-  const { email, password, error, loading } = auth;
+  const {
+    email, password, error, loading,
+  } = auth;
 
-  return { email, password, error, loading };
+  return {
+    email, password, error, loading,
+  };
 };
+
+LoginForm.propTypes = {
+  usernameLabel: PropTypes.string.isRequired,
+  passwordLabel: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
+  loading: PropTypes.bool,
+  error: PropTypes.string,
+  emailChanged: PropTypes.func.isRequired,
+  passwordChanged: PropTypes.func.isRequired,
+  loginUser: PropTypes.func.isRequired,
+}
+
+LoginForm.defaultProps = {
+  loading: false,
+  error: '',
+}
+
 
 export default connect(MapStateToProps, {
   emailChanged, passwordChanged, loginUser,

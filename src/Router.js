@@ -16,10 +16,10 @@ import LoginScreen from './screens/LoginScreen';
 
 const Stack = StackNavigator(
   {
-    Splash: {
-      screen: SplashScreen,
-      navigationOptions: { header: null },
-    },
+    // Splash: {
+    //   screen: SplashScreen,
+    //   navigationOptions: { header: null },
+    // },
     Login: {
       screen: LoginScreen,
       navigationOptions: { header: null },

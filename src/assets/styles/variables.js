@@ -19,8 +19,9 @@ export default {
 
   Spacing: 16,
   SpacingSml: 8,
+  SpacingBottom: 24,
 
-  baseFontSize: 13,
+  baseFontSize: 12,
   H1FontSize: 32,
   H3FontSize: 17,
 

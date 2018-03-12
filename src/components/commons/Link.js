@@ -1,15 +1,36 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { GlobalStyles } from '../../config';
+import PropTypes from 'prop-types';
 
-const Link = ({ text, onPress, style }) => (
-  <TouchableOpacity onPress={onPress}>
-    <View style={style}>
-      <Text style={[GlobalStyles.link]}>
+// Styles
+import { link, secondaryText } from '../../assets/styles/GlobalStyles';
+
+
+const Link = ({
+  text,
+  onPress,
+  styles,
+  type,
+}) => (
+  <TouchableOpacity onPress={ onPress }>
+    <View style={ styles }>
+      <Text style={ (type !== 'secondary') ? link : secondaryText }>
         {text}
       </Text>
     </View>
   </TouchableOpacity>
 );
+
+Link.propTypes = {
+  text: PropTypes.string.isRequired,
+  onPress: PropTypes.func.isRequired,
+  styles: PropTypes.object,
+  type: PropTypes.string,
+}
+
+Link.defaultProps = {
+  styles: {},
+  type: '',
+}
 
 export { Link };

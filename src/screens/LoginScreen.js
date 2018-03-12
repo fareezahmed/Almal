@@ -3,21 +3,20 @@ import { View } from 'react-native';
 import PropTypes from 'prop-types';
 
 // Styles
-import variables from '../assets/styles/Variables'
 import styles from '../assets/styles/LoginScreenStyles'
 
 // Components
 import PageWrapper from '../components/PageWrapper';
-import { PageTitle, Link } from '../components/commons';
+import { PageTitle } from '../components/commons';
 import LoginForm from '../components/LoginForm';
+import FooterLink from '../components/FooterLink';
 
-// eslint-disable-next-line react/prefer-stateless-function
+// eslint-disable-next-line react/prefer-stateless-function, jsx-a11y/anchor-is-valid
 class LoginScreen extends Component {
   render() {
     const { navigate } = this.props.navigation;
     const bg = require('../assets/img/bg.png')
 
-    const footerStyle = styles.footerWrapper;
     const mainStyle = styles.main;
     const pageTitleStyle = styles.pageTitle;
 
@@ -35,12 +34,11 @@ class LoginScreen extends Component {
         </View>
 
         {/* Footer */}
-        <View style={ footerStyle }>
-          <Link
-            text="Don't have an Account? Sign Up"
-            onPress={ () => navigate('SignUp') }
-          />
-        </View>
+        <FooterLink
+          preText="Don't have an Account? "
+          text="Sign Up"
+          onPress={ () => navigate('SignUp') }
+        />
       </PageWrapper>
     );
   }

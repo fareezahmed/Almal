@@ -1,32 +1,24 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, TextInput } from 'react-native';
+import PropTypes from 'prop-types';
 import {
-  FormInput,
   Icon,
 } from 'react-native-elements';
-import { GlobalStyles, Colors } from '../../config';
 
-const styles = {
-  errorStyle: {
-    container: {
-      borderColor: Colors.ERROR,
-      borderWidth: 2,
-    },
-    icon: {
-      color: Colors.ERROR,
-    },
-  },
-};
+// Styles
+import Colors from '../../assets/styles/Colors';
+import inputStyles from '../../assets/styles/InputStyles';
 
 const renderIcon = (icon, error) => (
   <Icon
-    name={icon}
-    color={Colors.ICON_COLOR}
-    style={[GlobalStyles.iconStyle]}
-    iconStyle={[(error) ? styles.errorStyle.icon : {}]}
+    // type="ionicon"
+    name={ icon }
+    color={ Colors.ICON_COLOR }
+    style={ inputStyles.iconStyle }
+    size={ 26 }
+    iconStyle={ [(error) ? inputStyles.errorIcon : {}] }
   />
 );
-
 
 const Input = ({
   error,
@@ -35,24 +27,47 @@ const Input = ({
   label,
   value,
   onChangeText,
-  style,
+  styles,
 }) => (
-  <View style={[
-    GlobalStyles.row,
-    GlobalStyles.inputStyle,
-    (error) ? styles.errorStyle.container : {},
-    style]}
+  <View style={ [
+    inputStyles.wrapperStyle,
+    styles,
+    ] }
   >
     { icon ? renderIcon(icon, error) : <View /> }
-    <FormInput
-      secureTextEntry={secureTextEntry}
-      placeholder={label}
-      value={value}
-      onChangeText={onChangeText}
-      autoCorrect={false}
-      containerStyle={[GlobalStyles.flex3, GlobalStyles.formInput]}
-    />
+    <View style={ [
+      inputStyles.containerStyle,
+      (error) ? inputStyles.errorInput : {},
+      ] }
+    >
+      <TextInput
+        style={ inputStyles.inputStyle }
+        placeholderTextColor={ Colors.WHITE }
+        secureTextEntry={ secureTextEntry }
+        placeholder={ label }
+        value={ value }
+        onChangeText={ onChangeText }
+        autoCorrect={ false }
+      />
+    </View>
   </View>
 );
+
+Input.propTypes = {
+  label: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  icon: PropTypes.string,
+  error: PropTypes.string,
+  secureTextEntry: PropTypes.bool,
+  onChangeText: PropTypes.func.isRequired,
+  styles: PropTypes.object,
+}
+
+Input.defaultProps = {
+  icon: '',
+  error: '',
+  secureTextEntry: false,
+  styles: {},
+}
 
 export { Input };

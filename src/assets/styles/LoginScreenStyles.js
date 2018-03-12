@@ -10,9 +10,17 @@ export default StyleSheet.create({
     paddingBottom: Variables.Spacing,
     paddingHorizontal: Variables.Spacing,
   },
-  footerWrapper: {
+  fromWrapper: {
+    width: '100%',
+  },
+  loginForm: {
+    justifyContent: 'center',
     alignItems: 'center',
-    paddingVertical: Variables.Spacing,
-    paddingHorizontal: Variables.Spacing,
+  },
+  formLink: {
+    width: '100%',
+    alignItems: 'flex-end',
+    paddingBottom: Variables.Spacing,
+    paddingRight: Variables.Spacing,
   },
 });

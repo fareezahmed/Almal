@@ -54,7 +54,7 @@ export const title = {
   fontSize: Variables.H1FontSize,
   color: Colors.WHITE,
   backgroundColor: 'transparent',
-  fontWeight: '700',
+  fontWeight: '500',
 }
 
 export const headerTitle = {
@@ -86,9 +86,16 @@ export const baseText = {
   fontWeight: '300',
 }
 
+export const secondaryText = {
+  color: Colors.WHITE,
+  fontWeight: '500',
+  fontSize: Variables.baseFontSize,
+}
+
 export const link = {
   color: Colors.LINK_COLOR,
   fontWeight: '500',
+  fontSize: Variables.baseFontSize,
 }
 
 export const centerContainWrapper = {
@@ -96,3 +103,4 @@ export const centerContainWrapper = {
   justifyContent: 'center',
   alignItems: 'center',
 }
+
