@@ -80,6 +80,7 @@ class LoginForm extends Component {
       passwordLabel,
       forgotLabel,
       error,
+      navigate,
     } = this.props;
 
     return (
@@ -142,12 +143,12 @@ LoginForm.propTypes = {
   emailChanged: PropTypes.func.isRequired,
   passwordChanged: PropTypes.func.isRequired,
   loginUser: PropTypes.func.isRequired,
+  navigate: PropTypes.func.isRequired,
 }
 
 LoginForm.defaultProps = {
   loading: false,
 }
-
 
 export default connect(MapStateToProps, {
   emailChanged, passwordChanged, loginUser,

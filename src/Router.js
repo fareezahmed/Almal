@@ -10,28 +10,28 @@ import MainScreen from './screens/MainScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import SplashScreen from './screens/SplashScreen';
 import LoginScreen from './screens/LoginScreen';
-// import SignUpScreen from './screens/SignUpScreen';
-// import ForgotPassword from './screens/ForgotPasswordScreen';
+import SignUpScreen from './screens/SignUpScreen';
+import ForgotPassword from './screens/ForgotPasswordScreen';
 // import ContractScreen from './screens/ContractScreen';
 
 const Stack = StackNavigator(
   {
-    // Splash: {
-    //   screen: SplashScreen,
-    //   navigationOptions: { header: null },
-    // },
+    Splash: {
+      screen: SplashScreen,
+      navigationOptions: { header: null },
+    },
     Login: {
       screen: LoginScreen,
       navigationOptions: { header: null },
     },
-    // SignUp: {
-    //   screen: SignUpScreen,
-    //   navigationOptions: { headerTitle: 'Sign Up' },
-    // },
-    // ForgotPassword: {
-    //   screen: ForgotPassword,
-    //   navigationOptions: { headerTitle: 'Forgot Password' },
-    // },
+    SignUp: {
+      screen: SignUpScreen,
+      navigationOptions: { headerTitle: 'Sign Up' },
+    },
+    ForgotPassword: {
+      screen: ForgotPassword,
+      navigationOptions: { headerTitle: 'Forgot Password' },
+    },
     Main: {
       screen: MainScreen,
       navigationOptions: ({ navigation }) => ({
