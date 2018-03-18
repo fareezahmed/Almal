@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import {
   FormValidationMessage,
 } from 'react-native-elements';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // Styles
@@ -116,48 +117,49 @@ class SignUpForm extends Component {
       usernameLabel,
       passwordLabel,
       confirmPasswordLabel,
-      error } = this.props;
+      error,
+    } = this.props;
 
     return (
       <View style={ styles.fromWrapper }>
         <View style={ styles.signUpForm }>
-        <Input
-          icon="person"
-          label={nameLabel}
-          onChangeText={this.onNameChange}
-          value={this.props.name}
-          error={error}
-        />
-        <Input
-          icon="phone-iphone"
-          label={phoneLabel}
-          onChangeText={this.onPhoneChange}
-          value={this.props.phone}
-          error={error}
-        />
-        <Input
-          icon="email"
-          label={usernameLabel}
-          onChangeText={this.onEmailChange}
-          value={this.props.email}
-          error={error}
-        />
-        <Input
-          icon="lock"
-          secureTextEntry
-          label={passwordLabel}
-          onChangeText={this.onPasswordChange}
-          value={this.props.password}
-          error={error}
-        />
-        <Input
-          icon="spellcheck"
-          secureTextEntry
-          label={confirmPasswordLabel}
-          onChangeText={this.onConfirmPasswordChange}
-          value={this.props.confirmPassword}
-          error={error}
-        />
+          <Input
+            icon="perm-identity"
+            label={ nameLabel }
+            onChangeText={ this.onNameChange }
+            value={ this.props.name }
+            error={ error }
+          />
+          <Input
+            icon="phone-iphone"
+            label={ phoneLabel }
+            onChangeText={ this.onPhoneChange }
+            value={ this.props.phone }
+            error={ error }
+          />
+          <Input
+            icon="mail-outline"
+            label={ usernameLabel }
+            onChangeText={ this.onEmailChange }
+            value={ this.props.email }
+            error={ error }
+          />
+          <Input
+            icon="lock-outline"
+            secureTextEntry
+            label={ passwordLabel }
+            onChangeText={ this.onPasswordChange }
+            value={ this.props.password }
+            error={ error }
+          />
+          <Input
+            icon="spellcheck"
+            secureTextEntry
+            label={ confirmPasswordLabel }
+            onChangeText={ this.onConfirmPasswordChange }
+            value={ this.props.confirmPassword }
+            error={ error }
+          />
         </View>
         <View style={ styles.errorSection }>
           {this.renderError()}
@@ -170,11 +172,56 @@ class SignUpForm extends Component {
   }
 }
 
-const MapStateToProps = ({ signUp }) => {
-  const { name, phone, email, password, confirmPassword, error, loading } = signUp;
 
-  return { name, phone, email, password, confirmPassword, error, loading };
+const MapStateToProps = ({ signUp }) => {
+  const {
+    name,
+    phone,
+    email,
+    password,
+    confirmPassword,
+    error,
+    loading,
+  } = signUp;
+
+  return {
+    name,
+    phone,
+    email,
+    password,
+    confirmPassword,
+    error,
+    loading,
+  };
 };
+
+SignUpForm.propTypes = {
+  // Label
+  nameLabel: PropTypes.string.isRequired,
+  usernameLabel: PropTypes.string.isRequired,
+  passwordLabel: PropTypes.string.isRequired,
+  confirmPasswordLabel: PropTypes.string.isRequired,
+  phoneLabel: PropTypes.string.isRequired,
+  buttonLabel: PropTypes.string.isRequired,
+  // Value
+  name: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  phone: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
+  confirmPassword: PropTypes.string.isRequired,
+  loading: PropTypes.bool,
+  // Functions
+  signUpNameChanged: PropTypes.func.isRequired,
+  signUpPhoneChanged: PropTypes.func.isRequired,
+  signUpEmailChanged: PropTypes.func.isRequired,
+  signUpPasswordChanged: PropTypes.func.isRequired,
+  signUpConfirmPasswordChanged: PropTypes.func.isRequired,
+  SignUpUser: PropTypes.func.isRequired,
+}
+
+SignUpForm.defaultProps = {
+  loading: false,
+}
 
 export default connect(MapStateToProps, {
   signUpNameChanged,

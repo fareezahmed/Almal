@@ -21,7 +21,6 @@ const PageWrapper = ({ bg, children }) => (
 
 PageWrapper.propTypes = {
   bg: PropTypes.number,
-  children: PropTypes.array.isRequired,
 }
 
 PageWrapper.defaultProps = {
