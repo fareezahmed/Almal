@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { Font } from 'expo';
 
 // Styles
-import variables from '../assets/styles/Variables'
 import styles from '../assets/styles/SplashScreenStyles'
 
 // Content
@@ -15,8 +14,11 @@ import Logo from '../components/Logo';
 import PageWrapper from '../components/PageWrapper';
 
 class SplashScreen extends Component {
-  state = {
-    fontLoaded: false,
+  constructor() {
+    super();
+    this.state = {
+      fontLoaded: false,
+    }
   }
 
   async componentDidMount() {

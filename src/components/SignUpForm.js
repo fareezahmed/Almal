@@ -2,10 +2,13 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import {
   FormValidationMessage,
-  Button,
 } from 'react-native-elements';
 import { connect } from 'react-redux';
-import { GlobalStyles, Colors } from '../config';
+
+// Styles
+import styles from '../assets/styles/SignUpScreenStyles';
+
+// Actions
 import {
   signUpNameChanged,
   signUpPhoneChanged,
@@ -14,17 +17,8 @@ import {
   signUpConfirmPasswordChanged,
   SignUpUser,
 } from '../actions';
-import { Input, Spinner } from './commons';
 
-const styles = {
-  formStyle: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  buttonStyle: {
-    paddingTop: 0,
-  },
-};
+import { Input, Spinner, ButtonElement } from './commons';
 
 class SignUpForm extends Component {
   constructor() {
@@ -107,14 +101,10 @@ class SignUpForm extends Component {
     }
 
     return (
-      <Button
-        raised
-        icon={{ name: 'done' }}
-        title={this.props.buttonLabel}
-        backgroundColor={Colors.PRIMARY_BUTTON}
-        buttonStyle={[GlobalStyles.buttonLarge]}
-        textStyle={GlobalStyles.buttonText}
-        onPress={this.onButtonPress}
+      <ButtonElement
+        text={ this.props.buttonLabel }
+        styles={ styles.buttonWrapper }
+        onPress={ this.onButtonPress }
       />
     );
   }
@@ -129,7 +119,8 @@ class SignUpForm extends Component {
       error } = this.props;
 
     return (
-      <View style={styles.formStyle}>
+      <View style={ styles.fromWrapper }>
+        <View style={ styles.signUpForm }>
         <Input
           icon="person"
           label={nameLabel}
@@ -167,8 +158,11 @@ class SignUpForm extends Component {
           value={this.props.confirmPassword}
           error={error}
         />
-        {this.renderError()}
-        <View style={[GlobalStyles.row, GlobalStyles.padding]}>
+        </View>
+        <View style={ styles.errorSection }>
+          {this.renderError()}
+        </View>
+        <View>
           {this.renderButton()}
         </View>
       </View>
