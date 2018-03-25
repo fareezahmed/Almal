@@ -2,12 +2,19 @@ import { StyleSheet } from 'react-native';
 
 import Variables from './Variables';
 import Colors from './Colors';
-import { main, formStyle } from './GlobalStyles';
+import { formStyle, alignment } from './GlobalStyles';
 
 const signUpForm = formStyle
 
+const { row, flex1 } = alignment;
+
 export default StyleSheet.create({
-  main,
+  main: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+    paddingTop: 20,
+  },
   pageTitle: {
     width: '100%',
     paddingBottom: Variables.Spacing,
@@ -17,6 +24,8 @@ export default StyleSheet.create({
     width: '100%',
   },
   signUpForm,
+  row,
+  flex1,
   formLink: {
     width: '100%',
     alignItems: 'flex-end',

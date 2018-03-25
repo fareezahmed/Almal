@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
-import {
-  FormValidationMessage,
-} from 'react-native-elements';
+import { View, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
@@ -20,6 +17,7 @@ import {
 } from '../actions';
 
 import { Input, Spinner, ButtonElement } from './commons';
+import OptionalSignUpRow from './OptionalSignUpRow';
 
 class SignUpForm extends Component {
   constructor() {
@@ -88,9 +86,7 @@ class SignUpForm extends Component {
     }
     if (error) {
       return (
-        <View>
-          <FormValidationMessage>{errorMessage}</FormValidationMessage>
-        </View>
+        <Text style={ styles.errorMessage }>{errorMessage}</Text>
       );
     }
     return <View />;
@@ -129,6 +125,13 @@ class SignUpForm extends Component {
             onChangeText={ this.onNameChange }
             value={ this.props.name }
             error={ error }
+          />
+          <OptionalSignUpRow
+            gender=""
+            age=""
+            error=""
+            onAgeChange={ () => {} }
+            onGenderChange={ () => {} }
           />
           <Input
             icon="phone-iphone"

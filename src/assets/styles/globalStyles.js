@@ -119,3 +119,34 @@ export const formStyle = {
   justifyContent: 'center',
   alignItems: 'center',
 }
+
+export const backButton = {
+  marginTop: Platform.OS === 'ios' ? 30 : 45,
+  marginLeft: Variables.Spacing,
+  backgroundColor: Colors.TRANSPARENT,
+  alignItems: 'flex-start',
+}
+
+export const alignment = {
+  row: {
+    flexDirection: 'row',
+  },
+  flex1: {
+    flex: 1,
+  },
+  flex2: {
+    flex: 2,
+  },
+  flex3: {
+    flex: 3,
+  },
+  flex4: {
+    flex: 4,
+  },
+  flex5: {
+    flex: 5,
+  },
+  flex6: {
+    flex: 6,
+  },
+}

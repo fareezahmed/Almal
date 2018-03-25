@@ -3,16 +3,18 @@ import { View } from 'react-native';
 import PropTypes from 'prop-types';
 
 // Styles
-import styles from '../assets/styles/LoginScreenStyles'
+import styles from '../assets/styles/SignUpScreenStyles';
 
 // Components
 import PageWrapper from '../components/PageWrapper';
 import { PageTitle } from '../components/commons';
 import SignUpForm from '../components/SignUpForm';
+import BackButton from '../components/BackButton';
 
 // eslint-disable-next-line  react/prefer-stateless-function
-class ProfileScreen extends Component {
+class SignUpScreen extends Component {
   render() {
+    console.log(this.props.navigation)
     const { navigate } = this.props.navigation;
     const bg = require('../assets/img/bg.png')
 
@@ -21,6 +23,8 @@ class ProfileScreen extends Component {
 
     return (
       <PageWrapper bg={ bg }>
+        {/* Header */}
+        <BackButton navigation={ this.props.navigation } />
         {/* Body */}
         <View style={ mainStyle }>
           <PageTitle style={ pageTitleStyle } text="Sign Up" />
@@ -40,8 +44,8 @@ class ProfileScreen extends Component {
   }
 }
 
-ProfileScreen.propTypes = {
+SignUpScreen.propTypes = {
   navigation: PropTypes.object.isRequired,
 }
 
-export default ProfileScreen
+export default SignUpScreen
