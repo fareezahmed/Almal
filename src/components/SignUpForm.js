@@ -126,13 +126,6 @@ class SignUpForm extends Component {
             value={ this.props.name }
             error={ error }
           />
-          <OptionalSignUpRow
-            gender=""
-            age=""
-            error=""
-            onAgeChange={ () => {} }
-            onGenderChange={ () => {} }
-          />
           <Input
             icon="phone-iphone"
             label={ phoneLabel }
