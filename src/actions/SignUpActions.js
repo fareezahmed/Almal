@@ -42,24 +42,28 @@ const signUpUserFail = (dispatch, error) => {
   });
 };
 
-const createUser = (dispatch, user, name, phone, navigate) => {
-  user.updateProfile({
-    displayName: name,
-    phoneNumber: phone,
-  }).then(() => {
+const createUser = (dispatch, email, password, user, name, phone, navigate) => {
+  try {
+    firebase.database().ref(`/users/${user.uid}/profile`)
+      .push({
+        name, phone, email,
+      })
     dispatch({
       type: SIGNUP_USER_SUCCESS,
       payload: user,
-    });
-    navigate('Settings');
-  }).catch((error) => {
+    })
+    navigate('Main');
+  } catch (error) {
+    console.log(error)
     signUpUserFail(dispatch, error);
-  });
+  }
 };
 
 // eslint-disable-next-line arrow-parens
 export const SignUpUser = (props) => (dispatch) => {
-  const { name, phone, email, password, confirmPassword, navigate } = props;
+  const {
+    name, phone, email, password, confirmPassword, navigate,
+  } = props;
   dispatch({ type: SIGNUP_USER });
   if (!name) {
     signUpUserFail(dispatch, {
@@ -78,7 +82,7 @@ export const SignUpUser = (props) => (dispatch) => {
   if (password && password === confirmPassword) {
     try {
       firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then(user => createUser(dispatch, user, name, phone, navigate))
+        .then(user => createUser(dispatch, email, password, user, name, phone, navigate))
         .catch((error) => {
           signUpUserFail(dispatch, error);
         });
