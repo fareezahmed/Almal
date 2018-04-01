@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ListView } from 'react-native';
+import { ListView, View } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
@@ -12,6 +12,8 @@ import {
   mainList,
 } from '../actions';
 
+// Components
+import { Spinner } from './commons';
 import { ListItem } from '../components';
 
 const styles = {
@@ -25,62 +27,62 @@ const styles = {
 const renderRow = data => (<ListItem data={ data } />);
 
 class ListComponent extends Component {
-  // constructor() {
-  //   super();
-  //   this.setState({ list: [] })
-  // }
-
-  // async componentWillMount() {
-  //   const { currentUser } = firebase.auth()
-  //   let listData
-
-  //   const ds = new ListView.DataSource({
-  //     rowHasChanged: (r1, r2) => r1 !== r2,
-  //   });
-
-  //   try {
-  //     await firebase.database().ref(`/users/${currentUser.uid}/contracts`)
-  //       .on('value', (snapshot) => {
-  //         listData = Object.values(snapshot.val())
-  //         this.dataSource = ds.cloneWithRows(listData);
-  //         // this.setState({ list: listData })
-  //       });
-  //     console.log('successful');
-  //   } catch (error) {
-  //     console.log(error)
-  //   }
-  // }
-
-  componentWillMount() {
+  constructor(props) {
+    super(props)
+    const dataSource = new ListView.DataSource({
+      rowHasChanged: (row1, row2) => row1 !== row2,
+    })
     const { currentUser } = firebase.auth()
-    const { data } = this.props
-    console.log(data.list)
-    console.log(typeof data.list)
-
-    const ds = new ListView.DataSource({
-      rowHasChanged: (r1, r2) => r1 !== r2,
-    });
-
-    this.dataSource = ds.cloneWithRows(data.list);
+    this.state = {
+      dataSource: dataSource.cloneWithRows([]),
+    }
+    this.itemsRef = firebase.database().ref(`/users/${currentUser.uid}/contracts`)
   }
 
-  render() {
+  componentDidMount() {
+    this.listenForItems(this.itemsRef);
+  }
+
+  listenForItems(itemsRef) {
+    itemsRef.on('value', (snap) => {
+      const listData = Object.values(snap.val())
+      this.setState({
+        dataSource: this.state.dataSource.cloneWithRows(listData),
+      });
+    });
+  }
+
+  renderListView() {
+    if (this.state.dataSource.rowIdentities[0].length === 0) {
+      return <Spinner size="large" />;
+    }
+
     return (
       <ListView
-        dataSource={ this.dataSource }
+        dataSource={ this.state.dataSource }
         renderRow={ renderRow }
         style={ styles.cellStyle }
       />
     );
   }
+
+  render() {
+    console.log(this.state.dataSource.rowIdentities)
+    console.log(this.state.dataSource)
+    return (
+      <View>
+        {this.renderListView()}
+      </View>
+    );
+  }
 }
 
 ListComponent.propTypes = {
-  data: PropTypes.object,
+  dataSource: PropTypes.object,
 }
 
 ListComponent.defaultProps = {
-  data: {},
+  dataSource: {},
 }
 
 const MapStateToProps = state => ({ data: state.list });
