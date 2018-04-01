@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
+import PropTypes from 'prop-types';
+
+// Styles
+// import styles from '../assets/styles/ContractScreenStyles'
 import { GlobalStyles, Colors } from '../config';
 
+// Components
 import ContractForm from '../components/ContractForm';
 
 const styles = {
@@ -15,12 +20,12 @@ const styles = {
 };
 
 // eslint-disable-next-line  react/prefer-stateless-function
-class LeadingScreen extends Component {
+class ContractScreen extends Component {
   render() {
     const { navigate } = this.props.navigation;
 
     return (
-      <View style={[styles.screenStyle, GlobalStyles.padding]}>
+      <View style={ [styles.screenStyle, GlobalStyles.padding] }>
 
         <ContractForm
           nameLabel="Full Name"
@@ -30,11 +35,15 @@ class LeadingScreen extends Component {
           confirmPasswordLabel="Confirm Password"
           buttonLabel="Sign Up"
           errorMessage="Invalid Username or Password"
-          navigate={navigate}
+          navigate={ navigate }
         />
       </View>
     );
   }
 }
 
-export default LeadingScreen;
+ContractScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
+}
+
+export default ContractScreen;

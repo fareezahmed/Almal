@@ -1,19 +1,26 @@
 import React, { Component } from 'react';
-import { View, Picker } from 'react-native';
-import {
-  FormValidationMessage,
-  Button,
-} from 'react-native-elements';
+import { View, Text } from 'react-native';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+
+// Styles
+// import styles from '../assets/styles/ContractScreenStyles'
 import { GlobalStyles, Colors } from '../config';
+
+// Actions
 import {
   contractNameChanged,
   contractPhoneChanged,
+  // contractEmailChanged,
   // contractTypeChanged,
   // contractAmountChanged,
+  // contractDateChanged,
   // contractReturnDateChanged,
+  contractCreated,
 } from '../actions';
-import { Input, Spinner } from './commons';
+
+// Components
+import { Input, Spinner, ButtonElement } from './commons';
 
 const styles = {
   formStyle: {
@@ -30,9 +37,7 @@ class ContractForm extends Component {
     super();
     this.onNameChange = this.onNameChange.bind(this);
     this.onPhoneChange = this.onPhoneChange.bind(this);
-    this.onEmailChange = this.onEmailChange.bind(this);
-    this.onPasswordChange = this.onPasswordChange.bind(this);
-    this.onConfirmPasswordChange = this.onConfirmPasswordChange.bind(this);
+    // this.onEmailChange = this.onEmailChange.bind(this);
     this.onButtonPress = this.onButtonPress.bind(this);
   }
 
@@ -44,21 +49,14 @@ class ContractForm extends Component {
     this.props.contractPhoneChanged(text);
   }
 
-  onEmailChange(text) {
-    this.props.contractEmailChanged(text);
-  }
+  // onEmailChange(text) {
+  //   this.props.contractEmailChanged(text);
+  // }
 
-  onPasswordChange(text) {
-    this.props.contractPasswordChanged(text);
-  }
-
-  onConfirmPasswordChange(text) {
-    this.props.contractConfirmPasswordChanged(text);
-  }
 
   onButtonPress() {
     console.log('Clicked on Create');
-    // this.props.SignUpUser(this.props);
+    this.props.contractCreated(this.props);
   }
 
   // eslint-disable-next-line consistent-return
@@ -93,9 +91,7 @@ class ContractForm extends Component {
     }
     if (error) {
       return (
-        <View>
-          <FormValidationMessage>{errorMessage}</FormValidationMessage>
-        </View>
+        <Text style={ styles.errorMessage }>{errorMessage}</Text>
       );
     }
     return <View />;
@@ -107,14 +103,10 @@ class ContractForm extends Component {
     }
 
     return (
-      <Button
-        raised
-        icon={{ name: 'done' }}
-        title="Create Contract"
-        backgroundColor={Colors.PRIMARY_BUTTON}
-        buttonStyle={[GlobalStyles.buttonLarge]}
-        textStyle={GlobalStyles.buttonText}
-        onPress={this.onButtonPress}
+      <ButtonElement
+        text={ this.props.buttonLabel }
+        styles={ styles.buttonWrapper }
+        onPress={ this.onButtonPress }
       />
     );
   }
@@ -123,9 +115,10 @@ class ContractForm extends Component {
     const {
       nameLabel,
       phoneLabel,
-      // usernameLabel,
-      // passwordLabel,
-      // confirmPasswordLabel,
+      // emailLabel,
+      // typeLabel,
+      // amountLabel,
+      // dateLabel,
       error,
     } = this.props;
 
@@ -133,43 +126,22 @@ class ContractForm extends Component {
       <View style={styles.formStyle}>
         <Input
           icon="person"
-          label={nameLabel}
-          onChangeText={this.onNameChange}
-          value={this.props.name}
-          error={error}
+          label={ nameLabel }
+          onChangeText={ this.onNameChange }
+          value={ this.props.name }
+          error={ error }
         />
         <Input
           icon="phone-iphone"
-          label={phoneLabel}
-          onChangeText={this.onPhoneChange}
-          value={this.props.phone}
-          error={error}
+          label={ phoneLabel }
+          onChangeText={ this.onPhoneChange }
+          value={ this.props.phone }
+          error={ error }
         />
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-          <Input
-            label="Type"
-            onChangeText={this.onTypeChange}
-            value={this.props.type}
-            error={error}
-            style={{ flex: 1 }}
-          />
-          <Picker
-            selectedValue={this.props.type}
-            onValueChange={this.onTypeChange}>
-            <Picker.Item label="Java" value="java" />
-            <Picker.Item label="JavaScript" value="js" />
-          </Picker>
-          <View style={{ width: 20 }} />
-          <Input
-            label="Amount"
-            onChangeText={this.onAmountChange}
-            value={this.props.amount}
-            error={error}
-            style={{ flex: 1 }}
-          />
+        <View style={ styles.errorSection }>
+          {this.renderError()}
         </View>
-        {this.renderError()}
-        <View style={[GlobalStyles.row, GlobalStyles.padding]}>
+        <View>
           {this.renderButton()}
         </View>
       </View>
@@ -187,11 +159,42 @@ const MapStateToProps = ({ contract }) => {
   };
 };
 
+ContractForm.propTypes = {
+  nameLabel: PropTypes.string.isRequired,
+  phoneLabel: PropTypes.string.isRequired,
+  // emailLabel: PropTypes.string.isRequired,
+  // typeLabel: PropTypes.string.isRequired,
+  // amountLabel: PropTypes.number.isRequired,
+  // dateLabel: PropTypes.string.isRequired,
+  buttonLabel: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  phone: PropTypes.string.isRequired,
+  // email: PropTypes.string.isRequired,
+  // type: PropTypes.string.isRequired,
+  // amount: PropTypes.string.isRequired,
+  // date: PropTypes.string.isRequired,
+  loading: PropTypes.bool,
+  contractNameChanged: PropTypes.func.isRequired,
+  contractPhoneChanged: PropTypes.func.isRequired,
+  // contractEmailChanged: PropTypes.func.isRequired,
+  // contractTypeChanged: PropTypes.func.isRequired,
+  // contractAmountChanged: PropTypes.func.isRequired,
+  // contractDateChanged: PropTypes.func.isRequired,
+  contractCreated: PropTypes.func,
+  navigate: PropTypes.func.isRequired,
+}
+
+ContractForm.defaultProps = {
+  loading: false,
+  contractCreated: () => {},
+}
+
 export default connect(MapStateToProps, {
   contractNameChanged,
   contractPhoneChanged,
   // contractEmailChanged,
-  // contractPasswordChanged,
-  // contractConfirmPasswordChanged,
-  // SignUpUser,
+  // contractTypeChanged,
+  // contractAmountChanged,
+  // contractDateChanged,
+  contractCreated,
 })(ContractForm);

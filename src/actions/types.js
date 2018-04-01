@@ -32,3 +32,5 @@ export const CONTRACT_DATE_CHANGED = 'contract_date_changed';
 export const CONTRACT_SUCCESS = 'contract_success';
 export const CONTRACT_FAIL = 'contract_fail';
 export const CONTRACT_LOADING = 'contract_loading';
+
+export const MAIN_LIST = 'main_list';

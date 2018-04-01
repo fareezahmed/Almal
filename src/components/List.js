@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { ListView } from 'react-native';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import firebase from 'firebase';
+
+// Styles
+// import styles from '../assets/styles/MainScreenStyles'
+
+// Actions
+import {
+  mainList,
+} from '../actions';
 
 import { ListItem } from '../components';
 
@@ -16,16 +25,46 @@ const styles = {
 const renderRow = data => (<ListItem data={ data } />);
 
 class ListComponent extends Component {
+  // constructor() {
+  //   super();
+  //   this.setState({ list: [] })
+  // }
+
+  // async componentWillMount() {
+  //   const { currentUser } = firebase.auth()
+  //   let listData
+
+  //   const ds = new ListView.DataSource({
+  //     rowHasChanged: (r1, r2) => r1 !== r2,
+  //   });
+
+  //   try {
+  //     await firebase.database().ref(`/users/${currentUser.uid}/contracts`)
+  //       .on('value', (snapshot) => {
+  //         listData = Object.values(snapshot.val())
+  //         this.dataSource = ds.cloneWithRows(listData);
+  //         // this.setState({ list: listData })
+  //       });
+  //     console.log('successful');
+  //   } catch (error) {
+  //     console.log(error)
+  //   }
+  // }
+
   componentWillMount() {
+    const { currentUser } = firebase.auth()
+    const { data } = this.props
+    console.log(data.list)
+    console.log(typeof data.list)
+
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2,
     });
 
-    this.dataSource = ds.cloneWithRows(this.props.list);
+    this.dataSource = ds.cloneWithRows(data.list);
   }
 
   render() {
-    console.log(this.props.list);
     return (
       <ListView
         dataSource={ this.dataSource }
@@ -37,15 +76,16 @@ class ListComponent extends Component {
 }
 
 ListComponent.propTypes = {
-  list: PropTypes.array,
+  data: PropTypes.object,
 }
 
 ListComponent.defaultProps = {
-  list: {},
+  data: {},
 }
 
-const mapStateToProps = state => ({ list: state.list });
+const MapStateToProps = state => ({ data: state.list });
 
-const List = connect(mapStateToProps)(ListComponent);
+export default connect(MapStateToProps, {
+  mainList,
+})(ListComponent);
 
-export default List;

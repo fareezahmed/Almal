@@ -53,24 +53,30 @@ export const contractDateChanged = text => ({
   payload: text,
 });
 
-export const contractCreate = (state) => {
+export const contractCreated = (state) => {
   const {
     name,
     phone,
-    contractDate,
-    returnDate,
-    dealType,
-    dealAmount,
-    witness1,
-    witness2,
+    // contractDate,
+    // returnDate,
+    // dealType,
+    // dealAmount,
+    // witness1,
+    // witness2,
   } = state;
   const { currentUser } = firebase.auth();
-
+  console.log(currentUser)
   return (dispatch) => {
-    firebase.database().ref(`/users/${currentUser.uid}/contracts`)
-      .push({ name, phone, contractDate, returnDate, dealType, dealAmount, witness1, witness2 })
-      .then(() => {
-        dispatch({ type: CONTRACT_CREATE });
-      });
+    try {
+      firebase.database().ref(`/users/${currentUser.uid}/contracts`)
+        // .push({ name, phone, contractDate, returnDate, dealType, dealAmount, witness1, witness2 })
+        .push({ name, phone })
+        .then(() => {
+          dispatch({ type: CONTRACT_CREATE })
+        });
+      console.log('sucessful');
+    } catch (error) {
+      console.log(error)
+    }
   };
 };
