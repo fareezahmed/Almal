@@ -31,27 +31,27 @@ class SplashScreen extends Component {
   render() {
     const { navigate } = this.props.navigation;
     const bg = require('../assets/img/bg-with-gradient.png')
-
     const logoText = require('../assets/img/logo-text.png')
+    const textContainStyles = [styles.textWrapper, styles.textContent]
 
     return (
-      <PageWrapper bg={bg}>
+      <PageWrapper bg={ bg }>
         <Logo />
         <View style={ styles.textWrapper }>
           <Image
             style={ styles.textLogo }
             source={ logoText }
           />
-          <View style={ [styles.textWrapper, styles.textContent] }>
+          <View style={ textContainStyles }>
             {
-            this.state.fontLoaded ? (
-              <TouchableOpacity onPress={ () => navigate('Login') }>
-                <Text style={ styles.tagline }>
-                  { tagline }
-                </Text>
-              </TouchableOpacity>
-            ) : null
-          }
+              this.state.fontLoaded ? (
+                <TouchableOpacity onPress={ () => navigate('Login') }>
+                  <Text style={ styles.tagline }>
+                    { tagline }
+                  </Text>
+                </TouchableOpacity>
+              ) : null
+            }
           </View>
         </View>
       </PageWrapper>

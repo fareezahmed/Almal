@@ -34,4 +34,13 @@ export default StyleSheet.create({
     fontSize: 14,
     fontWeight: '500',
   },
+  darkContainerStyle: {
+    borderColor: Colors.LIGHT_GREY,
+  },
+  darkStyle: {
+    color: Colors.MEDIUM_GREY,
+  },
+  darkIcon: {
+    color: Colors.MEDIUM_GREY,
+  },
 });

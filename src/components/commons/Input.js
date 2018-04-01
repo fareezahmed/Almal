@@ -9,18 +9,22 @@ import {
 import Colors from '../../assets/styles/Colors';
 import inputStyles from '../../assets/styles/InputStyles';
 
-const renderIcon = (icon, error) => (
+const renderIcon = (icon, error, type) => (
   <Icon
     name={ icon }
     color={ Colors.ICON_COLOR }
     style={ inputStyles.iconStyle }
     size={ 26 }
-    iconStyle={ [(error) ? inputStyles.errorIcon : {}] }
+    iconStyle={ [
+      (type === 'dark') ? inputStyles.darkIcon : {},
+      (error) ? inputStyles.errorIcon : {},
+    ] }
   />
 );
 
 const Input = ({
   error,
+  type,
   icon,
   secureTextEntry,
   label,
@@ -34,16 +38,16 @@ const Input = ({
     styles,
     ] }
   >
-    { icon ? renderIcon(icon, error) : <View /> }
+    { icon ? renderIcon(icon, error, type) : <View /> }
     <View style={ [
-      inputStyles.containerStyle,
+      (type === 'dark') ? [inputStyles.containerStyle, inputStyles.darkContainerStyle] : inputStyles.containerStyle,
       (error) ? inputStyles.errorInput : {},
       (last) ? inputStyles.lastContainerStyle : {},
       ] }
     >
       <TextInput
-        style={ inputStyles.inputStyle }
-        placeholderTextColor={ Colors.WHITE }
+        style={ (type === 'dark') ? [inputStyles.inputStyle, inputStyles.darkStyle] : inputStyles.inputStyle }
+        placeholderTextColor={ (type === 'dark') ? Colors.BLACK : Colors.WHITE }
         secureTextEntry={ secureTextEntry }
         placeholder={ label }
         value={ value }
@@ -61,12 +65,14 @@ Input.propTypes = {
   secureTextEntry: PropTypes.bool,
   last: PropTypes.bool,
   onChangeText: PropTypes.func.isRequired,
+  type: PropTypes.string,
 }
 
 Input.defaultProps = {
   icon: '',
   secureTextEntry: false,
   last: false,
+  type: '',
 }
 
 export { Input };

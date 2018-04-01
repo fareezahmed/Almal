@@ -17,6 +17,15 @@ export const coverFullPage = {
   justifyContent: 'center',
 }
 
+export const FullPage = {
+  flex: 1,
+  position: 'absolute',
+  width: '100%',
+  height: '100%',
+  justifyContent: 'center',
+  backgroundColor: Colors.WHITE,
+}
+
 export const header = {
   flex: 1,
 }

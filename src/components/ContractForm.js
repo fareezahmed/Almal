@@ -4,8 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 // Styles
-// import styles from '../assets/styles/ContractScreenStyles'
-import { GlobalStyles, Colors } from '../config';
+import styles from '../assets/styles/ContractScreenStyles'
 
 // Actions
 import {
@@ -21,16 +20,6 @@ import {
 
 // Components
 import { Input, Spinner, ButtonElement } from './commons';
-
-const styles = {
-  formStyle: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  buttonStyle: {
-    paddingTop: 0,
-  },
-};
 
 class ContractForm extends Component {
   constructor() {
@@ -123,21 +112,25 @@ class ContractForm extends Component {
     } = this.props;
 
     return (
-      <View style={styles.formStyle}>
-        <Input
-          icon="person"
-          label={ nameLabel }
-          onChangeText={ this.onNameChange }
-          value={ this.props.name }
-          error={ error }
-        />
-        <Input
-          icon="phone-iphone"
-          label={ phoneLabel }
-          onChangeText={ this.onPhoneChange }
-          value={ this.props.phone }
-          error={ error }
-        />
+      <View style={ styles.fromWrapper }>
+        <View style={ styles.formStyle }>
+          <Input
+            icon="person-outline"
+            label={ nameLabel }
+            type="dark"
+            onChangeText={ this.onNameChange }
+            value={ this.props.name }
+            error={ error }
+          />
+          <Input
+            icon="phone-iphone"
+            label={ phoneLabel }
+            type="dark"
+            onChangeText={ this.onPhoneChange }
+            value={ this.props.phone }
+            error={ error }
+          />
+        </View>
         <View style={ styles.errorSection }>
           {this.renderError()}
         </View>
