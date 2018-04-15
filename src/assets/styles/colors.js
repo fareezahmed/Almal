@@ -5,7 +5,8 @@ const PRIMARY_DARK_COLOR = '#233440'; // Elephant
 const SECONDARY_DARK_COLOR = '#118a86'; // Dark Cyan
 const LIGHT_GREY = '#c8c3c4'; // Melanie
 const MEDIUM_GREY = '#808183'; // Silver
-const DARK_GREY = '#30373f';
+const DARK_GREY = '#070707';
+const BG_WHITE = '#fefeff' // Ghost White
 const WHITE = '#FFF'; // White
 const BLACK = '#000'; // Black
 const TRANSPARENT = 'transparent';
@@ -14,6 +15,7 @@ const ERROR_SECONDARY = '#fe002a';
 const TRANS_LEVEL1 = 'rgba(255, 255, 255, 0.3)';
 const TRANS_LEVEL2 = 'rgba(255, 255, 255, 0.45)';
 const TRANS_LEVEL3 = 'rgba(255, 255, 255, 0.6)';
+const SHADOW_COLOR = '#E9ECF1'; //Solitude
 
 
 export default {
@@ -26,6 +28,7 @@ export default {
   TRANS_LEVEL1,
   TRANS_LEVEL2,
   TRANS_LEVEL3,
+  BG_WHITE,
   WHITE,
   BLACK,
   DARK_GREY,
@@ -35,6 +38,8 @@ export default {
   LINK_COLOR: SECONDARY_COLOR,
   HEADER_TEXT_COLOR: PRIMARY_COLOR,
   ICON_COLOR: WHITE,
+  ICON_SECONDARY_COLOR: PRIMARY_COLOR,
   ERROR,
   ERROR_SECONDARY,
+  SHADOW_COLOR,
 };

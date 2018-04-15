@@ -27,13 +27,25 @@ export const FullPage = {
 }
 
 export const header = {
-  flex: 1,
+  flexDirection: 'row',
+  paddingTop: Platform.OS === 'ios' ? 30 : 45,
+  paddingHorizontal: Variables.Spacing,
+  paddingBottom: Variables.Spacing,
+  backgroundColor: Colors.BLACK,
 }
 
 export const main = {
   flex: 4,
   justifyContent: 'center',
   alignItems: 'center',
+}
+
+export const secondaryMain = {
+  flex: 4,
+  justifyContent: 'flex-start',
+  alignItems: 'flex-start',
+  marginTop: Variables.Spacing,
+  backgroundColor: Colors.BG_WHITE,
 }
 
 export const footer = {
@@ -67,18 +79,10 @@ export const title = {
 }
 
 export const headerTitle = {
-  ...Platform.select({
-    ios: {
-      fontFamily: 'HelveticaNeue',
-    },
-    android: {
-      fontFamily: 'Roboto',
-    },
-  }),
+  fontFamily: 'open-sans-semi',
   fontSize: Variables.H2FontSize,
   color: Colors.WHITE,
   backgroundColor: 'transparent',
-  fontWeight: '700',
 }
 
 export const baseText = {
@@ -134,6 +138,16 @@ export const backButton = {
   marginLeft: Variables.Spacing,
   backgroundColor: Colors.TRANSPARENT,
   alignItems: 'flex-start',
+}
+
+export const headerBackButton = {
+  marginRight: Variables.SpacingDouble,
+  alignItems: 'flex-start',
+}
+
+export const lastElement = {
+  alignItems: 'flex-end',
+  justifyContent: 'flex-end',
 }
 
 export const alignment = {

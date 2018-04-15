@@ -1,20 +1,39 @@
-import React from 'react';
-import { View, Text } from 'react-native';
-import { List } from '../components';
-import { GlobalStyles } from '../config';
+import React, { Component } from 'react';
+import { View } from 'react-native';
+import PropTypes from 'prop-types';
 
-const styles = {
-  listStyle: {
-    backgroundColor: '#4d9b9d',
-  },
-};
+// Styles
+import styles from '../assets/styles/MainScreenStyles'
 
-const MainScreen = () => {
-  return (
-    <View style={[GlobalStyles.listStyle, styles.listStyle]}>
-      <List />
-    </View>
-  );
-};
+// Components
+import PageWrapper from '../components/PageWrapper';
+import Header from '../components/Header';
+import List from '../components/List';
+
+// eslint-disable-next-line  react/prefer-stateless-function
+class MainScreen extends Component {
+  render() {
+    const { navigate } = this.props.navigation;
+    return (
+      <PageWrapper type="secondary">
+        {/* Header */}
+        <Header
+          title="Main"
+          navigation={ this.props.navigation }
+          secondaryNavigation="Lead"
+          secondaryIcon="settings"
+        />
+        {/* Body */}
+        <View style={ styles.main }>
+          <List />
+        </View>
+      </PageWrapper>
+    )
+  }
+}
+
+MainScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
+}
 
 export default MainScreen;

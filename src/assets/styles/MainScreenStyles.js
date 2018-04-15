@@ -8,19 +8,18 @@ const main = secondaryMain
 
 export default StyleSheet.create({
   fromWrapper: {
-    marginTop: Variables.Spacing,
     width: '100%',
   },
   main,
-  errorSection: {
+  listStyle: {
     width: '100%',
-    height: 48,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  errorMessage: {
-    backgroundColor: Colors.WHITE,
-    paddingHorizontal: Variables.Spacing,
-    paddingVertical: Variables.SpacingSml,
-    color: Colors.ERROR_SECONDARY,
-    textAlign: 'center',
+  cellStyle: {
+    width: '100%',
+    paddingTop: 0,
+    paddingLeft: 15,
+    paddingRight: 15,
   },
 });

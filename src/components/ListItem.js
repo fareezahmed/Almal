@@ -3,13 +3,23 @@ import {
   Text,
   TouchableWithoutFeedback,
   View,
+  Image,
   LayoutAnimation,
 } from 'react-native';
-import { Icon, Button } from 'react-native-elements';
+import PropTypes from 'prop-types';
+import { Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
 
-import { GlobalStyles, Colors } from '../config';
+// Actions
 import * as actions from '../actions';
+
+// Styles
+// import { GlobalStyles, Colors } from '../config';
+import Colors from '../assets/styles/Colors';
+import Variables from '../assets/styles/Variables';
+import styles from '../assets/styles/ListItemStyles';
+
+// Components
 import { ListItemDescription } from './listItemComponents';
 
 class ListItemComponent extends Component {
@@ -22,21 +32,21 @@ class ListItemComponent extends Component {
     const { expanded } = this.props;
     const {
       iconContainerStyles,
-      cardChevronStyle } = styles;
-    if (!expanded) {
-      return (
-        <View style={[GlobalStyles.centerAligned, iconContainerStyles]}>
-          <Icon
-            raised
-            name="keyboard-arrow-down"
-            color={Colors.PRIMARY_COLOR}
-            size={30}
-            containerStyle={cardChevronStyle}
-            onPress={() => this.props.contractSelected(uid)}
-          />
-        </View>
-      );
-    }
+      cardChevronStyle,
+    } = styles;
+
+    return !expanded ? (
+      <View style={ iconContainerStyles }>
+        <Icon
+          raised
+          name="keyboard-arrow-down"
+          color={ Colors.ICON_SECONDARY_COLOR }
+          size={ Variables.IconSizeSml }
+          containerStyle={ cardChevronStyle }
+          onPress={ () => this.props.contractSelected(uid) }
+        />
+      </View>
+    ) : null
   }
 
   render() {
@@ -51,12 +61,17 @@ class ListItemComponent extends Component {
 
     const {
       rowStyle,
-      nameStyle,
-      dealTypeStyle,
-      dealAmountStyle,
-      viewStyle,
-      dateStyle,
+      itemWrapper,
+      item,
+      card,
+      thumbnail,
+      thumbnailImage,
     } = styles;
+
+    const nameStyle = [styles.baseText, styles.nameStyle]
+    const dateStyle = [styles.baseText, styles.dateStyle]
+    const dealTypeStyle = [styles.baseText, styles.dealTypeStyle]
+    const dealAmountStyle = [styles.baseText, styles.dealAmountStyle]
 
     const description = {
       leadDate: this.props.data.leadDate,
@@ -65,31 +80,62 @@ class ListItemComponent extends Component {
       witness2: this.props.data.witness2,
     };
 
+    const logo = require('../assets/img/logo.png')
+
     return (
       <TouchableWithoutFeedback
-        onPress={() => this.props.contractSelected(uid)}
+        onPress={ () => this.props.contractSelected(uid) }
       >
-        <View style={[{ paddingBottom: 10 }]}>
-          <View style={[GlobalStyles.shadow, viewStyle, { paddingBottom: 22 }]}>
+        <View style={ itemWrapper }>
+          <View style={ item }>
             <View
-              style={[GlobalStyles.row, rowStyle]}
-              key={uid}
+              style={ rowStyle }
+              key={ uid }
             >
-              <View style={GlobalStyles.flex5}>
-                <Text style={[GlobalStyles.cardTitle, nameStyle]}>{name}</Text>
+              <View>
+                { !expanded
+                  ? (
+                    <View style={ card }>
+                      <View style={ thumbnail }>
+                        {/* IMAGE */}
+                        <Image
+                          style={ thumbnailImage }
+                          source={ logo }
+                        />
+                      </View>
+                      <View>
+                        <Text style={ nameStyle }>{name}</Text>
+                        <View>
+                          <Icon
+                            name="keyboard-arrow-down"
+                            color={ Colors.ICON_SECONDARY_COLOR }
+                            size={ Variables.IconSizeSml }
+                          />
+                          <Text>{name}</Text>
+                        </View>
+                      </View>
+                      <View>
+                        <Text>
+                          {dealAmount}
+                        </Text>
+                      </View>
+                    </View>
+                  )
+                  : (
+                    <View>
+                      <View>
+                        <Text>{name}</Text>
+                      </View>
+                      <View>
+                        <Text>
+                          {dealAmount}
+                        </Text>
+                      </View>
+                    </View>
+                  )
+                }
                 {/* List Item Sub Title */}
-                { !expanded ? <Text style={[GlobalStyles.cardSubTitle, dateStyle]}>Due Date:{returnDate}</Text> : null}
-              </View>
-              <View style={[GlobalStyles.flex1]}>
-                <View style={[GlobalStyles.row]}>
-                  <Text style={[GlobalStyles.cardTitle, GlobalStyles.textRightAligned, dealTypeStyle]}>
-                    {dealType}
-                  </Text>
-                  <Text style={[GlobalStyles.cardTitle, GlobalStyles.textRightAligned, dealAmountStyle]}>
-                    {dealAmount}
-                  </Text>
-                </View>
-
+                { !expanded ? <Text style={ dateStyle }>Due Date:{returnDate}</Text> : null}
               </View>
             </View>
             {/* List Item Description  */}
@@ -105,57 +151,22 @@ class ListItemComponent extends Component {
   }
 }
 
-const styles = {
-  rowStyle: {
-    paddingBottom: 0,
-  },
-  viewStyle: {
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    width: '100%',
-    borderRadius: 5,
-  },
-  nameStyle: {
-    fontSize: 22,
-    color: '#304247',
-    fontWeight: '500',
-  },
-  dealTypeStyle: {
-    marginTop: 7,
-    fontSize: 24,
-    color: '#304247',
-    fontWeight: '500',
-  },
-  dealAmountStyle: {
-    marginTop: 7,
-    fontSize: 24,
-    paddingLeft: 1,
-    color: '#304247',
-    fontWeight: '500',
-  },
-  dateStyle: {
-    marginTop: 2,
-    fontSize: 12,
-    fontWeight: '500',
-  },
-  iconContainerStyles: {
-    marginTop: -35,
-  },
-  cardChevronStyle: {
-    width: 40,
-    height: 40,
-    paddingLeft: 5,
-    paddingRight: 5,
-    backgroundColor: '#fff',
-  },
-};
+ListItemComponent.propTypes = {
+  expanded: PropTypes.bool,
+  data: PropTypes.object.isRequired,
+  contractSelected: PropTypes.func.isRequired,
+}
+
+ListItemComponent.defaultProps = {
+  expanded: false,
+}
 
 const mapStateToProps = (state, ownProps) => {
-  const expanded = state.contractSelected === ownProps.data.uid;
+  const expanded = state.contractSelected === ownProps.data.uid
 
-  return { expanded };
-};
+  return { expanded }
+}
 
-const ListItem = connect(mapStateToProps, actions)(ListItemComponent);
+const ListItem = connect(mapStateToProps, actions)(ListItemComponent)
 
-export default ListItem;
+export default ListItem

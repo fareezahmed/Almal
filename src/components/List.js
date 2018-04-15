@@ -4,8 +4,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import firebase from 'firebase';
 
+// Test Data
+import data from '../reducers/List.json';
+
 // Styles
-// import styles from '../assets/styles/MainScreenStyles'
+import styles from '../assets/styles/MainScreenStyles'
 
 // Actions
 import {
@@ -15,14 +18,6 @@ import {
 // Components
 import { Spinner } from './commons';
 import { ListItem } from '../components';
-
-const styles = {
-  cellStyle: {
-    paddingTop: 0,
-    paddingLeft: 15,
-    paddingRight: 15,
-  },
-};
 
 const renderRow = data => (<ListItem data={ data } />);
 
@@ -36,7 +31,9 @@ class ListComponent extends Component {
     this.state = {
       dataSource: dataSource.cloneWithRows([]),
     }
-    this.itemsRef = firebase.database().ref(`/users/${currentUser.uid}/contracts`)
+    // this.itemsRef = firebase.database().ref(`/users/${currentUser.uid}/contracts`)
+    this.itemsRef = {}
+    console.log(this.itemsRef)
   }
 
   componentDidMount() {
@@ -44,11 +41,16 @@ class ListComponent extends Component {
   }
 
   listenForItems(itemsRef) {
-    itemsRef.on('value', (snap) => {
-      const listData = Object.values(snap.val())
-      this.setState({
-        dataSource: this.state.dataSource.cloneWithRows(listData),
-      });
+    // itemsRef.on('value', (snap) => {
+    //   const listData = Object.values(snap.val())
+    //   this.setState({
+    //     dataSource: this.state.dataSource.cloneWithRows(listData),
+    //   });
+    // });
+
+    const listData = data
+    this.setState({
+      dataSource: this.state.dataSource.cloneWithRows(listData),
     });
   }
 
@@ -70,7 +72,7 @@ class ListComponent extends Component {
     console.log(this.state.dataSource.rowIdentities)
     console.log(this.state.dataSource)
     return (
-      <View>
+      <View style={ styles.listStyle }>
         {this.renderListView()}
       </View>
     );

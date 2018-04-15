@@ -19,11 +19,16 @@ export default {
 
   Spacing: 16,
   SpacingSml: 8,
+  SpacingDouble: 32,
   SpacingBottom: 24,
 
   baseFontSize: 12,
   H1FontSize: 32,
+  H2FontSize: 18,
   H3FontSize: 15,
+
+  IconSize: 25,
+  IconSizeSml: 25,
 
   bg: 'bg.png',
   bgWithGradient: 'bg-with-gradient.png',

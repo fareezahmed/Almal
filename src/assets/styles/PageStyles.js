@@ -1,8 +1,10 @@
 import { StyleSheet } from 'react-native';
 
-import { coverFullPage } from './GlobalStyles';
+import { coverFullPage, FullPage } from './GlobalStyles';
 
 const container = coverFullPage;
+
+const secondPageType = FullPage;
 
 export default StyleSheet.create({
   page: {
@@ -13,4 +15,5 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   container,
+  secondPageType,
 });

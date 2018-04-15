@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 
 import styles from '../assets/styles/PageStyles'
 
-const PageWrapper = ({ bg, children }) => (
-  <View style={ styles.page }>
+const PageWrapper = ({ bg, type, children }) => (
+  <View style={ type ? styles.secondPageType : styles.page }>
     {
       bg ? (
         <Image
@@ -14,17 +14,19 @@ const PageWrapper = ({ bg, children }) => (
         >
           {children}
         </Image>
-      ) : { children }
+      ) : children
     }
   </View>
 );
 
 PageWrapper.propTypes = {
   bg: PropTypes.number,
+  type: PropTypes.string,
 }
 
 PageWrapper.defaultProps = {
   bg: null,
+  type: '',
 }
 
 export default PageWrapper;

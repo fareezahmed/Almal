@@ -6,28 +6,34 @@ import PropTypes from 'prop-types';
 import styles from '../assets/styles/ContractScreenStyles'
 
 // Components
+import PageWrapper from '../components/PageWrapper';
+import Header from '../components/Header';
 import ContractForm from '../components/ContractForm';
+
 
 // eslint-disable-next-line  react/prefer-stateless-function
 class ContractScreen extends Component {
   render() {
     const { navigate } = this.props.navigation;
-    const mainStyles = styles.main
     return (
-      <View style={ mainStyles }>
-
-        <ContractForm
-          nameLabel="Full Name"
-          phoneLabel="Mobile"
-          emailLabel="Email"
-          typeLabel="Type"
-          amountLabel="Amount"
-          buttonLabel="Lead"
-          errorMessage=""
-          navigate={ navigate }
-        />
-      </View>
-    );
+      <PageWrapper type="secondary">
+        {/* Header */}
+        <Header title="Leading" navigation={ this.props.navigation } />
+        {/* Body */}
+        <View style={ styles.main }>
+          <ContractForm
+            nameLabel="Full Name"
+            phoneLabel="Mobile"
+            emailLabel="Email"
+            typeLabel="Type"
+            amountLabel="Amount"
+            buttonLabel="Lead"
+            errorMessage=""
+            navigate={ navigate }
+          />
+        </View>
+      </PageWrapper>
+    )
   }
 }
 
