@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native';
 
 import Variables from './Variables';
 import Colors from './Colors';
-import { row, flex1, flex5, baseText } from './GlobalStyles';
+import { row, flex1, flex5, baseText, boldText } from './GlobalStyles';
 
 export default StyleSheet.create({
   row,
@@ -34,24 +34,46 @@ export default StyleSheet.create({
       height: 10,
     },
   },
+  cardWrapper: {
+    width: '100%',
+  },
   card: {
+    width: '100%',
     flexDirection: 'row',
   },
   thumbnail: {
     width: 40,
     height: 40,
     borderRadius: 40,
-    backgroundColor: Colors.BLACK,
+    borderColor: Colors.LIGHT_GREY,
+    borderWidth: 1,
+    borderStyle: 'solid',
     alignItems: 'flex-start',
   },
   thumbnailImage: {
-    width: 35,
-    height: 35,
-    borderRadius: 35,
+    marginTop: 6,
+    marginLeft: 6,
+    width: 25,
+    height: 25,
+  },
+  textContainer: {
+    flex: 1,
+    marginLeft: 7,
+  },
+  subTextContainer: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+  subText: {
+    fontSize: 10,
+    fontWeight: '500',
+    color: Colors.MEDIUM_GREY,
+    marginTop: 4,
+    marginLeft: 3,
   },
   nameStyle: {
     fontSize: 15,
-    fontWeight: '400',
+    fontWeight: '600',
   },
   dealTypeStyle: {
     marginTop: 7,
@@ -68,9 +90,12 @@ export default StyleSheet.create({
   },
   dateStyle: {
     marginTop: 2,
-    fontSize: 12,
-    fontWeight: '500',
+    fontSize: 11,
+    color: Colors.MEDIUM_GREY,
+    fontWeight: '400',
+    paddingLeft: 4,
   },
+  boldText,
   iconContainerStyles: {
     marginTop: -30,
     alignItems: 'center',
@@ -82,5 +107,81 @@ export default StyleSheet.create({
     paddingLeft: 0,
     paddingRight: 5,
     backgroundColor: Colors.WHITE,
+  },
+  buttonWrapper: {
+    marginTop: 10,
+    marginRight: 7,
+    width: 65,
+    height: 27,
+    borderRadius: 20,
+    paddingTop: 2,
+    paddingLeft: 15,
+    paddingRight: 15,
+    paddingBottom: 2,
+  },
+  buttonText: {
+    fontSize: 12,
+  },
+  expandedTextContainer: {
+    flexDirection: 'row',
+    marginLeft: 8,
+    marginRight: 8,
+    marginBottom: 8,
+    borderBottomWidth: 1,
+    borderStyle: 'solid',
+    borderColor: Colors.SHADOW_COLOR,
+    paddingBottom: 8,
+  },
+  expandedTitleText: {
+    flex: 1,
+  },
+  expandedDealAmount: {
+    fontSize: 12,
+  },
+  itemDescription: {
+    width: '100%',
+    justifyContent: 'center',
+  },
+  descriptionWrapper: {
+    width: '100%',
+    flexDirection: 'row',
+    paddingBottom: 20,
+  },
+  descriptionTextWrapper: {
+    flex: 1,
+    flexDirection: 'column',
+    marginLeft: 15,
+    marginRight: 15,
+  },
+  descriptionButtonWrapper: {
+    marginRight: 12,
+    width: 105,
+    height: 32,
+    borderRadius: 20,
+    paddingTop: 3,
+    paddingLeft: 12,
+    paddingRight: 12,
+    paddingBottom: 3,
+  },
+  descriptionLabel: {
+    fontSize: 11,
+    color: Colors.MEDIUM_GREY,
+    fontWeight: '400',
+    marginBottom: 5,
+  },
+  descriptionValue: {
+    fontSize: 13,
+    color: Colors.BLACK,
+    fontWeight: '400',
+    paddingBottom: 3,
+  },
+  descriptionButtonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginBottom: 10,
+  },
+  descriptionButtonText: {
+    fontSize: 14,
+    fontWeight: '700',
   },
 });

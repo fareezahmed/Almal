@@ -9,6 +9,7 @@ import styles from '../assets/styles/MainScreenStyles'
 import PageWrapper from '../components/PageWrapper';
 import Header from '../components/Header';
 import List from '../components/List';
+import IconButton from '../components/IconButton';
 
 // eslint-disable-next-line  react/prefer-stateless-function
 class MainScreen extends Component {
@@ -25,7 +26,16 @@ class MainScreen extends Component {
         />
         {/* Body */}
         <View style={ styles.main }>
-          <List />
+          <List
+            navigation={ this.props.navigation }
+          />
+        </View>
+        <View style={ styles.footer }>
+          <IconButton
+            name="add"
+            size={ 40 }
+            onPress={ () => navigate('Lead') }
+          />
         </View>
       </PageWrapper>
     )

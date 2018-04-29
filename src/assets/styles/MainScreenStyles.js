@@ -1,6 +1,5 @@
 import { StyleSheet } from 'react-native';
 
-import Variables from './Variables';
 import Colors from './Colors';
 import { secondaryMain } from './GlobalStyles';
 
@@ -21,5 +20,10 @@ export default StyleSheet.create({
     paddingTop: 0,
     paddingLeft: 15,
     paddingRight: 15,
+  },
+  footer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: Colors.TRANS_LEVEL1,
   },
 });

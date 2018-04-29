@@ -20,7 +20,7 @@ class ButtonElement extends Component {
   }
 
   render() {
-    const { text, style, onPress } = this.props
+    const { text, containerStyles, textStyles, onPress } = this.props
     return (
       <TouchableOpacity onPress={ onPress }>
         <LinearGradient
@@ -28,11 +28,11 @@ class ButtonElement extends Component {
           end={ { x: 0.7, y: 0.7 } }
           locations={ [0.5, 1] }
           colors={ ['#00b7b1', '#05cf8e'] }
-          style={ { padding: 15, alignItems: 'center', backgroundColor: 'transparent' } }
+          style={ [{ padding: 15, alignItems: 'center', backgroundColor: 'transparent' }, containerStyles] }
         >
           {
             this.state.fontLoaded ? (
-              <Text style={ [ { fontFamily: 'montserrat' }, button ]}>
+              <Text style={ [ { fontFamily: 'montserrat' }, button, textStyles ]}>
                 { text }
               </Text>
             ) : null

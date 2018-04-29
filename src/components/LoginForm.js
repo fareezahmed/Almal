@@ -68,7 +68,6 @@ class LoginForm extends Component {
     return (
       <ButtonElement
         text={ this.props.buttonLabel }
-        styles={ styles.buttonWrapper }
         onPress={ this.onButtonPress }
       />
     );

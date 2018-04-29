@@ -99,6 +99,10 @@ export const baseText = {
   fontWeight: '300',
 }
 
+export const boldText = {
+  fontWeight: '700',
+}
+
 export const secondaryText = {
   backgroundColor: 'transparent',
   color: Colors.WHITE,
@@ -148,6 +152,14 @@ export const headerBackButton = {
 export const lastElement = {
   alignItems: 'flex-end',
   justifyContent: 'flex-end',
+}
+
+export const IconBtn = {
+  marginBottom: 12,
+  padding: 5,
+  alignItems: 'center',
+  backgroundColor: 'transparent',
+  borderRadius: 30,
 }
 
 export const alignment = {

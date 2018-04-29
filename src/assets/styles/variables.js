@@ -28,7 +28,8 @@ export default {
   H3FontSize: 15,
 
   IconSize: 25,
-  IconSizeSml: 25,
+  IconSizeSml: 15,
+  IconSizeMinor: 12,
 
   bg: 'bg.png',
   bgWithGradient: 'bg-with-gradient.png',

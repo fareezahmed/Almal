@@ -19,8 +19,6 @@ import {
 import { Spinner } from './commons';
 import { ListItem } from '../components';
 
-const renderRow = data => (<ListItem data={ data } />);
-
 class ListComponent extends Component {
   constructor(props) {
     super(props)
@@ -58,7 +56,7 @@ class ListComponent extends Component {
     if (this.state.dataSource.rowIdentities[0].length === 0) {
       return <Spinner size="large" />;
     }
-
+    const renderRow = data => (<ListItem data={ data } navigation={ this.props.navigation } />);
     return (
       <ListView
         dataSource={ this.state.dataSource }
@@ -81,6 +79,7 @@ class ListComponent extends Component {
 
 ListComponent.propTypes = {
   dataSource: PropTypes.object,
+  navigation: PropTypes.object.isRequired,
 }
 
 ListComponent.defaultProps = {

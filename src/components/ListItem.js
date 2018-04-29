@@ -14,12 +14,12 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 // Styles
-// import { GlobalStyles, Colors } from '../config';
 import Colors from '../assets/styles/Colors';
 import Variables from '../assets/styles/Variables';
 import styles from '../assets/styles/ListItemStyles';
 
 // Components
+import { ButtonElement } from './commons'
 import { ListItemDescription } from './listItemComponents';
 
 class ListItemComponent extends Component {
@@ -41,7 +41,7 @@ class ListItemComponent extends Component {
           raised
           name="keyboard-arrow-down"
           color={ Colors.ICON_SECONDARY_COLOR }
-          size={ Variables.IconSizeSml }
+          size={ Variables.IconSize }
           containerStyle={ cardChevronStyle }
           onPress={ () => this.props.contractSelected(uid) }
         />
@@ -50,37 +50,51 @@ class ListItemComponent extends Component {
   }
 
   render() {
-    const { expanded } = this.props;
+    const { expanded, navigation } = this.props
     const {
       uid,
       name,
       dealType,
       dealAmount,
       returnDate,
-    } = this.props.data;
+    } = this.props.data
+
+    const amount = `${dealType} ${dealAmount}`
 
     const {
       rowStyle,
       itemWrapper,
       item,
+      cardWrapper,
       card,
       thumbnail,
       thumbnailImage,
+      textContainer,
+      subTextContainer,
+      subText,
+      buttonWrapper,
+      buttonText,
+      expandedTextContainer,
+      expandedTitleText,
+      expandedDealAmount,
     } = styles;
 
     const nameStyle = [styles.baseText, styles.nameStyle]
     const dateStyle = [styles.baseText, styles.dateStyle]
-    const dealTypeStyle = [styles.baseText, styles.dealTypeStyle]
-    const dealAmountStyle = [styles.baseText, styles.dealAmountStyle]
+    const returnDateTextStyle = [styles.baseText, styles.dateStyle, styles.boldText]
+
 
     const description = {
       leadDate: this.props.data.leadDate,
       returnDate: this.props.data.returnDate,
       witness1: this.props.data.witness1,
       witness2: this.props.data.witness2,
+      onPressUpate: () => navigation.navigate('Lead'),
+      onPressReceived: () => {},
     };
 
-    const logo = require('../assets/img/logo.png')
+    const avatar = { uri: this.props.data.avatar }
+    // require('../assets/img/logo.png')
 
     return (
       <TouchableWithoutFeedback
@@ -92,7 +106,7 @@ class ListItemComponent extends Component {
               style={ rowStyle }
               key={ uid }
             >
-              <View>
+              <View style={ cardWrapper }>
                 { !expanded
                   ? (
                     <View style={ card }>
@@ -100,42 +114,63 @@ class ListItemComponent extends Component {
                         {/* IMAGE */}
                         <Image
                           style={ thumbnailImage }
-                          source={ logo }
+                          source={ avatar }
                         />
                       </View>
-                      <View>
-                        <Text style={ nameStyle }>{name}</Text>
+                      <View style={ textContainer }>
                         <View>
+                          <Text style={ nameStyle }>{name}</Text>
+                        </View>
+                        <View style={ subTextContainer }>
                           <Icon
-                            name="keyboard-arrow-down"
-                            color={ Colors.ICON_SECONDARY_COLOR }
-                            size={ Variables.IconSizeSml }
+                            name="map-marker"
+                            type="font-awesome"
+                            color={ Colors.ICON_THIRD_COLOR }
+                            size={ Variables.IconSizeMinor }
                           />
-                          <Text>{name}</Text>
+                          <Text style={ subText }>{name}</Text>
                         </View>
                       </View>
                       <View>
-                        <Text>
-                          {dealAmount}
-                        </Text>
+                        <ButtonElement
+                          text={ amount }
+                          containerStyles={ buttonWrapper }
+                          textStyles={ buttonText }
+                          onPress={ () => this.props.contractSelected(uid) }
+                        />
                       </View>
                     </View>
                   )
                   : (
-                    <View>
-                      <View>
-                        <Text>{name}</Text>
+                    <View style={ expandedTextContainer }>
+                      <View style={ expandedTitleText }>
+                        <Text style={ nameStyle }>{name}</Text>
                       </View>
                       <View>
-                        <Text>
-                          {dealAmount}
+                        <Text style={ expandedDealAmount }>
+                          {amount}
                         </Text>
                       </View>
                     </View>
                   )
                 }
                 {/* List Item Sub Title */}
-                { !expanded ? <Text style={ dateStyle }>Due Date:{returnDate}</Text> : null}
+                { !expanded
+                  ?
+                    <View style={ subTextContainer }>
+                      <Icon
+                        name="calendar"
+                        type="font-awesome"
+                        color={ Colors.ICON_THIRD_COLOR }
+                        size={ Variables.IconSizeMinor }
+                      />
+                      <Text style={ dateStyle }>
+                        Due Date -
+                      </Text>
+                      <Text style={ returnDateTextStyle }>{returnDate}</Text>
+                    </View>
+
+                  : null}
               </View>
             </View>
             {/* List Item Description  */}
@@ -143,7 +178,7 @@ class ListItemComponent extends Component {
               { expanded ? <ListItemDescription { ...description } /> : null }
             </View>
           </View>
-          {this.renderIcon()}
+          {/* this.renderIcon() */}
         </View>
 
       </TouchableWithoutFeedback>
@@ -155,6 +190,7 @@ ListItemComponent.propTypes = {
   expanded: PropTypes.bool,
   data: PropTypes.object.isRequired,
   contractSelected: PropTypes.func.isRequired,
+  navigation: PropTypes.object.isRequired,
 }
 
 ListItemComponent.defaultProps = {
