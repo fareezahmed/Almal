@@ -19,7 +19,7 @@ class MainScreen extends Component {
       <PageWrapper type="secondary">
         {/* Header */}
         <Header
-          title="Main"
+          title="Records"
           navigation={ this.props.navigation }
           secondaryNavigation="Lead"
           secondaryIcon="settings"

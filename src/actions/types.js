@@ -25,6 +25,7 @@ export const CONTRACT_UNSELECTED = 'contract_unselected';
 export const CONTRACT_CREATE = 'contract_create';
 export const CONTRACT_NAME_CHANGED = 'contract_name_changed';
 export const CONTRACT_PHONE_CHANGED = 'contract_phone_changed';
+export const CONTRACT_EMAIL_CHANGED = 'contract_email_changed';
 export const CONTRACT_TYPE_CHANGED = 'contract_type_changed';
 export const CONTRACT_AMOUNT_CHANGED = 'contract_amount_changed';
 export const CONTRACT_RETURN_DATE_CHANGED = 'contract_return_date_changed';

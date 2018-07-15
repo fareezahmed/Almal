@@ -1,6 +1,7 @@
 import {
   CONTRACT_NAME_CHANGED,
   CONTRACT_PHONE_CHANGED,
+  CONTRACT_EMAIL_CHANGED,
   CONTRACT_TYPE_CHANGED,
   CONTRACT_AMOUNT_CHANGED,
   CONTRACT_RETURN_DATE_CHANGED,
@@ -14,6 +15,7 @@ import {
 const INITIAL_STATE = {
   name: '',
   phone: '',
+  email: '',
   type: '',
   amount: '',
   returnDate: '',
@@ -30,6 +32,8 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, name: action.payload };
     case CONTRACT_PHONE_CHANGED:
       return { ...state, phone: action.payload };
+    case CONTRACT_EMAIL_CHANGED:
+      return { ...state, email: action.payload };
     case CONTRACT_TYPE_CHANGED:
       return { ...state, type: action.payload };
     case CONTRACT_AMOUNT_CHANGED:

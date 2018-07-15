@@ -5,6 +5,7 @@ import {
   CONTRACT_CREATE,
   CONTRACT_NAME_CHANGED,
   CONTRACT_PHONE_CHANGED,
+  CONTRACT_EMAIL_CHANGED,
   CONTRACT_TYPE_CHANGED,
   CONTRACT_AMOUNT_CHANGED,
   CONTRACT_RETURN_DATE_CHANGED,
@@ -33,6 +34,11 @@ export const contractPhoneChanged = text => ({
   payload: text,
 });
 
+export const contractEmailChanged = text => ({
+  type: CONTRACT_EMAIL_CHANGED,
+  payload: text,
+});
+
 export const contractTypeChanged = text => ({
   type: CONTRACT_TYPE_CHANGED,
   payload: text,
@@ -57,20 +63,30 @@ export const contractCreated = (state) => {
   const {
     name,
     phone,
-    // contractDate,
+    email,
     // returnDate,
-    // dealType,
-    // dealAmount,
+    type,
+    amount,
     // witness1,
     // witness2,
   } = state;
   const { currentUser } = firebase.auth();
+  // let now = new Date();
+  const contractDate = Date.now();
+  console.log(contractDate)
   console.log(currentUser)
   return (dispatch) => {
     try {
       firebase.database().ref(`/users/${currentUser.uid}/contracts`)
         // .push({ name, phone, contractDate, returnDate, dealType, dealAmount, witness1, witness2 })
-        .push({ name, phone })
+        .push({
+          name,
+          phone,
+          email,
+          type,
+          amount,
+          contractDate,
+        })
         .then(() => {
           dispatch({ type: CONTRACT_CREATE })
         });

@@ -18,7 +18,7 @@ class ContractScreen extends Component {
     return (
       <PageWrapper type="secondary">
         {/* Header */}
-        <Header title="Leading" navigation={ this.props.navigation } />
+        <Header title="Leading Record" navigation={ this.props.navigation } />
         {/* Body */}
         <View style={ styles.main }>
           <ContractForm

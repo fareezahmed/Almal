@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-
+import { Dropdown } from 'react-native-material-dropdown';
 // Styles
 import styles from '../assets/styles/ContractScreenStyles'
 
@@ -10,9 +10,9 @@ import styles from '../assets/styles/ContractScreenStyles'
 import {
   contractNameChanged,
   contractPhoneChanged,
-  // contractEmailChanged,
-  // contractTypeChanged,
-  // contractAmountChanged,
+  contractEmailChanged,
+  contractTypeChanged,
+  contractAmountChanged,
   // contractDateChanged,
   // contractReturnDateChanged,
   contractCreated,
@@ -26,7 +26,9 @@ class ContractForm extends Component {
     super();
     this.onNameChange = this.onNameChange.bind(this);
     this.onPhoneChange = this.onPhoneChange.bind(this);
-    // this.onEmailChange = this.onEmailChange.bind(this);
+    this.onEmailChange = this.onEmailChange.bind(this);
+    this.onTypeChange = this.onTypeChange.bind(this);
+    this.onAmountChange = this.onAmountChange.bind(this);
     this.onButtonPress = this.onButtonPress.bind(this);
   }
 
@@ -38,9 +40,17 @@ class ContractForm extends Component {
     this.props.contractPhoneChanged(text);
   }
 
-  // onEmailChange(text) {
-  //   this.props.contractEmailChanged(text);
-  // }
+  onEmailChange(text) {
+    this.props.contractEmailChanged(text);
+  }
+
+  onTypeChange(text) {
+    this.props.contractTypeChanged(text);
+  }
+
+  onAmountChange(text) {
+    this.props.contractAmountChanged(text);
+  }
 
 
   onButtonPress() {
@@ -104,12 +114,20 @@ class ContractForm extends Component {
     const {
       nameLabel,
       phoneLabel,
-      // emailLabel,
-      // typeLabel,
-      // amountLabel,
+      emailLabel,
+      typeLabel,
+      amountLabel,
       // dateLabel,
       error,
     } = this.props;
+
+    let currency = [{
+      value: 'AUD',
+    }, {
+      value: 'USD',
+    }, {
+      value: 'INR',
+    }];
 
     return (
       <View style={ styles.fromWrapper }>
@@ -130,6 +148,28 @@ class ContractForm extends Component {
             value={ this.props.phone }
             error={ error }
           />
+          <Input
+            icon="mail-outline"
+            label={ emailLabel }
+            type="dark"
+            onChangeText={ this.onEmailChange }
+            value={ this.props.email }
+            error={ error }
+          />
+          <Dropdown
+            label={ typeLabel }
+            data={ currency }
+            value={ this.props.type }
+            onChangeText={ this.onTypeChange }
+          />
+          <Input
+            icon="attach-money"
+            label={ amountLabel }
+            type="dark"
+            onChangeText={ this.onAmountChange }
+            value={ this.props.amount }
+            error={ error }
+          />
         </View>
         <View style={ styles.errorSection }>
           {this.renderError()}
@@ -144,34 +184,34 @@ class ContractForm extends Component {
 
 const MapStateToProps = ({ contract }) => {
   const {
-    name, phone, type, amount, returnDate, contractDate, error, loading,
+    name, phone, email, type, amount, returnDate, contractDate, error, loading,
   } = contract;
 
   return {
-    name, phone, type, amount, returnDate, contractDate, error, loading,
+    name, phone, email, type, amount, returnDate, contractDate, error, loading,
   };
 };
 
 ContractForm.propTypes = {
   nameLabel: PropTypes.string.isRequired,
   phoneLabel: PropTypes.string.isRequired,
-  // emailLabel: PropTypes.string.isRequired,
-  // typeLabel: PropTypes.string.isRequired,
-  // amountLabel: PropTypes.number.isRequired,
+  emailLabel: PropTypes.string.isRequired,
+  typeLabel: PropTypes.string.isRequired,
+  amountLabel: PropTypes.number.isRequired,
   // dateLabel: PropTypes.string.isRequired,
   buttonLabel: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   phone: PropTypes.string.isRequired,
-  // email: PropTypes.string.isRequired,
-  // type: PropTypes.string.isRequired,
-  // amount: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
+  amount: PropTypes.number.isRequired,
   // date: PropTypes.string.isRequired,
   loading: PropTypes.bool,
   contractNameChanged: PropTypes.func.isRequired,
   contractPhoneChanged: PropTypes.func.isRequired,
-  // contractEmailChanged: PropTypes.func.isRequired,
-  // contractTypeChanged: PropTypes.func.isRequired,
-  // contractAmountChanged: PropTypes.func.isRequired,
+  contractEmailChanged: PropTypes.func.isRequired,
+  contractTypeChanged: PropTypes.func.isRequired,
+  contractAmountChanged: PropTypes.func.isRequired,
   // contractDateChanged: PropTypes.func.isRequired,
   contractCreated: PropTypes.func,
   navigate: PropTypes.func.isRequired,
@@ -185,9 +225,9 @@ ContractForm.defaultProps = {
 export default connect(MapStateToProps, {
   contractNameChanged,
   contractPhoneChanged,
-  // contractEmailChanged,
-  // contractTypeChanged,
-  // contractAmountChanged,
+  contractEmailChanged,
+  contractTypeChanged,
+  contractAmountChanged,
   // contractDateChanged,
   contractCreated,
 })(ContractForm);
