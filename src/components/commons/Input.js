@@ -32,6 +32,7 @@ const Input = ({
   onChangeText,
   styles,
   last,
+  noLowerPadding,
 }) => (
   <View style={ [
     inputStyles.wrapperStyle,
@@ -43,6 +44,7 @@ const Input = ({
       (type === 'dark') ? [inputStyles.containerStyle, inputStyles.darkContainerStyle] : inputStyles.containerStyle,
       (error) ? inputStyles.errorInput : {},
       (last) ? inputStyles.lastContainerStyle : {},
+      (noLowerPadding) ? inputStyles.noLowerPaddingStyle : {},
       ] }
     >
       <TextInput

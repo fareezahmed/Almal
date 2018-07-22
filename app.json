@@ -1,5 +1,11 @@
 {
   "expo": {
-    "sdkVersion": "21.0.0"
+    "sdkVersion": "28.0.0",
+    "android": {
+      "package": "com.fareezahmed.almal",
+      "versionCode": 1,
+      "permissions": [],
+      "icon": "./logo.png"
+    }
   }
 }

@@ -3,7 +3,9 @@ import { View, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Dropdown } from 'react-native-material-dropdown';
+
 // Styles
+import Colors from '../assets/styles/Colors';
 import styles from '../assets/styles/ContractScreenStyles'
 
 // Actions
@@ -49,7 +51,7 @@ class ContractForm extends Component {
   }
 
   onAmountChange(text) {
-    this.props.contractAmountChanged(text);
+    this.props.contractAmountChanged(text.toString());
   }
 
 
@@ -129,6 +131,10 @@ class ContractForm extends Component {
       value: 'INR',
     }];
 
+    const dropContainer = {
+      marginLeft: 24,
+    };
+
     return (
       <View style={ styles.fromWrapper }>
         <View style={ styles.formStyle }>
@@ -156,12 +162,6 @@ class ContractForm extends Component {
             value={ this.props.email }
             error={ error }
           />
-          <Dropdown
-            label={ typeLabel }
-            data={ currency }
-            value={ this.props.type }
-            onChangeText={ this.onTypeChange }
-          />
           <Input
             icon="attach-money"
             label={ amountLabel }
@@ -169,7 +169,18 @@ class ContractForm extends Component {
             onChangeText={ this.onAmountChange }
             value={ this.props.amount }
             error={ error }
+            noLowerPadding
           />
+          <View style={ dropContainer }>
+            <Dropdown
+              label={ typeLabel }
+              data={ currency }
+              value={ this.props.type }
+              onChangeText={ this.onTypeChange }
+              itemColor={ Colors.BLACK }
+              selectedItemColor={ Colors.BLACK }
+            />
+          </View>
         </View>
         <View style={ styles.errorSection }>
           {this.renderError()}
@@ -197,14 +208,14 @@ ContractForm.propTypes = {
   phoneLabel: PropTypes.string.isRequired,
   emailLabel: PropTypes.string.isRequired,
   typeLabel: PropTypes.string.isRequired,
-  amountLabel: PropTypes.number.isRequired,
+  amountLabel: PropTypes.string.isRequired,
   // dateLabel: PropTypes.string.isRequired,
   buttonLabel: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   phone: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  amount: PropTypes.number.isRequired,
+  amount: PropTypes.string.isRequired,
   // date: PropTypes.string.isRequired,
   loading: PropTypes.bool,
   contractNameChanged: PropTypes.func.isRequired,

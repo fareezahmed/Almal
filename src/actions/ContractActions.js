@@ -59,7 +59,9 @@ export const contractDateChanged = text => ({
   payload: text,
 });
 
-export const contractCreated = (state) => {
+
+// eslint-disable-next-line arrow-parens
+export const contractCreated = (props) => (dispatch) => {
   const {
     name,
     phone,
@@ -69,30 +71,27 @@ export const contractCreated = (state) => {
     amount,
     // witness1,
     // witness2,
-  } = state;
+    navigate,
+  } = props;
   const { currentUser } = firebase.auth();
-  // let now = new Date();
   const contractDate = Date.now();
-  console.log(contractDate)
-  console.log(currentUser)
-  return (dispatch) => {
-    try {
-      firebase.database().ref(`/users/${currentUser.uid}/contracts`)
-        // .push({ name, phone, contractDate, returnDate, dealType, dealAmount, witness1, witness2 })
-        .push({
-          name,
-          phone,
-          email,
-          type,
-          amount,
-          contractDate,
-        })
-        .then(() => {
-          dispatch({ type: CONTRACT_CREATE })
-        });
-      console.log('sucessful');
-    } catch (error) {
-      console.log(error)
-    }
-  };
+  try {
+    firebase.database().ref(`/users/${currentUser.uid}/contracts`)
+      // .push({ name, phone, contractDate, returnDate, dealType, dealAmount, witness1, witness2 })
+      .push({
+        name,
+        phone,
+        email,
+        type,
+        amount,
+        contractDate,
+      })
+      .then(() => {
+        dispatch({ type: CONTRACT_CREATE })
+        navigate('Main');
+      });
+    console.log('sucessful');
+  } catch (error) {
+    console.log(error)
+  }
 };

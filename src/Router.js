@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from 'react-native-elements';
-import { StackNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 
 // helpers
 import { Colors } from './config';
@@ -14,7 +14,7 @@ import SignUpScreen from './screens/SignUpScreen';
 import ForgotPassword from './screens/ForgotPasswordScreen';
 import ContractScreen from './screens/ContractScreen';
 
-const Stack = StackNavigator(
+const Stack = createStackNavigator(
   {
     // Splash: {
     //   screen: SplashScreen,

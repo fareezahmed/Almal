@@ -6,11 +6,8 @@ import Variables from './Variables';
 
 const { Screen } = Variables;
 
-const resizeMode = 'cover';
-
 export const coverFullPage = {
   flex: 1,
-  resizeMode,
   position: 'absolute',
   width: '100%',
   height: '100%',

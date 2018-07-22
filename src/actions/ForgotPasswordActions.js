@@ -30,18 +30,19 @@ const forgotPasswordEmailFail = (dispatch, error) => {
   });
 };
 
-const forgotPasswordEmailSucess = (dispatch) => {
+const forgotPasswordEmailSuccess = (dispatch, navigate) => {
   dispatch({ type: FORGOT_PASSWORD_EMAIL_SUCCESS });
+  navigate('Login');
 };
 
 // eslint-disable-next-line arrow-parens
 export const forgotPasswordEmailValidate = (props) => (dispatch) => {
-  const { email } = props;
+  const { email, navigate } = props;
   dispatch({ type: FORGOT_PASSWORD_LOADING });
   // REWRITE THE LOGIC FOR FORGOT PASSWORD
   try {
     firebase.auth().fetchProvidersForEmail(email)
-      .then(user => forgotPasswordEmailSucess(dispatch, user))
+      .then(user => forgotPasswordEmailSuccess(dispatch, navigate, user))
       .catch((error) => {
         forgotPasswordEmailFail(dispatch, error);
       });

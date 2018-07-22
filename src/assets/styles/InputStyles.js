@@ -28,6 +28,9 @@ export default StyleSheet.create({
   lastContainerStyle: {
     marginBottom: 16,
   },
+  noLowerPaddingStyle: {
+    marginBottom: 0,
+  },
   inputStyle: {
     color: Colors.WHITE,
     backgroundColor: 'transparent',
