@@ -2,7 +2,6 @@ import { StyleSheet } from 'react-native';
 
 import Colors from './Colors';
 import Variables from './Variables';
-import { circle } from './GlobalStyles';
 
 export default StyleSheet.create({
   errorInput: {
@@ -29,10 +28,22 @@ export default StyleSheet.create({
   lastContainerStyle: {
     marginBottom: 16,
   },
+  noLowerPaddingStyle: {
+    marginBottom: 0,
+  },
   dropdownStyle: {
     color: Colors.WHITE,
     backgroundColor: 'transparent',
     fontSize: 14,
     fontWeight: '500',
+  },
+  darkContainerStyle: {
+    borderColor: Colors.LIGHT_GREY,
+  },
+  darkStyle: {
+    color: Colors.MEDIUM_GREY,
+  },
+  darkIcon: {
+    color: Colors.MEDIUM_GREY,
   },
 });

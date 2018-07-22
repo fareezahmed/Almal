@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { Dropdown } from 'react-native-material-dropdown';
+// import { Dropdown } from 'react-native-material-dropdown';
+import ModalDropdown from 'react-native-modal-dropdown';
 
 // Styles
 import Colors from '../assets/styles/Colors';
@@ -21,7 +22,7 @@ import {
 } from '../actions';
 
 // Components
-import { Input, Spinner, ButtonElement } from './commons';
+import { Input, Spinner, ButtonElement, Dropdown } from './commons';
 
 class ContractForm extends Component {
   constructor() {
@@ -131,6 +132,8 @@ class ContractForm extends Component {
       value: 'INR',
     }];
 
+    const option = ['option 1', 'option 2'];
+
     const dropContainer = {
       marginLeft: 24,
     };
@@ -169,18 +172,56 @@ class ContractForm extends Component {
             onChangeText={ this.onAmountChange }
             value={ this.props.amount }
             error={ error }
-            noLowerPadding
           />
-          <View style={ dropContainer }>
-            <Dropdown
-              label={ typeLabel }
-              data={ currency }
-              value={ this.props.type }
-              onChangeText={ this.onTypeChange }
-              itemColor={ Colors.BLACK }
-              selectedItemColor={ Colors.BLACK }
+          <Dropdown
+            icon="description"
+            label={ typeLabel }
+            type="dark"
+            options={ option }
+            onSelect={ this.onTypeChange }
+            value={ this.props.amount }
+            error={ error }
+          />
+          <View>
+            <Text>Witness 1</Text>
+            <Input
+              icon="person-add"
+              label={ nameLabel }
+              type="dark"
+              // onChangeText={ this.onEmailChange }
+              // value={ this.props.email }
+              error={ error }
+            />
+            <Input
+              icon="phone-iphone"
+              label={ phoneLabel }
+              type="dark"
+              // onChangeText={ this.onAmountChange }
+              // value={ this.props.amount }
+              error={ error }
             />
           </View>
+          <View>
+            <Text>Witness 2</Text>
+            <Input
+              icon="person-add"
+              label={ emailLabel }
+              type="dark"
+              // onChangeText={ this.onEmailChange }
+              // value={ this.props.email }
+              error={ error }
+            />
+            <Input
+              icon="phone-iphone"
+              label={ phoneLabel }
+              type="dark"
+              // onChangeText={ this.onAmountChange }
+              // value={ this.props.amount }
+              error={ error }
+              noLowerPadding
+            />
+          </View>
+
         </View>
         <View style={ styles.errorSection }>
           {this.renderError()}

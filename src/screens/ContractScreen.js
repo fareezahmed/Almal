@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import PropTypes from 'prop-types';
 
 // Styles
@@ -20,18 +20,20 @@ class ContractScreen extends Component {
         {/* Header */}
         <Header title="Leading Record" navigation={ this.props.navigation } />
         {/* Body */}
-        <View style={ styles.main }>
-          <ContractForm
-            nameLabel="Full Name"
-            phoneLabel="Mobile"
-            emailLabel="Email"
-            typeLabel="Type"
-            amountLabel="Amount"
-            buttonLabel="Lead"
-            errorMessage=""
-            navigate={ navigate }
-          />
-        </View>
+        <ScrollView>
+          <View style={ styles.main }>
+            <ContractForm
+              nameLabel="Full Name"
+              phoneLabel="Mobile"
+              emailLabel="Email"
+              typeLabel="Type"
+              amountLabel="Amount"
+              buttonLabel="Lead"
+              errorMessage=""
+              navigate={ navigate }
+            />
+          </View>
+        </ScrollView>
       </PageWrapper>
     )
   }
